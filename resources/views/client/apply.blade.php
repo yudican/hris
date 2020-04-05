@@ -17,6 +17,19 @@
       color: red;
       text-transform: lowercase;
     }
+    .row-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    [class*="col-lg-"] {
+      margin-bottom: 30px;
+    }
+
+    .content {
+      height: 100%;
+      padding: 20px 20px 10px;
+      color: #000;
+    }
   </style>
 @endpush
 
@@ -31,9 +44,9 @@
   </div>
   <form action="{{ route('karir.store', ['id' => request()->segment(2)]) }}" method="post" enctype="multipart/form-data">
     @csrf
-    <div class="row">
+    <div class="row row-flex">
       <div class="col-lg-8">
-        <div class="mb-5 bg-white p-3">
+        <div class="mb-3 bg-white p-3 content">
           {{-- <a href="#" class="blog-thumbnail"><img src="{{ url('assets/client/images/cargo_air_small.jpg') }}" alt="Image" class="img-fluid"></a> --}}
           <div class="blog-excerpt">
             <h5 class="d-block mb-3">Informasi Pribadi</h3>
@@ -41,21 +54,21 @@
               <div class="col-md-6">
                 <div class="form-group form-show-validation {{ $errors->has('pelamar_nik') ? 'has-error' : '' }}">
                   <label for="pelamar_nik">Nomor NIK</label>
-                  <input id="pelamar_nik" class="form-control" type="text" name="pelamar_nik" value="{{ old('pelamar_nik') }}">
+                  <input id="pelamar_nik" class="form-control" type="text" name="pelamar_nik" maxlength="16" placeholder="masukkan nomor NIK" value="{{ old('pelamar_nik') }}">
                   {!! $errors->first('pelamar_nik', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group form-show-validation {{ $errors->has('pelamar_rt') ? 'has-error' : '' }}">
                       <label for="pelamar_rt">RT</label>
-                      <input id="pelamar_rt" class="form-control" type="text" name="pelamar_rt" value="{{ old('pelamar_rt') }}">
+                      <input id="pelamar_rt" class="form-control" type="text" name="pelamar_rt" placeholder="RT" value="{{ old('pelamar_rt') }}">
                       {!! $errors->first('pelamar_rt', '<label id="name-error" class="error" for="name">:message</label>') !!}
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group form-show-validation {{ $errors->has('pelamar_rw') ? 'has-error' : '' }}">
                       <label for="pelamar_rw">RW</label>
-                      <input id="pelamar_rw" class="form-control" type="text" name="pelamar_rw" value="{{ old('pelamar_rw') }}">
+                      <input id="pelamar_rw" class="form-control" type="text" name="pelamar_rw" placeholder="RW" value="{{ old('pelamar_rw') }}">
                       {!! $errors->first('pelamar_rw', '<label id="name-error" class="error" for="name">:message</label>') !!}
                     </div>
                   </div>
@@ -84,7 +97,7 @@
               <div class="col-md-6">
                 <div class="form-group form-show-validation {{ $errors->has('pelamar_nama') ? 'has-error' : '' }}">
                   <label for="pelamar_nama">Nama Lengkap</label>
-                  <input id="pelamar_nama" class="form-control" type="text" name="pelamar_nama" value="{{ old('pelamar_nama') }}">
+                  <input id="pelamar_nama" class="form-control" type="text" name="pelamar_nama" placeholder="Jhon Doe" value="{{ old('pelamar_nama') }}">
                   {!! $errors->first('pelamar_nama', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
                 <div class="form-group form-show-validation {{ $errors->has('pelamar_provinsi') ? 'has-error' : '' }}">
@@ -121,36 +134,36 @@
             </div>
             <div class="form-group form-show-validation {{ $errors->has('pelamar_alamat') ? 'has-error' : '' }}">
               <label for="pelamar_alamat">Alamat</label>
-              <textarea id="pelamar_alamat" rows="3" class="form-control" name="pelamar_alamat">{{ old('pelamar_alamat') }}</textarea>
+              <textarea id="pelamar_alamat" rows="3" class="form-control" placeholder="Jl. Mawar No. 10" name="pelamar_alamat">{{ old('pelamar_alamat') }}</textarea>
               {!! $errors->first('pelamar_alamat', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
           </div>
         </div>   
       </div>
       <div class="col-lg-4">
-        <div class="mb-3 bg-white p-3 sticky-sidebar">
-          <div class="blog-excerpt">
+        <div class="mb-3 bg-white p-3 content sticky-sidebar">
+          <div class="blog-excerpt ">
             <h5 class="d-block mb-3">Informasi Lainya</h3>
               {{-- informasi kontak --}}
             <div class="form-group form-show-validation {{ $errors->has('pelamar_hp') ? 'has-error' : '' }}">
               <label for="pelamar_hp">Nomor Telepon/Hp</label>
-              <input id="pelamar_hp" class="form-control" type="text" value="{{ old('pelamar_hp') }}" name="pelamar_hp">
+              <input id="pelamar_hp" class="form-control" type="text" placeholder="082238493422" value="{{ old('pelamar_hp') }}" name="pelamar_hp">
               {!! $errors->first('pelamar_hp', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             <div class="form-group form-show-validation {{ $errors->has('pelamar_email') ? 'has-error' : '' }}">
               <label for="pelamar_email">Email</label>
-              <input id="pelamar_email" class="form-control" type="text" value="{{ old('pelamar_email') }}" name="pelamar_email">
+              <input id="pelamar_email" class="form-control" type="text" placeholder="email@gmail.com" value="{{ old('pelamar_email') }}" name="pelamar_email">
               {!! $errors->first('pelamar_email', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             {{-- informasi pendidikan --}}
             <div class="form-group form-show-validation {{ $errors->has('pelamar_major') ? 'has-error' : '' }}">
               <label for="pelamar_major">Major</label>
-              <input id="pelamar_major" class="form-control" type="text" value="{{ old('pelamar_major') }}" name="pelamar_major">
+              <input id="pelamar_major" class="form-control" type="text" placeholder="Data Analisis" value="{{ old('pelamar_major') }}" name="pelamar_major">
               {!! $errors->first('pelamar_major', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             <div class="form-group form-show-validation {{ $errors->has('pelamar_jurusan') ? 'has-error' : '' }}">
               <label for="pelamar_jurusan">Jurusan</label>
-              <input id="pelamar_jurusan" class="form-control" type="text" value="{{ old('pelamar_jurusan') }}" name="pelamar_jurusan">
+              <input id="pelamar_jurusan" class="form-control" type="text" placeholder="Teknik Informatika" value="{{ old('pelamar_jurusan') }}" name="pelamar_jurusan">
               {!! $errors->first('pelamar_jurusan', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             {{-- informasi foto --}}
