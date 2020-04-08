@@ -368,8 +368,8 @@
 								</span>
 								<h4 class="text-section">User</h4>
 							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'perusahaan') ? 'active' : '' }}">
-								<a href="{{ route('perusahaan.index') }}" class="collapsed">
+							<li class="nav-item {{ (request()->segment(2) == 'roles') ? 'active' : '' }}">
+								<a href="{{ route('roles.index') }}" class="collapsed">
 									<i class="fas fa-layer-group"></i>
 									<p>Roles</p>
 									{{-- <span class="caret"></span> --}}
@@ -448,6 +448,27 @@
 
 
 	@stack('script')
+	@if (session()->has('success'))
+	<script src="{{ url('assets/server/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+	<script>
+		$(function(){
+			let content = {
+				message: "{{ session('success') }}",
+				title: 'Success',
+				icon: 'icon-check'
+			}
+			$.notify(content,{
+					type: 'success',
+					placement: {
+						from: 'top',
+						align: 'right'
+					},
+					time: 1000,
+					delay: 2000,
+				});
+		})
+	</script>
+@endif
 {{-- 
 	
 

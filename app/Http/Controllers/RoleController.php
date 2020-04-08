@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -15,7 +16,8 @@ class RoleController extends Controller
     {
         $data = [
             'title' => 'Roles',
-            'roles' => Role::all()
+            'roles' => Role::all(),
+            'no' => 1
         ];
 
         return view('admin.roles.index', $data);
@@ -32,7 +34,7 @@ class RoleController extends Controller
             'title' => 'Buat Roles'
         ];
 
-        return view('admin.roles.add', $data);
+        return view('admin.roles.create', $data);
     }
 
     /**
@@ -43,7 +45,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        Role::firstOrCreate(['name' => $request->name]);
+
+        return redirect()->route('roles.index')->withSuccess('Role Baru Berhasil Ditambah');
     }
 
     /**
@@ -54,7 +62,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -65,7 +73,13 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Buat Roles',
+            'id' => $id,
+            'role' => Role::findOrFail($id)
+        ];
+
+        return view('admin.roles.edit', $data);
     }
 
     /**
@@ -77,7 +91,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        Role::findOrFail($id)->update(['name' => $request->name]);
+
+        return redirect()->route('roles.index')->withSuccess('Role Berhasil Diupdate');
     }
 
     /**
@@ -88,6 +108,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+
+        return redirect()->route('roles.index')->withSuccess('Role Berhasil Dihapus');
     }
 }

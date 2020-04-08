@@ -34,6 +34,7 @@ Route::group(['middleware' => ['web']], function () {
         Auth::routes();
     });
     
+
     Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/perusahaan', 'PerusahaanController@index')->name('perusahaan.index');
         Route::post('/perusahaan/store', 'PerusahaanController@store')->name('perusahaan.store');
@@ -43,6 +44,10 @@ Route::group(['middleware' => ['web']], function () {
 
         // user authenticable
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+
+        // role controller
+        Route::resource('roles', 'RoleController');
     });
 });
 
