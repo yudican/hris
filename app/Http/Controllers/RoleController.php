@@ -13,7 +13,12 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Roles',
+            'roles' => Role::all()
+        ];
+
+        return view('admin.roles.index', $data);
     }
 
     /**
@@ -23,7 +28,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Buat Roles'
+        ];
+
+        return view('admin.roles.add', $data);
     }
 
     /**

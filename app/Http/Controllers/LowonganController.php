@@ -27,7 +27,7 @@ class LowonganController extends Controller
             'items' => Lowongan::all(),
             'no' => 1
         ];
-        return view('admin.lowongan', $data);
+        return view('admin.lowongan.index', $data);
     }
 
     /**
@@ -43,7 +43,7 @@ class LowonganController extends Controller
             'action' => route('lowongan.store'),
             'method' => 'POST'
         ];
-        return view('admin.lowongan_form', $data);
+        return view('admin.lowongan.form', $data);
     }
 
     /**
@@ -89,7 +89,7 @@ class LowonganController extends Controller
             'action' => route('lowongan.update', ['lowongan' => $id]),
             'method' => 'PUT'
         ];
-        return view('admin.lowongan_form', $data);
+        return view('admin.lowongan.form', $data);
     }
 
     /**

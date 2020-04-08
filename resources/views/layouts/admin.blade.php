@@ -362,6 +362,25 @@
 									{{-- <span class="caret"></span> --}}
 								</a>
 							</li>
+							<li class="nav-section">
+								<span class="sidebar-mini-icon">
+									<i class="fa fa-ellipsis-h"></i>
+								</span>
+								<h4 class="text-section">User</h4>
+							</li>
+							<li class="nav-item {{ (request()->segment(2) == 'perusahaan') ? 'active' : '' }}">
+								<a href="{{ route('perusahaan.index') }}" class="collapsed">
+									<i class="fas fa-layer-group"></i>
+									<p>Roles</p>
+									{{-- <span class="caret"></span> --}}
+								</a>
+							</li>
+							<li class="nav-section">
+								<span class="sidebar-mini-icon">
+									<i class="fa fa-ellipsis-h"></i>
+								</span>
+								<h4 class="text-section">Setting</h4>
+							</li>
 							<li class="nav-item {{ (request()->segment(2) == 'perusahaan') ? 'active' : '' }}">
 								<a href="{{ route('perusahaan.index') }}" class="collapsed">
 									<i class="fas fa-layer-group"></i>
