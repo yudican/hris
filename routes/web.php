@@ -51,6 +51,9 @@ Route::group(['middleware' => ['web']], function () {
 
         //permissions page
         Route::resource('permissions', 'PermissionController');
+
+        // user page
+        Route::resource('users', 'UserController');
     });
 });
 

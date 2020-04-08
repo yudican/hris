@@ -368,6 +368,13 @@
 								</span>
 								<h4 class="text-section">User</h4>
 							</li>
+							<li class="nav-item {{ (request()->segment(2) == 'users') ? 'active' : '' }}">
+								<a href="{{ route('users.index') }}" class="collapsed">
+									<i class="fas fa-layer-group"></i>
+									<p>Users</p>
+									{{-- <span class="caret"></span> --}}
+								</a>
+							</li>
 							<li class="nav-item {{ (request()->segment(2) == 'roles') ? 'active' : '' }}">
 								<a href="{{ route('roles.index') }}" class="collapsed">
 									<i class="fas fa-layer-group"></i>
