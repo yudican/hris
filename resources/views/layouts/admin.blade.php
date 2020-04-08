@@ -375,6 +375,13 @@
 									{{-- <span class="caret"></span> --}}
 								</a>
 							</li>
+							<li class="nav-item {{ (request()->segment(2) == 'permissions') ? 'active' : '' }}">
+								<a href="{{ route('permissions.index') }}" class="collapsed">
+									<i class="fas fa-layer-group"></i>
+									<p>Permissions</p>
+									{{-- <span class="caret"></span> --}}
+								</a>
+							</li>
 							<li class="nav-section">
 								<span class="sidebar-mini-icon">
 									<i class="fa fa-ellipsis-h"></i>

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
-class PermissionController extends Controller
+class  PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,13 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Permissions',
+            'permissions' => Permission::all(),
+            'no' => 1
+        ];
+
+        return view('admin.permissions.index', $data);
     }
 
     /**
@@ -23,7 +30,11 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Buat Permissions'
+        ];
+
+        return view('admin.permissions.create', $data);
     }
 
     /**
@@ -34,7 +45,13 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        Permission::firstOrCreate(['name' => $request->name]);
+
+        return redirect()->route('permissions.index')->withSuccess('Permissions Baru Berhasil Ditambah');
     }
 
     /**
@@ -45,7 +62,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +73,13 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'title' => 'Buat Permissions',
+            'id' => $id,
+            'permission' => Permission::findOrFail($id)
+        ];
+
+        return view('admin.permissions.edit', $data);
     }
 
     /**
@@ -68,7 +91,13 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        Permission::findOrFail($id)->update(['name' => $request->name]);
+
+        return redirect()->route('permissions.index')->withSuccess('Permissions Berhasil Diupdate');
     }
 
     /**
@@ -79,6 +108,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+
+        return redirect()->route('permissions.index')->withSuccess('Permissions Berhasil Dihapus');
     }
 }

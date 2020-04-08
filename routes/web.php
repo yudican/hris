@@ -46,8 +46,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 
-        // role controller
+        // role page
         Route::resource('roles', 'RoleController');
+
+        //permissions page
+        Route::resource('permissions', 'PermissionController');
     });
 });
 
