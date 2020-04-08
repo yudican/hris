@@ -37,7 +37,7 @@
                   <td width="2%">#</td>
                   <td width="10%">Nama</td>
                   <td width="10%">Email</td>
-                  <td width="10%">Role</td>
+                  <td width="10%">Roles</td>
                   <td width="5%">aksi</td>
                 </tr>
               </thead>
@@ -47,9 +47,13 @@
                     <td style="font-size: 12px;">{{ $no++ }}</td>
                     <td style="font-size: 12px;">{{ $user['name'] }}</td>
                     <td style="font-size: 12px;">{{ $user['email'] }}</td>
-                    <td style="font-size: 12px;">role</td>
                     <td style="font-size: 12px;">
-                      <a href="{{ route('users.edit', ['user' => $user['id']]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                      @foreach ($user->roles()->pluck('name') as $role)
+                          <button type="button" class="btn btn-success btn-sm text-uppercase">{{ $role }}</button>{{ _(' ') }}
+                      @endforeach
+                    </td>
+                    <td style="font-size: 12px;">
+                      <a href="{{ route('users.edit', ['user' => $user['id']]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Role</a>
                       {{-- <button type="button" onclick="return confirmDelete('{{ route('users.destroy', ['user' => $user['id']]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button> --}}
                     </td>
                   </tr>

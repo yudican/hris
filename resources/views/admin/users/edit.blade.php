@@ -37,19 +37,19 @@
             <form action="{{ route('users.update', ['user' => $id]) }}" method="POST">
               @csrf
               {{ method_field('PUT') }}
-              @foreach ($roles as $role)
-                <div class="form-check">
-                  <div class="row">
-                    <label class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right"></span></label>
-                    <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="role_{{ $role->name }}" name="role_name" value="{{ $role->name }}">
-                        <label class="custom-control-label" for="role_{{ $role->name }}">{{ $role->name }}</label>
-                      </div>
-                    </div>
-                  </div>
+              
+
+              <div class="form-group row">
+                <label for="multiple-role" class="col-sm-3">Role </label>
+                <div class="col-sm-9">
+                  <select id="multiple-role" class="custom-select" name="role[]" multiple="multiple">
+                    <option>Pilih Role</option>
+                    @foreach ($roles as $role)
+                      <option value="{{ $role->name }}" {{ in_array($role->name, $users->roles()->pluck('name')->toArray()) ? 'selected' : '' }}>{{ $role->name }}</option>
+                    @endforeach
+                  </select>
                 </div>
-              @endforeach
+              </div>
 
               <div class="form-group form-show-validation row">
                 <label for="lowongan_deskripsi" class="col-sm-3 col-form-label text-right"></label>
@@ -69,10 +69,11 @@
 @endsection
 
 @push('script')
-    <script>
-      $('.custom-checkbox input:checkbox').click(function() {
-        $('.custom-checkbox input:checkbox').not(this).prop('checked', false);
-    });
-    </script>
+<script src="{{ url('assets/server/js/plugin/select2/select2.full.min.js') }}"></script>
+<script>
+  $('#multiple-role').select2({
+    theme: "bootstrap"
+  });
+</script>
 @endpush
 

@@ -71,7 +71,8 @@ class UserController extends Controller
             'users' => $user,
             'roles' => Role::all(),
             'permissions' => Permission::all(),
-            'id' => $id
+            'id' => $id,
+            'index' => 0
         ];
 
         return view('admin.users.edit', $data);
@@ -87,8 +88,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $user->syncRoles($request->role_name);
-
+        $user->syncRoles($request->role);
         return redirect()->route('users.index')->withSuccess('User Role Berhasil Diupdate');
     }
 
