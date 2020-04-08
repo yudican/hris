@@ -166,6 +166,11 @@ return [
          * Package Service Providers...
          */
 
+         /**
+          * Package Costum Service Providers...
+          */
+        Spatie\Permission\PermissionServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
