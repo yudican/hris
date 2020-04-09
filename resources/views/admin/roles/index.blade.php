@@ -45,6 +45,7 @@
                     <td style="font-size: 12px;">{{ $no++ }}</td>
                     <td style="font-size: 12px;">{{ $role['name'] }}</td>
                     <td style="font-size: 12px;">
+                      <a href="{{ route('roles.permissions', ['role' => $role['id']]) }}" class="btn btn-primary btn-sm"><i class="fa fa-key"></i> permissions</a>
                       <a href="{{ route('roles.edit', ['role' => $role['id']]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                       <button type="button" onclick="return confirmDelete('{{ route('roles.destroy', ['role' => $role['id']]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                     </td>

@@ -48,12 +48,17 @@ Route::group(['middleware' => ['web']], function () {
 
         // role page
         Route::resource('roles', 'RoleController');
+        Route::get('roles/permissions/{role}', 'RoleController@permissions')->name('roles.permissions');
+        Route::post('roles/setpermissions/{role}', 'RoleController@setRolePermissions')->name('roles.setpermissions');
 
         //permissions page
         Route::resource('permissions', 'PermissionController');
 
         // user page
         Route::resource('users', 'UserController');
+
+        Route::resource('menu', 'MenuController');
+        Route::post('menu/change', 'MenuController@change')->name('menu.change');
     });
 });
 

@@ -402,6 +402,19 @@
 									{{-- <span class="caret"></span> --}}
 								</a>
 							</li>
+							<li class="nav-section">
+								<span class="sidebar-mini-icon">
+									<i class="fa fa-ellipsis-h"></i>
+								</span>
+								<h4 class="text-section">Tolls</h4>
+							</li>
+							<li class="nav-item {{ (request()->segment(2) == 'menu') ? 'active' : '' }}">
+								<a href="{{ route('menu.index') }}" class="collapsed">
+									<i class="fas fa-layer-group"></i>
+									<p>Menu Builder</p>
+									{{-- <span class="caret"></span> --}}
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>

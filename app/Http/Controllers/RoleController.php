@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -109,8 +111,33 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = Role::findOrFail($id);
+        // remove role from user
         $role->delete();
 
         return redirect()->route('roles.index')->withSuccess('Role Berhasil Dihapus');
+    }
+
+
+    public function permissions($id)
+    {
+        $role = Role::findOrFail($id);
+        $data = [
+            'title' => 'Update Roles Permissions Users',
+            'id' => $id,
+            'permissions' => Permission::all(),
+            'role' => $role
+        ];
+
+        return view('admin.roles.permission', $data);
+    }
+
+    public function setRolePermissions(Request $request, $id)
+    {
+        $role = Role::findOrFail($id);
+        // add role permissions
+        $role->syncPermissions($request->permission);
+        $role->givePermissionTo('management users');
+
+        return redirect()->route('roles.index')->withSuccess('Role Permissions Berhasil Diubah');
     }
 }

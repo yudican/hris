@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\LowonganModel as Lowongan;
 use App\Http\Requests\CreateLowonganRequest;
 
@@ -13,6 +14,8 @@ class LowonganController extends Controller
     public function __construct()
     {
         setlocale(LC_TIME, 'Indonesia');
+        
+        // $this->middleware(['role:super-admin','permission:publish articles|edit articles']);
     }
     
     /**
