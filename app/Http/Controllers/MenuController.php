@@ -16,7 +16,7 @@ class MenuController extends Controller
     {
         $data = [
             'title' => 'Menu',
-            'menus' => Menu::get()->toTree()
+            'menus' => Menu::orderBy('order', 'ASC')->get()->toTree()
         ];
 
         return view('admin.menu.index', $data);
@@ -46,17 +46,23 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name' => 'required|unique:menus',
-            'url' => 'required|unique:menus',
-            'icon' => 'required'
-        ]);
+
+        $rule = [
+            'name' => 'required|unique:name',
+            'icon' => 'required',
+            'controller' => 'required'
+        ];
+        if ($request->parent_id != '#') {
+            $rule['url'] = 'required';
+        }
+        $validate = $this->validate($request, $rule);
 
         $menu = Menu::create([
             'name' => $request->name,
             'url' => $request->url,
+            'controller' => $request->controller,
             'icon' => $request->icon,
-            'parent_id' => $request->parent_id ? $request->parent_id : null,
+            'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
             'order' => null
         ]);
         $menu->permissions()->create(['name' => strtolower($request->name).' add']);
@@ -81,7 +87,6 @@ class MenuController extends Controller
             'title' => 'Edit Menu',
             'menu' => Menu::find($id),
             'action' => route('menu.update', ['menu' => $id]),
-            'method' => 'PUT',
             'menus' => $menus
         ];
 
@@ -97,17 +102,23 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
-            'name' => 'required|unique:menus',
-            'url' => 'required|unique:menus',
-            'icon' => 'required'
-        ]);
-
+        
+        $rule = [
+            'name' => 'required',
+            'icon' => 'required',
+            'controller' => 'required'
+        ];
+        if ($request->parent_id != '#') {
+            $rule['url'] = 'required';
+        }
+        $validate = $this->validate($request, $rule);
+        
         Menu::find($id)->update([
             'name' => $request->name,
             'url' => $request->url,
+            'controller' => $request->controller,
             'icon' => $request->icon,
-            'parent_id' => $request->parent_id ? $request->parent_id : null,
+            'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
             'order' => null
         ]);
 
@@ -122,6 +133,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
+        Menu::with('permissions')->findOrFail($id)->permissions()->delete();
         Menu::findOrFail($id)->delete();
         return redirect()->route('menu.index')->withSuccess('Menu Baru Berhasil Dihapus');
     }

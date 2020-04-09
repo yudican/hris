@@ -342,79 +342,38 @@
 							</div>
 						</div>
 						<ul class="nav nav-primary">
-							<li class="nav-item {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
-								<a href="{{ route('dashboard') }}" class="collapsed">
-									<i class="fas fa-home"></i>
-									<p>Dashboard</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-section">
-								<span class="sidebar-mini-icon">
-									<i class="fa fa-ellipsis-h"></i>
-								</span>
-								<h4 class="text-section">Master Data</h4>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'lowongan') ? 'active' : '' }}">
-								<a href="{{ route('lowongan.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Lowongan</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-section">
-								<span class="sidebar-mini-icon">
-									<i class="fa fa-ellipsis-h"></i>
-								</span>
-								<h4 class="text-section">User</h4>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'users') ? 'active' : '' }}">
-								<a href="{{ route('users.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Users</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'roles') ? 'active' : '' }}">
-								<a href="{{ route('roles.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Roles</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'permissions') ? 'active' : '' }}">
-								<a href="{{ route('permissions.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Permissions</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-section">
-								<span class="sidebar-mini-icon">
-									<i class="fa fa-ellipsis-h"></i>
-								</span>
-								<h4 class="text-section">Setting</h4>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'perusahaan') ? 'active' : '' }}">
-								<a href="{{ route('perusahaan.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Informasi Perusahaan</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
-							<li class="nav-section">
-								<span class="sidebar-mini-icon">
-									<i class="fa fa-ellipsis-h"></i>
-								</span>
-								<h4 class="text-section">Tolls</h4>
-							</li>
-							<li class="nav-item {{ (request()->segment(2) == 'menu') ? 'active' : '' }}">
-								<a href="{{ route('menu.index') }}" class="collapsed">
-									<i class="fas fa-layer-group"></i>
-									<p>Menu Builder</p>
-									{{-- <span class="caret"></span> --}}
-								</a>
-							</li>
+							@foreach($menus as $menu)
+								@if (!$menu->parent_id && !$menu->children->isEmpty())
+									<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+										<a data-toggle="collapse" href="#{{ $menu->id }}" class="collapsed" aria-expanded="false">
+											<i class="{{ $menu->icon }}"></i>
+											<p>{{ $menu->name }}</p>
+											<span class="caret"></span>
+										</a>
+										<div class="collapse" id="{{ $menu->id }}">
+											<ul class="nav nav-collapse">
+												@foreach($menu->children as $child)
+												<li>
+													<a href="{{ route($child->url)  }}">
+														<i class="{{ $child->icon }}"></i>
+														<p>{{ $child->name }}</p>
+													</a>
+												</li>
+												@endforeach
+											</ul>
+										</div>
+									</li>
+								@else
+									<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+										<a href="{{ $menu->url ? route($menu->url) : '#' }}" class="collapsed">
+											<i class="{{ $menu->icon }}"></i>
+											<p>{{ $menu->name }}</p>
+											{{-- <span class="caret"></span> --}}
+										</a>
+									</li>
+								@endif
+							@endforeach
+							
 						</ul>
 					</div>
 				</div>

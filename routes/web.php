@@ -35,7 +35,7 @@ Route::group(['middleware' => ['web']], function () {
     });
     
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAuthorization']], function () {
         Route::get('/perusahaan', 'PerusahaanController@index')->name('perusahaan.index');
         Route::post('/perusahaan/store', 'PerusahaanController@store')->name('perusahaan.store');
 
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('lowongan', 'LowonganController');
 
         // user authenticable
-        Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+        Route::get('/dashboard', 'HomeController@index')->name('dashboard.index');
 
 
         // role page

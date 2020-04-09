@@ -136,7 +136,6 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         // add role permissions
         $role->syncPermissions($request->permission);
-        $role->givePermissionTo('management users');
 
         return redirect()->route('roles.index')->withSuccess('Role Permissions Berhasil Diubah');
     }

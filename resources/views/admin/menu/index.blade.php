@@ -66,28 +66,17 @@
                       <li class="dd-item" data-id="{{ $menu->id }}">
                         <div class="pull-right" style="position: relative;top: 5px;right: 5px;">
                           <a href="{{ route('menu.edit', ['menu' => $menu->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                          <a href="{{ route('menu.destroy', ['menu' => $menu->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                          <button type="button" onclick="return confirmDelete('{{ route('menu.destroy', ['menu' => $menu->id]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                         </div>
                         <div class='dd-handle'>{{ $menu->name }}</div>
                         <ol class="dd-list">
-                          @foreach($menu->children as $cats)
+                          @foreach($menu->childrenMenus as $cats)
                             <li class='dd-item' data-id="{{ $cats->id }}">
                               <div class="pull-right" style="position: relative;top: 5px;right: 5px;">
                                 <a href="{{ route('menu.edit', ['menu' => $cats->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                <a href="{{ route('menu.destroy', ['menu' => $cats->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                                <button type="button" onclick="return confirmDelete('{{ route('menu.destroy', ['menu' => $cats->id]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                               </div>
                               <div class='dd-handle'>{{ $cats->name }}</div>
-                              <ol class="dd-list">
-                                @foreach($cats->children as $cat)
-                                <li class='dd-item' data-id="{{ $cat->id }}">
-                                  <div class="pull-right" style="position: relative;top: 5px;right: 5px;">
-                                    <a href="{{ route('menu.edit', ['menu' => $cat->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                    <a href="{{ route('menu.destroy', ['menu' => $cat->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
-                                  </div>
-                                  <div class='dd-handle'>{{ $cat->name }}</div>
-                                </li>
-                                @endforeach
-                              </ol>
                             </li>
                           @endforeach
                         </ol>
@@ -102,6 +91,7 @@
       </div>
     </div>
   </div>
+  @include('components.modal_confirm')
 @endsection
 
 @push('script')
@@ -110,10 +100,9 @@
       $(function(){
         // alert('ok')
         $('.dd').nestable({
-          maxDepth: 3
+          maxDepth: 2
         }).on('change', function(e) {
           var menu = $(".dd").nestable("serialize");
-          console.log(JSON.stringify(menu))
             var data = {data: menu, _token: '{{ csrf_token() }}'};
             $.ajax({
                 url: `{{ route('menu.change') }}`,
@@ -128,6 +117,16 @@
                 }
             });
         });
+
+        
       })
+
+      // action delete confirmation
+      function confirmDelete(params) {
+        // let modalId = document.getElementById('confirm-modal')
+        $('#confirm-modal').modal('show')
+        $('#form-confirm').attr('action', params)
+      }
+
     </script>
 @endpush

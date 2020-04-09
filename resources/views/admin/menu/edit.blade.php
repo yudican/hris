@@ -41,7 +41,7 @@
               <div class="col-md-8 mx-auto">
                 <form action="{{ $action }}" method="POST">
                   @csrf
-                  <input type="hidden" name="_method" value="POST">
+                  <input type="hidden" name="_method" value="PUT">
                   <div class="form-group row">
                     <label for="parent_id" class="col-sm-3 col-form-label">Menu Utama</label>
                     <div class="col-sm-9">
@@ -49,9 +49,6 @@
                         <option value="#">Pilih Menu Utama</option>
                           @foreach ($menus as $men)
                             <option value="{{ $men->id }}" {{ (old('parent_id', optional($menu)->parent_id) == $men->id) ? 'selected' : '' }}>{{ $men->name }}</option>
-                            @foreach ($men->childrenMenus as $child)
-                              <option value="{{ $child->id }}" {{ (old('parent_id', optional($menu)->parent_id) == $child->id) ? 'selected' : '' }}>{{ $child->name }}</option>
-                            @endforeach
                           @endforeach
                       </select>
                       <small class="text-muted" for="slug">Note: Pilih Menu Utama Untuk Membuat Sub Menu</small>
@@ -62,6 +59,13 @@
                     <div class="col-sm-9">
                       <input id="name" class="form-control" type="text" onkeyup="handleChange(this.value)" name="name" placeholder="Dashboard" value="{{ old('name', optional($menu)->name) }}">
                       {!! $errors->first('name', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                    </div>
+                  </div>
+                  <div class="form-group form-show-validation row {{ $errors->has('controller') ? 'has-error' : '' }}">
+                    <label for="controller" class="col-sm-3 col-form-label">Nama Controller</label>
+                    <div class="col-sm-9">
+                      <input id="controller" class="form-control" type="text" name="controller" placeholder="App\Http\Controllers\UserController" value="{{ old('controller', optional($menu)->controller) }}">
+                      {!! $errors->first('controller', '<label id="controller-error" class="error" for="controller">:message</label>') !!}
                     </div>
                   </div>
                   <div class="form-group form-show-validation row {{ $errors->has('url') ? 'has-error' : '' }}">

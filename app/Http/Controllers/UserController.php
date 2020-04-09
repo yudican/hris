@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
+    // public function __construct()
+    // {
+    //     setlocale(LC_TIME, 'Indonesia');
+    //     $this->middleware('isAuthorization');
+    // }
     /**
      * Display a listing of the resource.
      *

@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Permission;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Permission;
 
 class Menu extends Model
 {
     use NodeTrait;
 
-    protected $fillable = ['name', 'url', 'parent_id', 'order', 'icon'];
+    protected $fillable = ['name', 'url', 'parent_id', 'order', 'icon', 'controller'];
 
     public function menus()
     {
@@ -26,4 +26,5 @@ class Menu extends Model
     {
         return $this->belongsToMany(Permission::class, 'menu_permission', 'menu_id', 'permission_id');
     }
+
 }

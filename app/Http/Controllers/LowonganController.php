@@ -14,8 +14,7 @@ class LowonganController extends Controller
     public function __construct()
     {
         setlocale(LC_TIME, 'Indonesia');
-        
-        // $this->middleware(['role:super-admin','permission:publish articles|edit articles']);
+        // $this->middleware('isAuthorization');
     }
     
     /**
@@ -25,6 +24,7 @@ class LowonganController extends Controller
      */
     public function index()
     {
+        
         $data = [
             'title' => 'Daftar Lowongan',
             'items' => Lowongan::all(),
