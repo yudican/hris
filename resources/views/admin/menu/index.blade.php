@@ -66,7 +66,11 @@
                       <li class="dd-item" data-id="{{ $menu->id }}">
                         <div class="pull-right" style="position: relative;top: 5px;right: 5px;">
                           <a href="{{ route('menu.edit', ['menu' => $menu->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                          <button type="button" onclick="return confirmDelete('{{ route('menu.destroy', ['menu' => $menu->id]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                          @if (!count($menu->childrenMenus) > 0)
+                            <button type="button" onclick="return confirmDelete('{{ route('menu.destroy', ['menu' => $menu->id]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                          @else
+                            <button type="button" class="btn btn-danger btn-sm" disabled><i class="fa fa-trash"></i> Delete</button>
+                          @endif
                         </div>
                         <div class='dd-handle'>{{ $menu->name }}</div>
                         <ol class="dd-list">

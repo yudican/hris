@@ -48,11 +48,11 @@ class MenuController extends Controller
     {
 
         $rule = [
-            'name' => 'required|unique:name',
+            'name' => 'required|unique:menus',
             'icon' => 'required',
             'controller' => 'required'
         ];
-        if ($request->parent_id != '#') {
+        if ($request->parent_id) {
             $rule['url'] = 'required';
         }
         $validate = $this->validate($request, $rule);
@@ -65,10 +65,10 @@ class MenuController extends Controller
             'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
             'order' => null
         ]);
-        $menu->permissions()->create(['name' => strtolower($request->name).' add']);
-        $menu->permissions()->create(['name' => strtolower($request->name).' edit']);
-        $menu->permissions()->create(['name' => strtolower($request->name).' delete']);
-        $menu->permissions()->create(['name' => strtolower($request->name).' read']);
+        $menu->permissions()->create(['name' => $request->name.' Create']);
+        $menu->permissions()->create(['name' => $request->name.' Read']);
+        $menu->permissions()->create(['name' => $request->name.' Update']);
+        $menu->permissions()->create(['name' => $request->name.' Delete']);
 
         return redirect()->route('menu.index')->withSuccess('Menu Baru Berhasil Disimpan');
     }
@@ -119,7 +119,7 @@ class MenuController extends Controller
             'controller' => $request->controller,
             'icon' => $request->icon,
             'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
-            'order' => null
+            // 'order' => null
         ]);
 
         return redirect()->route('menu.index')->withSuccess('Menu Berhasil Diupdate');

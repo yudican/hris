@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -120,12 +121,14 @@ class RoleController extends Controller
 
     public function permissions($id)
     {
+        $menusWithPermissions = Menu::with('permissions')->whereNotNull('url')->get();
         $role = Role::findOrFail($id);
         $data = [
             'title' => 'Update Roles Permissions Users',
             'id' => $id,
-            'permissions' => Permission::all(),
-            'role' => $role
+            'menupermissions' => $menusWithPermissions,
+            'role' => $role,
+            'no' => 1
         ];
 
         return view('admin.roles.permission', $data);

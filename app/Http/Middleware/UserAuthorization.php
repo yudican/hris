@@ -26,10 +26,11 @@ class UserAuthorization
         if (!count($checkController) > 0) {
             return abort(419);
         }
-        $menuWithPermissions = Menu::with('permissions')->where($where)->first()->permissions()->pluck('name')->toArray();
+        $menuWithPermissions = Menu::with('permissions')->where($where)->first();
+        $permissionsList = $menuWithPermissions->permissions()->pluck('name')->toArray();
         $permissions = auth()->user()->getPermissionsViaRoles()->pluck('name');
         foreach ($permissions as $permission) {
-            if (in_array($permission, $menuWithPermissions)) {
+            if (in_array($permission, $permissionsList)) {
                 if(auth()->user()->can($permission)){
                     return $next($request);
                 }

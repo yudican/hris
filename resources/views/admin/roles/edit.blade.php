@@ -34,11 +34,6 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            @if (session()->has('error'))
-                <div class="alert alert-danger" role="alert">
-                  {{ session('error') }}
-                </div>
-            @endif
             <form action="{{ route('roles.update', ['role' => $id]) }}" method="POST">
               @csrf
               {{ method_field('PUT') }}

@@ -34,33 +34,47 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            @if (session()->has('error'))
-                <div class="alert alert-danger" role="alert">
-                  {{ session('error') }}
-                </div>
-            @endif
             <form action="{{ route('roles.setpermissions', ['role' => $id]) }}" method="POST">
               @csrf
               {{ method_field('POST') }}
-              @foreach ($permissions as $permission)
-                <div class="form-group row">
-                  <label for="permission{{ $permission->id }}" class="col-sm-3 col-form-label text-right"></label>
-                  <div class="col-sm-9">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" name="permission[]" id="permission{{ $permission->id }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                      <label class="custom-control-label" for="permission{{ $permission->id }}">{{ $permission->name }}</label>
-                    </div>
-                  </div>
-                </div>
-              @endforeach
+              <table class="table table-light" width="100%">
+                <thead class="thead-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Menu</th>
+                    <th colspan="2" align="center">Permission</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($menupermissions as $menu)
+                    <tr>
+                      <td width="5%">{{ $no++ }}</td>
+                      <td width="25%">{{ $menu->name }}</td>
+                      <td width="5%">
+                        @php
+                            $i = 0;
+                        @endphp
+                        @foreach ($menu->permissions()->get() as $permission)
+                          @if ($i++ %2 == 0)
+                          </td>
+                            <td>
+                          @endif
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
+                            <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
+                          </div> 
+                          
+                        @endforeach
+                      
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
 
-              <div class="form-group row">
-                <label for="lowongan_deskripsi" class="col-sm-3 col-form-label text-right"></label>
-                <div class="col-sm-9">
-                  <button type="submit" class="btn btn-primary">Simpan</button>
-                  <a href="{{ route('roles.index') }}" class="btn btn-danger">Batal</a>
-                </div>
-              </div>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+              <a href="{{ route('roles.index') }}" class="btn btn-danger">Batal</a>
             </form>
           </div>
         </div>
