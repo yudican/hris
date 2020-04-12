@@ -54,7 +54,7 @@
                     <td style="font-size: 12px;">{{ $item['lowongan_bagian'] }}</td>
                     <td style="font-size: 12px;">Rp. {{ number_format($item['lowongan_salary_max']) }}</td>
                     {{-- <td style="font-size: 12px;">{!! $item['lowongan_kualifikasi'] !!}</td> --}}
-                    <td style="font-size: 12px;">{{ $item['lowongan_tanggal_open'].' - '.$item['lowongan_tanggal_close']  }}</td>
+                    <td style="font-size: 12px;">{{ date('d-m-Y',strtotime($item['lowongan_tanggal_open'])).' - '.date('d-m-Y',strtotime($item['lowongan_tanggal_close']))  }}</td>
                     <td style="font-size: 12px;">
                       <a href="{{ route('lowongan.edit', ['lowongan' => $item['id']]) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
                       <button type="button" onclick="return confirmDelete('{{ route('lowongan.destroy', ['lowongan' => $item['id']]) }}');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>

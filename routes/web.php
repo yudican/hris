@@ -40,14 +40,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/perusahaan/store', 'PerusahaanController@store')->name('perusahaan.store');
 
 
-        Route::resource('lowongan', 'LowonganController');
+        Route::resource('lowongan', 'LowonganController')->except(['show']);
 
         // user authenticable
         Route::get('/dashboard', 'HomeController@index')->name('dashboard.index');
 
-
         // role page
-        Route::resource('roles', 'RoleController');
+        Route::resource('roles', 'RoleController')->except(['show']);;
         Route::get('roles/permissions/{role}', 'RoleController@permissions')->name('roles.permissions');
         Route::post('roles/setpermissions/{role}', 'RoleController@setRolePermissions')->name('roles.setpermissions');
 
@@ -59,6 +58,10 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('menu', 'MenuController');
         Route::post('menu/change', 'MenuController@change')->name('menu.change');
+
+        // pelamar page
+        Route::get('pelamar/{type}', 'PelamarController@json')->name('pelamar.json');
+        Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'update', 'destroy']);
     });
 });
 

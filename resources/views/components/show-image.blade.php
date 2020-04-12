@@ -1,0 +1,1 @@
+<img src="{{ asset('storage/'.$data->pelamar_foto) }}" alt="{{ $data->pelamar_name }}" width="55">
