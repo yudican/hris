@@ -36,7 +36,7 @@
             <span class="d-block text-capitalize" style="padding-left:10px;"><i class="icon-calendar"></i> {{ $karir->lowongan_status }} {{ $karir->lowongan_status == 'Buka' ? '- '.$karir->lowongan_tanggal_close->formatLocalized("%A, %d %B %Y") : '' }}</span>
 
             <p class="mt-2">{{ substr(strip_tags($karir->lowongan_deskripsi), 0, 200) }}</p>
-            {{-- <a><a href="single.html" class="text-primary">Read More</a></a> --}}
+            <a href="{{ route('karir.detail', ['id' => $karir->id, 'title' => str_replace(' ', '-', $karir->lowongan_bagian)]) }}" class="text-primary">Detail</a>
           </div>
         </div>   
       @endforeach
