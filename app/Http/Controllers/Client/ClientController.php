@@ -55,35 +55,38 @@ class ClientController extends Controller
     {
         $lowongan = LowonganModel::findOrFail($id);
         
-        // upload foto
-        $foto = $request->file('pelamar_foto');
-
-        //simpan file ke folder dan ambil nama file
-        $file = Storage::putFile('upload/pelamar', $foto);
-
-        // $pelamar = Pelamar::where('pelamar_nik', $request->pelamar_nik)->first();
-        // if ($pelamar->pelamar_nik) {
-        //     return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
-        // }
-        $dataStore = [
-            'pelamar_foto' => $file,
-            'pelamar_status' => 'Ditinjau',
-            'pelamar_tanggal' => date('Y-m-d')
-        ];
-
-        // terima request dari form kecuali pelamar_tanggal dan pelamar_foto
-        $dataStore2 = $request->except(['pelamar_foto']);
-
-        // gabungkan data yang akan disimpan ke database
-        $finalData = array_merge($dataStore, $dataStore2);
-
         // cek pelamar submit data
         $pelamar = $lowongan->pelamar()->where('pelamar_nik', $request->pelamar_nik)->count();
         if ($pelamar > 0) {
             return redirect()->back()->withError('Anda sudah apply lowongan ini.');
         }
-        $lowongan->pelamar()->create($finalData);
 
+
+        // cek data pelamar
+        $dataPelamar = Pelamar::where('pelamar_nik', $request->pelamar_nik)->first();
+        if (!$dataPelamar) {
+            // upload foto
+            $foto = $request->file('pelamar_foto');
+
+            //simpan file ke folder dan ambil nama file
+            $file = Storage::putFile('upload/pelamar', $foto);
+
+            $dataStore = [
+                'pelamar_foto' => $file,
+                'pelamar_status' => 'Ditinjau',
+                'pelamar_tanggal' => date('Y-m-d')
+            ];
+
+            // terima request dari form kecuali pelamar_tanggal dan pelamar_foto
+            $dataStore2 = $request->except(['pelamar_foto']);
+
+            // gabungkan data yang akan disimpan ke database
+            $finalData = array_merge($dataStore, $dataStore2);
+            $lowongan->pelamar()->create($finalData);
+
+            return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
+        }
+        $lowongan->pelamar()->attach($id);
         return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
     }
 }
