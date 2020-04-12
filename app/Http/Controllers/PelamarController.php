@@ -42,17 +42,6 @@ class PelamarController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -60,18 +49,12 @@ class PelamarController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $data = [
+            'title' => 'Detail Pelamar',
+            'data' => Pelamar::findOrFail($id)
+        ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('admin.pelamar.show', $data);
     }
 
     /**
@@ -83,7 +66,9 @@ class PelamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pelamar::findOrFail($id)->update(['pelamar_status' => 'Dipanggil']);
+
+        return redirect()->route('pelamar.index')->withSuccess('Email Pemanggilan Calon Karyawan Berhasil Dikirim');
     }
 
     /**

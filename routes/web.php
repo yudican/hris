@@ -60,8 +60,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('menu/change', 'MenuController@change')->name('menu.change');
 
         // pelamar page
-        Route::get('pelamar/{type}', 'PelamarController@json')->name('pelamar.json');
-        Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'update', 'destroy']);
+        Route::get('pelamar/json/{type}', 'PelamarController@json')->name('pelamar.json');
+        Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'destroy']);
     });
 });
 

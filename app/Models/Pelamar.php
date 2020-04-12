@@ -23,6 +23,7 @@ class Pelamar extends Model
         'pelamar_email',
         'pelamar_major',
         'pelamar_jurusan',
+        'pelamar_status',
         'pelamar_foto',
         'pelamar_tanggal'
     ];
