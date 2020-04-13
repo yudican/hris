@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Cargo &mdash; Website Template by Colorlib</title>
+    <title>HRIS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -54,9 +54,11 @@
 
               <div class="float-right">
 
-                <a href="{{ isset($data->perusahaan_twitter) ? $data->perusahaan_twitter : '#' }}" class="text-white"><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
+                <a href="{{ isset($data->perusahaan_twitter) ? $data->perusahaan_twitter : '#' }}" target="_blank" class="text-white"><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="{{ isset($data->perusahaan_facebook) ? $data->perusahaan_facebook : '#' }}" class="text-white"><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <a href="{{ isset($data->perusahaan_facebook) ? $data->perusahaan_facebook : '#' }}" target="_blank" class="text-white"><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <span class="mx-md-2 d-inline-block"></span>
+                <a href="{{ isset($data->perusahaan_instagram) ? $data->perusahaan_instagram : '#' }}" target="_blank" class="text-white"><span class="mr-2  icon-instagram"></span> <span class="d-none d-md-inline-block">Instagram</span></a>
 
               </div>
 
@@ -74,7 +76,7 @@
 
 
             <div class="site-logo">
-              <a href="index.html" class="text-black"><span class="text-primary">Cargo</a>
+              <a href="{{ route('home') }}" class="nav-link {{ request()->segment(1) == '' ? 'active' : '' }}" class="text-black"><span class="text-primary">MSDHRIS</a>
             </div>
 
             <div class="col-12">

@@ -26,7 +26,7 @@ class PerusahaanFormRequest extends FormRequest
         return [
             'perusahaan_logo' => 'image|max:2048',
             'perusahaan_favicon' => 'image|max:2048',
-            'perusahaan_kodepos' => 'numeric|digits:6',
+            'perusahaan_kodepos' => 'numeric|digits:5',
             'perusahaan_email' => 'email:rfc,dns',
             'perusahaan_fax' => 'numeric',
             'perusahaan_telepon' => 'numeric',
@@ -47,7 +47,7 @@ class PerusahaanFormRequest extends FormRequest
             'perusahaan_favicon.image' => 'Format file Favicon tidak didukung',
             'perusahaan_favicon.max ' => 'Ukuran maksimum file adalah 2048',
             'perusahaan_kodepos.numeric' => 'Kodepos harus berupa angka',
-            'perusahaan_kodepos.digits' => 'Kodepos harus berisi 6 karakter',
+            'perusahaan_kodepos.digits' => 'Kodepos harus berisi 5 karakter',
             'perusahaan_email.email' => 'Mohon masukkan valid email',
             'perusahaan_fax.numeric' => 'Nomor Fax harus berupa angka',
             'perusahaan_telepon.numeric' => 'Nomor Telepon harus berupa angka',
