@@ -17,12 +17,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'Client\ClientController@index')->name('home');
 
     // halaman karir daftar lowongan kerja
-    Route::get('/karir', 'Client\ClientController@karir')->name('karir');
-    Route::get('/karir/{id}/{title}', 'Client\ClientController@karir_detail')->name('karir.detail');
+    Route::get('/careers', 'Client\CareerController@index')->name('karir');
+    Route::get('/careers/{id}/{title}', 'Client\CareerController@detail')->name('karir.detail');
 
     // apply lowongan submit lamaran
-    Route::get('/apply/{id}/{title}', 'Client\ClientController@apply')->name('karir.apply');
-    Route::post('/apply/store/{id}', 'Client\ClientController@store')->name('karir.store');
+    Route::get('/careers/apply/{id}/{title}', 'Client\CareerController@apply')->name('karir.apply');
+    Route::post('/careers/apply/store/{id}', 'Client\CareerController@store')->name('karir.store');
 
     // alamat route provinsi/kecamatan/kabupaten/kelurahan/kodepos
     Route::get('/kabupaten/{key}', 'Client\LocationController@kabupaten')->name('location.kabupaten');

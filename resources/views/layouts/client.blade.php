@@ -190,8 +190,48 @@
     @stack('scripts')
 
     <script src="{{ url('assets/client/js/main.js') }}"></script>
-
-
+    @if (session()->has('success'))
+      <script src="{{ url('assets/server/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+      <script>
+        $(function(){
+          let content = {
+            message: "{{ session('success') }}",
+            title: 'Success',
+            icon: 'icon-check'
+          }
+          $.notify(content,{
+              type: 'success',
+              placement: {
+                from: 'top',
+                align: 'right'
+              },
+              time: 1000,
+              delay: 2000,
+            });
+        })
+      </script>
+    @endif
+    @if (session('error'))
+      <script src="{{ url('assets/server/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+      <script>
+        $(function(){
+          let content = {
+            message: "{{ session('error') }}",
+            title: 'Informasi',
+            icon: 'icon-bell'
+          }
+          $.notify(content,{
+              type: 'info',
+              placement: {
+                from: 'top',
+                align: 'right'
+              },
+              time: 1000,
+              delay: 5000,
+            });
+        })
+      </script>
+    @endif
   </body>
 
 </html>

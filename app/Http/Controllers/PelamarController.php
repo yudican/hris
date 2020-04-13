@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelamar;
 use Illuminate\Http\Request;
+use App\Models\LowonganPelamar;
 
 class PelamarController extends Controller
 {
@@ -16,7 +17,6 @@ class PelamarController extends Controller
     {
         $data = [
             'title' => 'Daftar Lamaran Masuk',
-            'lists' => Pelamar::whereNull('pelamar_status')->get(),
             'no' => 1
         ];
 
@@ -30,13 +30,41 @@ class PelamarController extends Controller
      */
     public function json($type)
     {
-        $pelamars = Pelamar::whereNull('pelamar_status')->get(['id', 'pelamar_nik', 'pelamar_nama', 'pelamar_email', 'pelamar_major', 'pelamar_foto']);
-        return datatables()->of($pelamars)
+        $pelamars = Pelamar::with('lowongan')->where('pelamar_status', 'Ditinjau')->get(['id', 'pelamar_nik', 'pelamar_nama', 'pelamar_email', 'pelamar_foto']);
+        $lp = LowonganPelamar::with('pelamar')->with('lowongan')->get();
+        return datatables()->of($lp)
+            ->editColumn('id', function($pelamar){
+                foreach ($pelamar->pelamar as $pel) {
+                    return $pel->id;
+                }
+            })
+            ->editColumn('pelamar_nik', function($pelamar){
+                foreach ($pelamar->pelamar as $pel) {
+                    return $pel->pelamar_nik;
+                }
+            })
+            ->editColumn('pelamar_nama', function($pelamar){
+                foreach ($pelamar->pelamar as $pel) {
+                    return $pel->pelamar_nama;
+                }
+            })
+            ->editColumn('pelamar_email', function($pelamar){
+                foreach ($pelamar->pelamar as $pel) {
+                    return $pel->pelamar_email;
+                }
+            })
             ->addColumn('action', function($pelamar){
                 return view('components.action-pelamar-button', ['data' => $pelamar]);
             })
+            ->addColumn('jabatan', function($pelamar){
+                foreach ($pelamar->lowongan as $low) {
+                    return $low->lowongan_bagian;
+                }
+            })
             ->editColumn('pelamar_foto', function($pelamar){
-                return view('components.show-image', ['data' => $pelamar]);
+                foreach ($pelamar->pelamar as $pel) {
+                    return view('components.show-image', ['data' => $pel]);
+                }
             })
             ->toJson();
     }
@@ -49,9 +77,11 @@ class PelamarController extends Controller
      */
     public function show($id)
     {
+        $lowongan = Pelamar::with('lowongan')->findOrFail($id);
+        // dd($lowongan);
         $data = [
             'title' => 'Detail Pelamar',
-            'data' => Pelamar::findOrFail($id)
+            'data' => $lowongan
         ];
 
         return view('admin.pelamar.show', $data);

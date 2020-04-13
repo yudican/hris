@@ -28,5 +28,8 @@ class Pelamar extends Model
         'pelamar_tanggal'
     ];
 
-    // protected $guards = ['pelamar_tanggal'];
+    public function lowongan()
+    {
+        return $this->belongsToMany(LowonganModel::class, 'lowongan_pelamar', 'pelamar_id', 'lowongan_id');
+    }
 }

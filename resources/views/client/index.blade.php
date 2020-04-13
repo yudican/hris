@@ -376,25 +376,4 @@
 <script src="{{ url('assets/client/js/jquery.easing.1.3.js') }}"></script>
 <script src="{{ url('assets/client/js/aos.js') }}"></script>
 
-@if (session('success'))
-<script src="{{ url('assets/server/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
-<script>
-  $(function(){
-    let content = {
-      message: "{{ session('success') }}",
-      title: 'Success',
-      icon: 'icon-check'
-    }
-    $.notify(content,{
-				type: 'success',
-				placement: {
-					from: 'top',
-					align: 'right'
-				},
-				time: 1000,
-				delay: 2000,
-			});
-  })
-</script>
-@endif
 @endpush

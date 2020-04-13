@@ -42,7 +42,7 @@
       </div>
     </div>
   </div>
-  <form action="{{ route('karir.store', ['id' => request()->segment(2)]) }}" method="post" enctype="multipart/form-data">
+  <form action="{{ route('karir.store', ['id' => request()->segment(3)]) }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row row-flex">
       <div class="col-lg-8">

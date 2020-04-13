@@ -29,14 +29,14 @@
         <div class="mb-5 d-flex blog-entry bg-white p-3">
           {{-- <a href="#" class="blog-thumbnail"><img src="{{ url('assets/client/images/cargo_air_small.jpg') }}" alt="Image" class="img-fluid"></a> --}}
           <div class="blog-excerpt">
-            <h2 class="h4  mb-2"><a href="{{ route('karir.detail', ['id' => $karir->id, 'title' => str_replace(' ', '-', $karir->lowongan_bagian)]) }}">{{ $karir->lowongan_bagian }}</a></h2>
+            <h2 class="h4  mb-2">{{ $karir->lowongan_bagian }}</h2>
             <span class="d-block mb-2">Dibutuhkan {{ $karir->lowongan_karyawan }} Orang</span>
             <span class="d-block text-muted text-capitalize" style="padding-left:10px;"><i class="icon-map-marker text-danger"></i> {{ $karir->lowongan_wilayah }}</span>
             <span class="d-block text-success" style="padding-left:10px;"><i class="icon-dollar"></i> Rp. {{ number_format($karir->lowongan_salary_max) }}</span>
             <span class="d-block text-capitalize" style="padding-left:10px;"><i class="icon-calendar"></i> {{ $karir->lowongan_status }} {{ $karir->lowongan_status == 'Buka' ? '- '.$karir->lowongan_tanggal_close->formatLocalized("%A, %d %B %Y") : '' }}</span>
 
             <p class="mt-2">{{ substr(strip_tags($karir->lowongan_deskripsi), 0, 200) }}</p>
-            <a href="{{ route('karir.detail', ['id' => $karir->id, 'title' => str_replace(' ', '-', $karir->lowongan_bagian)]) }}" class="text-primary">Detail</a>
+            <a href="{{ $karir->lowongan_status == 'Buka' ? route('karir.detail', ['id' => $karir->id, 'title' => str_replace(' ', '-', $karir->lowongan_bagian)]) : '#' }}" class="text-primary">Detail</a>
           </div>
         </div>   
       @endforeach

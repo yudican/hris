@@ -77,7 +77,10 @@
               <div class="form-group form-show-validation row {{ $errors->has('lowongan_status') ? 'has-error' : '' }}">
                 <label for="lowongan_status" class="col-sm-3 col-form-label text-right">Status Lowongan</label>
                 <div class="col-sm-9">
-                  <input id="lowongan_status" value="{{ old('lowongan_status', optional($row)->lowongan_status) }}" class="form-control" type="text" name="lowongan_status">
+                  <select name="lowongan_status" id="lowongan_status">
+                    <option value="Buka" {{ (old('lowongan_status', optional($row)->lowongan_status) == 'Buka') ? 'Buka' : '' }}>Buka</option>
+                    <option value="Tutup" {{ (old('lowongan_status', optional($row)->lowongan_status) == 'Tutup') ? 'Tutup' : '' }}>Tutup</option>
+                  </select>
                   {!! $errors->first('lowongan_status', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
               </div>

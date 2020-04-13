@@ -47,6 +47,10 @@
               <table class="table table-light" width="60%" id="pelamar-table">
                 <thead>
                   <tr>
+                    <td width="3%">Jabatan yang dilamar</td>
+                    <td width="15%">{{ $data->lowongan()->first()->lowongan_bagian }}</td>
+                  </tr>
+                  <tr>
                     <td width="3%">Nik Pelamar</td>
                     <td width="15%">{{ $data->pelamar_nik }}</td>
                   </tr>
