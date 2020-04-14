@@ -38,7 +38,8 @@ class CreatePelamarRequest extends FormRequest
             'pelamar_email' => 'required|email:rfc,dns',
             'pelamar_major' => 'required',
             'pelamar_jurusan' => 'required',
-            'pelamar_foto' => 'required|image|max:2048'
+            'pelamar_foto' => 'required|image|max:2048',
+            'pelamar_tanggal_lahir' => 'required'
         ];
     }
 
@@ -67,7 +68,8 @@ class CreatePelamarRequest extends FormRequest
             'pelamar_email.required' => 'email tidak boleh kosong',
             'pelamar_email.email' => 'email yang anda masukkan tidak valid',
             'pelamar_major.required' => 'major tidak boleh kosong',
-            'pelamar_jurusan.required' => 'jurusan tidak boleh kosong'
+            'pelamar_jurusan.required' => 'jurusan tidak boleh kosong',
+            'pelamar_tanggal_lahir.required' => 'tanggal lahir tidak boleh kosong'
         ];
     }
 }

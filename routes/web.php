@@ -61,6 +61,8 @@ Route::group(['middleware' => ['web']], function () {
 
         // pelamar page
         Route::get('pelamar/json/{type}', 'PelamarController@json')->name('pelamar.json');
+        Route::get('pelamar/Dipanggil', 'PelamarController@index')->name('pelamar.dipanggil');
+        Route::get('pelamar/Ditolak', 'PelamarController@index')->name('pelamar.ditolak');
         Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'destroy']);
     });
 });

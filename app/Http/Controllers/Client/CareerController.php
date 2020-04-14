@@ -53,9 +53,20 @@ class CareerController extends Controller
             return redirect()->back()->withError('Anda sudah apply lowongan ini.')->withInput($request->all());
         }
 
+        // cek data pelamar
+        
+        $dataPelamar = Pelamar::where('pelamar_nik', $request->pelamar_nik)->first();
 
         // cek data pelamar
-        $dataPelamar = Pelamar::where('pelamar_nik', $request->pelamar_nik)->first();
+        if ($dataPelamar) {
+            // cek status pelamar apakah susdah diverifikasi atau belum
+            if ($dataPelamar->pelamar_status != 'Ditinjau') {
+                // jika sudah
+                return redirect()->back()->withError('Maaf anda tidak bisa apply lowongan ini karena lowongan yang sebelumnya anda apply sudah diverifikasi');
+            }
+        }
+        
+        // jika data pelamar tidak ada
         if (!$dataPelamar) {
             // upload foto
             $foto = $request->file('pelamar_foto');
@@ -78,6 +89,8 @@ class CareerController extends Controller
 
             return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
         }
+
+        // jika data pelamar sudah ada
         $lowongan->pelamar()->attach($id);
         return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
     }

@@ -73,7 +73,7 @@
       autoWidth: false,
       processing: true,
       serverSide: true,
-      ajax: '{{ route('pelamar.json', ['type' => 'masuk']) }}',
+      ajax: '{{ route('pelamar.json', ['type' => $params]) }}',
       columns: [
           // {data: 'id', name: 'id', orderable: false},
           {data: 'pelamar_nik', name: 'pelamar.pelamar_nik', orderable: false},

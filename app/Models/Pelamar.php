@@ -24,6 +24,7 @@ class Pelamar extends Model
         'pelamar_major',
         'pelamar_jurusan',
         'pelamar_status',
+        'pelamar_tanggal_lahir',
         'pelamar_foto',
         'pelamar_tanggal'
     ];

@@ -158,13 +158,30 @@
             {{-- informasi pendidikan --}}
             <div class="form-group form-show-validation {{ $errors->has('pelamar_major') ? 'has-error' : '' }}">
               <label for="pelamar_major">Major</label>
-              <input id="pelamar_major" class="form-control" type="text" placeholder="Data Analisis" value="{{ old('pelamar_major') }}" name="pelamar_major">
+              <select name="pelamar_major" id="pelamar_major" class="form-control">
+                <option value="">Pilih Major</option>
+                <option value="SD" {{ (old('pelamar_major') == 'SD') ? 'selected' : '' }}>SD</option>
+                <option value="SMP" {{ (old('pelamar_major') == 'SMP') ? 'selected' : '' }}>SMP</option>
+                <option value="SMA" {{ (old('pelamar_major') == 'SMA') ? 'selected' : '' }}>SMA</option>
+                <option value="D1" {{ (old('pelamar_major') == 'D1') ? 'selected' : '' }}>D1</option>
+                <option value="D2" {{ (old('pelamar_major') == 'D2') ? 'selected' : '' }}>D2</option>
+                <option value="D3" {{ (old('pelamar_major') == 'D3') ? 'selected' : '' }}>D3</option>
+                <option value="D4" {{ (old('pelamar_major') == 'D4') ? 'selected' : '' }}>D4</option>
+                <option value="S1" {{ (old('pelamar_major') == 'S1') ? 'selected' : '' }}>S1</option>
+                <option value="S2" {{ (old('pelamar_major') == 'S2') ? 'selected' : '' }}>S2</option>
+                <option value="S3" {{ (old('pelamar_major') == 'S3') ? 'selected' : '' }}>S3</option>
+              </select>
               {!! $errors->first('pelamar_major', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             <div class="form-group form-show-validation {{ $errors->has('pelamar_jurusan') ? 'has-error' : '' }}">
               <label for="pelamar_jurusan">Jurusan</label>
               <input id="pelamar_jurusan" class="form-control" type="text" placeholder="Teknik Informatika" value="{{ old('pelamar_jurusan') }}" name="pelamar_jurusan">
               {!! $errors->first('pelamar_jurusan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+            </div>
+            <div class="form-group form-show-validation {{ $errors->has('pelamar_tanggal_lahir') ? 'has-error' : '' }}">
+              <label for="pelamar_tanggal_lahir">Tanggal Lahir</label>
+              <input id="pelamar_tanggal_lahir" class="form-control" type="date" placeholder="Tanggal Lahir" value="{{ old('pelamar_tanggal_lahir') }}" name="pelamar_tanggal_lahir">
+              {!! $errors->first('pelamar_tanggal_lahir', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
             {{-- informasi foto --}}
             <div class="form-group form-show-validation {{ $errors->has('pelamar_foto') ? 'has-error' : '' }}">

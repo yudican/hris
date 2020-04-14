@@ -30,14 +30,6 @@
           <a href="#">{{ $title }}</a>
         </li>
       </ul>
-      <div class="ml-auto">
-        <form action="{{ route('pelamar.update', ['pelamar' => $data->id]) }}" method="post">
-          @csrf
-          {{ method_field('PUT') }}
-          <button type="submit" class="btn btn-primary">Panggil Interview</button>
-          <a href="{{ route('pelamar.index') }}" class="btn btn-danger">Kembali</a>
-        </form>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -82,6 +74,34 @@
                     <td width="3%">Foto Pelamar</td>
                     <td width="15%"><img style="padding: 10;" src="{{ asset('storage/'.$data->pelamar_foto) }}" alt="{{ $data->pelamar_nama }}" width="150"></td>
                   </tr>
+                  @if ($data->pelamar_status == 'Ditinjau')
+                    <tr>
+                      <td width="3%"></td>
+                      <td width="15%">
+                        <div class="d-flex mt-4">
+                          <form action="{{ route('pelamar.update', ['pelamar' => $data->id]) }}" method="post">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="status" value="Dipanggil">
+                            <button type="submit" class="btn btn-primary" style="margin-right: 5px">Memenuhi Syarat</button>
+                          </form>
+                          <form action="{{ route('pelamar.update', ['pelamar' => $data->id]) }}" method="post">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="status" value="Ditolak">
+                            <button type="submit" class="btn btn-danger">Tidak Memenuhi Syarat</button>
+                          </form>
+                        </div>
+                      </td>
+                    </tr>
+                  @else
+                    <tr>
+                      <td></td>
+                      <td>
+                        <a href="{{ route('pelamar.'.strtolower($data->pelamar_status)) }}" class="btn btn-primary mt-4">Kembali</a>
+                      </td>
+                    </tr>
+                  @endif
                 </thead>
               </table>
             </div>
