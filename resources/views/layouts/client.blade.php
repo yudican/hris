@@ -5,6 +5,7 @@
     <title>HRIS</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{{ asset('assets/server/img/logo msdhris.png') }}" type="image/x-icon"/>
     
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,700|Oswald:400,700" rel="stylesheet">
 
