@@ -45,31 +45,56 @@
                   <div class="form-group row">
                     <label for="perusahaan_provinsi" class="col-sm-3 col-form-label">Provinsi</label>
                     <div class="col-sm-9">
-                      <input placeholder="Provinsi perusahaan" id="perusahaan_provinsi" value="{{ old('perusahaan_provinsi', optional($row)->perusahaan_provinsi) }}" class="form-control" type="text" name="perusahaan_provinsi">
+                      <select name="perusahaan_provinsi" class="form-control" id="perusahaan_provinsi" onchange="getAlamat(this.value, 'kabupaten', 'city')">
+                        <option value="">Pilih Provinsi</option>
+                        @foreach ($provinces as $province)
+                          <option value="{{ $province->province_name }}" {{ (old('perusahaan_provinsi', optional($row)->perusahaan_provinsi) == $province->province_name) ? 'selected' : '' }}>{{ $province->province_name }} </option>
+                        @endforeach
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="perusahaan_kabupaten" class="col-sm-3 col-form-label">Kabupaten</label>
                     <div class="col-sm-9">
-                      <input placeholder="Kabupaten perusahaan" id="perusahaan_kabupaten" value="{{ old('perusahaan_kabupaten', optional($row)->perusahaan_kabupaten) }}" class="form-control" type="text" name="perusahaan_kabupaten">
+                      <select name="perusahaan_kabupaten" class="form-control" id="perusahaan_kabupaten" onchange="getAlamat(this.value, 'kecamatan', 'sub_district')">
+                        <option value="">Pilih Kabupaten</option>
+                        @if (old('perusahaan_kabupaten', optional($row)->perusahaan_kabupaten))
+                        <option value="{{ old('perusahaan_kabupaten', optional($row)->perusahaan_kabupaten) }}" selected>{{ old('perusahaan_kabupaten', optional($row)->perusahaan_kabupaten) }}</option>
+                        @endif
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="perusahaan_kecamatan" class="col-sm-3 col-form-label">Kecamatan</label>
                     <div class="col-sm-9">
-                      <input placeholder="Kecamatan perusahaan" id="perusahaan_kecamatan" value="{{ old('perusahaan_kecamatan', optional($row)->perusahaan_kecamatan) }}" class="form-control" type="text" name="perusahaan_kecamatan">
+                      <select name="perusahaan_kecamatan" class="form-control" id="perusahaan_kecamatan" onchange="getAlamat(this.value, 'kelurahan', 'urban')">
+                        <option value="">Pilih Kecamatan</option>
+                        @if (old('perusahaan_kecamatan', optional($row)->perusahaan_kecamatan))
+                        <option value="{{ old('perusahaan_kecamatan', optional($row)->perusahaan_kecamatan) }}" selected>{{ old('perusahaan_kecamatan', optional($row)->perusahaan_kecamatan) }}</option>
+                        @endif
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="perusahaan_kelurahan" class="col-sm-3 col-form-label">Kelurahan</label>
                     <div class="col-sm-9">
-                      <input placeholder="Kelurahan perusahaan" id="perusahaan_kelurahan" value="{{ old('perusahaan_kelurahan', optional($row)->perusahaan_kelurahan) }}" class="form-control" type="text" name="perusahaan_kelurahan">
+                      <select name="perusahaan_kelurahan" class="form-control" id="perusahaan_kelurahan" onchange="getAlamat(this.value, 'kodepos', 'postal_code')">
+                        <option value="">Pilih Kelurahan</option>
+                        @if (old('perusahaan_kelurahan', optional($row)->perusahaan_kelurahan))
+                        <option value="{{ old('perusahaan_kelurahan', optional($row)->perusahaan_kelurahan) }}" selected>{{ old('perusahaan_kelurahan', optional($row)->perusahaan_kelurahan) }}</option>
+                        @endif
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="perusahaan_kodepos" class="col-sm-3 col-form-label">Kode Pos</label>
                     <div class="col-sm-9">
-                      <input placeholder="Kodepos perusahaan" id="perusahaan_kodepos" value="{{ old('perusahaan_kodepos', optional($row)->perusahaan_kodepos) }}" class="form-control" type="text" name="perusahaan_kodepos">
+                      <select name="perusahaan_kodepos" class="form-control" id="perusahaan_kodepos">
+                        <option value="">Pilih Kode Pos</option>
+                        @if (old('perusahaan_kodepos', optional($row)->perusahaan_kodepos))
+                        <option value="{{ old('perusahaan_kodepos', optional($row)->perusahaan_kodepos) }}" selected>{{ old('perusahaan_kodepos', optional($row)->perusahaan_kodepos) }}</option>
+                        @endif
+                      </select>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -178,14 +203,56 @@
 </div>
 @endsection
 
-{{-- @push('script')
-  <script src="{{ asset('assets/server/js/plugin/summernote/summernote-bs4.min.js') }}"></script>
+@push('script')
   <script>
-    $('#summernote').summernote({
-      placeholder: 'Atlantis',
-      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
-      tabsize: 2,
-      height: 300
-    });
+    function getAlamat(params, type, column) {
+        $('#perusahaan_'+type).html(`<option value="">Pilih ${type.toLowerCase()}</option>`)
+        resetForm(type)
+        fetch(` http://localhost:8000/${type}/${btoa(params)}`, {
+          method: "get"
+        })
+        .then(res => res.json())
+        .then(response => { 
+          let data = {...response[0]}
+          for (var key in data) {
+            var row = '';
+            switch (column) {
+              case 'city':
+                row = data[key].city
+                break;
+              case 'sub_district':
+                row = data[key].sub_district
+                break;
+              case 'urban':
+                row = data[key].urban
+                break;
+              case 'postal_code':
+                row = data[key].postal_code
+                break;
+            }
+            $('#perusahaan_'+type).append(`<option value="${row}">${row}</option>`)
+          }
+        });
+      }
+
+      function resetForm(type) {
+        switch (type) {
+          case 'kabupaten':
+            $('#perusahaan_kecamatan').html(`<option value="">Pilih Kecamatan</option>`)
+            $('#perusahaan_kelurahan').html(`<option value="">Pilih Kelurahan</option>`)
+            $('#perusahaan_kodepos').html(`<option value="">Pilih Kodepos</option>`)
+            break;
+          case 'kecamatan':
+            $('#perusahaan_kelurahan').html(`<option value="">Pilih Kelurahan</option>`)
+            $('#perusahaan_kodepos').html(`<option value="">Pilih Kodepos</option>`)
+            break;
+          case 'kelurahan':
+            $('#perusahaan_kodepos').html(`<option value="">Pilih Kodepos</option>`)
+            break;
+        
+          default:
+            break;
+        }
+      }
   </script>
-@endpush --}}
+@endpush

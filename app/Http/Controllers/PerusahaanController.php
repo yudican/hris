@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PerusahaanFormRequest;
@@ -18,7 +19,8 @@ class PerusahaanController extends Controller
     {
         $data = [
             'title' => 'Profile Perusahaan Dashboard',
-            'row' => Perusahaan::first()
+            'row' => Perusahaan::first(),
+            'provinces' => Province::all()
         ];
         return view('admin.perusahaan_profile', $data);
     }
