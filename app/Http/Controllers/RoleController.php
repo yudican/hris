@@ -121,7 +121,7 @@ class RoleController extends Controller
 
     public function permissions($id)
     {
-        $menusWithPermissions = Menu::with('permissions')->whereNotNull('url')->get();
+        $menusWithPermissions = Menu::with('permissions')->get();
         $role = Role::findOrFail($id);
         $data = [
             'title' => 'Update Roles Permissions Users',

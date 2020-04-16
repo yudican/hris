@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +24,10 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        // return auth()->user()->getPermissionsViaRoles()->pluck('name');
+        if (auth()->user()->roles()->first()->name == 'user') {
+            return view('user.index', ['title' => 'Recruitmen Management System']);
+        }
         return view('admin.index', ['title' => 'Dashboard']);
     }
 }

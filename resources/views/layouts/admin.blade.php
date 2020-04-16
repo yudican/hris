@@ -344,36 +344,41 @@
 						<ul class="nav nav-primary">
 							@foreach($menus as $menu)
 								@if (!$menu->parent_id && !$menu->children->isEmpty())
-									<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
-										<a data-toggle="collapse" href="#{{ $menu->id }}" class="collapsed" aria-expanded="false">
-											<i class="{{ $menu->icon }}"></i>
-											<p>{{ $menu->name }}</p>
-											<span class="caret"></span>
-										</a>
-										<div class="collapse" id="{{ $menu->id }}">
-											<ul class="nav nav-collapse">
-												@foreach($menu->children as $child)
-												<li>
-													<a href="{{ route($child->url)  }}">
-														<i class="{{ $child->icon }}"></i>
-														<p>{{ $child->name }}</p>
-													</a>
-												</li>
-												@endforeach
-											</ul>
-										</div>
-									</li>
+									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+										<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+											<a data-toggle="collapse" href="#{{ $menu->id }}" class="collapsed" aria-expanded="false">
+												<i class="{{ $menu->icon }}"></i>
+												<p>{{ $menu->name }}</p>
+												<span class="caret"></span>
+											</a>
+											<div class="collapse" id="{{ $menu->id }}">
+												<ul class="nav nav-collapse">
+													@foreach($menu->children as $child)
+														@if(in_array($child->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+															<li>
+																<a href="{{ route($child->url)  }}">
+																	<i class="{{ $child->icon }}"></i>
+																	<p>{{ $child->name }}</p>
+																</a>
+															</li>
+														@endif
+													@endforeach
+												</ul>
+											</div>
+										</li>
+									@endif
 								@else
-									<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
-										<a href="{{ $menu->url ? route($menu->url) : '#' }}" class="collapsed">
-											<i class="{{ $menu->icon }}"></i>
-											<p>{{ $menu->name }}</p>
-											{{-- <span class="caret"></span> --}}
-										</a>
-									</li>
+									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+										<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+											<a href="{{ $menu->url ? route($menu->url) : '#' }}" class="collapsed">
+												<i class="{{ $menu->icon }}"></i>
+												<p>{{ $menu->name }}</p>
+												{{-- <span class="caret"></span> --}}
+											</a>
+										</li>
+									@endif
 								@endif
 							@endforeach
-							
 						</ul>
 					</div>
 				</div>
