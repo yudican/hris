@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web', 'statusLowongan']], function () {
     Route::get('/', 'Client\ClientController@index')->name('home');
 
     // halaman karir daftar lowongan kerja
