@@ -113,11 +113,28 @@ class PelamarController extends Controller
             $perusahaan = PerusahaanModel::first();
             $pelamar = Pelamar::findOrFail($id);
             $pelamar->update(['pelamar_status' => $request->status]);
+
+            if ($request->status == 'Ditolak') {
+                $data = [
+                    'name' => $pelamar->pelamar_nama,
+                    'data' => $perusahaan,
+                ];
+                Mail::send('email.reject', $data, function ($message) use ($pelamar)
+                {
+                    $message->subject('MSD HRIS - Biodata Pelamar');
+                    $message->from('careers@msdhris.com', 'Careers');
+                    $message->to($pelamar->pelamar_email);
+                });
+                return redirect()->route('pelamar.index')->withSuccess('Email Pemberitahuan Calon Karyawan Berhasil Dikirim');
+            }
+
             // generate password
-            $password = explode('@', $pelamar->pelamar_email)[0].rand(1,999);
+            $password = str_replace('.', '', explode('@', $pelamar->pelamar_email)[0].rand(1,999));
 
             // create new user
-            $user = User::create([
+            $user = User::updateOrCreate([
+                'email' => $pelamar->pelamar_email
+            ],[
                 'name' => $pelamar->pelamar_nama,
                 'email' => $pelamar->pelamar_email,
                 'password' => Hash::make($password)
@@ -133,7 +150,7 @@ class PelamarController extends Controller
                 'data' => $perusahaan,
                 'action_url' => route('login')
             ];
-            Mail::send('layouts.email', $data, function ($message) use ($pelamar)
+            Mail::send('email.accept', $data, function ($message) use ($pelamar)
             {
                 $message->subject('MSD HRIS - Biodata Pelamar');
                 $message->from('careers@msdhris.com', 'Careers');
