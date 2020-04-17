@@ -57,6 +57,7 @@
                   <input id="pelamar_nik" class="form-control" type="text" name="pelamar_nik" maxlength="16" placeholder="masukkan nomor NIK" value="{{ old('pelamar_nik') }}">
                   {!! $errors->first('pelamar_nik', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
+                <h5 class="d-block mt-3">Alamat Domisili</h3>
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group form-show-validation {{ $errors->has('pelamar_rt') ? 'has-error' : '' }}">
@@ -100,6 +101,7 @@
                   <input id="pelamar_nama" class="form-control" type="text" name="pelamar_nama" placeholder="Jhon Doe" value="{{ old('pelamar_nama') }}">
                   {!! $errors->first('pelamar_nama', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
+                <h5 class="d-block mt-3 text-white">Alamat Domisili</h3>
                 <div class="form-group form-show-validation {{ $errors->has('pelamar_provinsi') ? 'has-error' : '' }}">
                   <label for="pelamar_provinsi">Provinsi</label>
                     <select name="pelamar_provinsi" class="form-control" id="pelamar_provinsi" onchange="getAlamat(this.value, 'kabupaten', 'city')">
