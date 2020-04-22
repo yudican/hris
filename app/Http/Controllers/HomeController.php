@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // return auth()->user()->getPermissionsViaRoles()->pluck('name');
+        // return auth()->user()->roles()->pluck('name');
         if (auth()->user()->roles()->first()->name == 'user') {
             return view('user.index', ['title' => 'Recruitmen Management System']);
         }

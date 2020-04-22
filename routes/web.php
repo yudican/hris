@@ -35,7 +35,7 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
     });
     
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAuthorization']], function () {
+    Route::group(['middleware' => ['auth', 'isAuthorization']], function () {
         Route::get('/perusahaan', 'PerusahaanController@index')->name('perusahaan.index');
         Route::post('/perusahaan/store', 'PerusahaanController@store')->name('perusahaan.store');
 
@@ -64,6 +64,13 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('pelamar/Dipanggil', 'PelamarController@index')->name('pelamar.dipanggil');
         Route::get('pelamar/Ditolak', 'PelamarController@index')->name('pelamar.ditolak');
         Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'destroy']);
+
+
+        /**
+         * User Route
+         * 
+         */
+        Route::resource('biodata-ktp', 'Biodata\KtpController');
     });
 });
 

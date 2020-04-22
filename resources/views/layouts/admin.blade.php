@@ -107,7 +107,7 @@
 							@foreach($menus as $menu)
 								@if (!$menu->parent_id && !$menu->children->isEmpty())
 									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
-										<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+										<li class="nav-item {{ (request()->segment(1) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
 											<a data-toggle="collapse" href="#{{ $menu->id }}" class="collapsed" aria-expanded="false">
 												<i class="{{ $menu->icon }}"></i>
 												<p>{{ $menu->name }}</p>
@@ -131,7 +131,7 @@
 									@endif
 								@else
 									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
-										<li class="nav-item {{ (request()->segment(2) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
+										<li class="nav-item {{ (request()->segment(1) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
 											<a href="{{ $menu->url ? route($menu->url) : '#' }}" class="collapsed">
 												<i class="{{ $menu->icon }}"></i>
 												<p>{{ $menu->name }}</p>
