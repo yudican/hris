@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Biodata;
 
 use App\Models\Province;
+use App\Models\BiodataKtp;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BiodataKtpFormmRequest;
@@ -43,7 +44,7 @@ class KtpController extends Controller
      */
     public function store(BiodataKtpFormmRequest $request)
     {
-        BiodataKtp::create($request->all());
+        BiodataKtp::firstOrCreate(['ktp_nomor' => $request->ktp_nomor], $request->all());
 
         return redirect()->back()->withSuccess('Data Ktp Berhasil Di input');
     }

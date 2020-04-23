@@ -17,7 +17,7 @@ class CareerController extends Controller
     {
         $data = [
             'title' => 'Karir',
-            'items' => LowonganModel::all()
+            'items' => LowonganModel::where('lowongan_status', 'Buka')->get()
         ];
         return view('client.karir', $data);
     }

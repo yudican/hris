@@ -54,20 +54,20 @@
                   </select>
                   {!! $errors->first('ktp_gender', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
-                <div class="form-group form-show-validation {{ $errors->has('ktp_gol') ? 'has-error' : '' }}">
-                  <label for="ktp_gol">Golongan Darah</label>
-                  <input id="ktp_gol" class="form-control" type="text" value="{{ old('ktp_gol', optional($row)->ktp_gol) }}" name="ktp_gol" placeholder="Masukkan Golongan Darah">
-                  {!! $errors->first('ktp_gol', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                <div class="form-group form-show-validation {{ $errors->has('ktp_gol_darah') ? 'has-error' : '' }}">
+                  <label for="ktp_gol_darah">Golongan Darah</label>
+                  <input id="ktp_gol_darah" class="form-control" type="text" value="{{ old('ktp_gol_darah', optional($row)->ktp_gol_darah) }}" name="ktp_gol_darah" placeholder="Masukkan Golongan Darah">
+                  {!! $errors->first('ktp_gol_darah', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
                 <div class="form-group form-show-validation {{ $errors->has('ktp_agama') ? 'has-error' : '' }}">
                   <label for="ktp_agama">Agama</label>
                   <select name="ktp_agama" id="ktp_agama" class="form-control">
                     <option value="">Pilih Agama</option>
-                    <option value="Islam" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Islam') ? 'Islam' : '' }}>Islam</option>
-                    <option value="Kristen" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Kristen') ? 'Kristen' : '' }}>Kristen</option>
-                    <option value="Protestan" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Protestan') ? 'Protestan' : '' }}>Protestan</option>
-                    <option value="Hindu" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Hindu') ? 'Hindu' : '' }}>Hindu</option>
-                    <option value="Budha" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Budha') ? 'Budha' : '' }}>Budha</option>
+                    <option value="Islam" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Islam') ? 'selected' : '' }}>Islam</option>
+                    <option value="Kristen" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Kristen') ? 'selected' : '' }}>Kristen</option>
+                    <option value="Protestan" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Protestan') ? 'selected' : '' }}>Protestan</option>
+                    <option value="Hindu" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Hindu') ? 'selected' : '' }}>Hindu</option>
+                    <option value="Budha" {{ (old('ktp_agama', optional($row)->ktp_agama) == 'Budha') ? 'selected' : '' }}>Budha</option>
                   </select>
                   {!! $errors->first('ktp_agama', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
@@ -142,8 +142,8 @@
                 <div class="form-group form-show-validation {{ $errors->has('ktp_kewarganegaraan') ? 'has-error' : '' }}">
                   <label for="ktp_kewarganegaraan">Kewarganegaraan</label>
                   <select name="ktp_kewarganegaraan" id="ktp_kewarganegaraan" class="form-control">
-                    <option value="WNI" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNI') ? 'WNI' : '' }}>WNI</option>
-                    <option value="WNA" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNA') ? 'WNA' : '' }}>WNA</option>
+                    <option value="WNI" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNI') ? 'selected' : '' }}>WNI</option>
+                    <option value="WNA" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNA') ? 'selected' : '' }}>WNA</option>
                   </select>
                   {!! $errors->first('ktp_kewarganegaraan', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
@@ -151,10 +151,14 @@
                   <label for="ktp_perkawinan">Status Perkawinan</label>
                   <select name="ktp_perkawinan" id="ktp_perkawinan" class="form-control">
                     <option value="">Pilih Status Perkawinan</option>
-                    <option value="Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Kawin') ? 'Kawin' : '' }}>Kawin</option>
-                    <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Belum Kawin') ? 'Belum Kawin' : '' }}>Belum Kawin</option>
+                    <option value="Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Kawin') ? 'selected' : '' }}>Kawin</option>
+                    <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'selected') ? 'Belum Kawin' : '' }}>Belum Kawin</option>
                   </select>
                   {!! $errors->first('ktp_perkawinan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                </div>
+                <div class="form-group">
+                  <label for="ktp_perkawinan"></label>
+                  <button type="submit" class="btn btn-primary float-right">Simpan & Lanjutkan</button>
                 </div>
               </div>
             </div>

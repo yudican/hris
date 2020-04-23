@@ -18,7 +18,7 @@ class BiodataKtp extends Model
         'ktp_tmp_lahir',
         'ktp_tgl_lahir',
         'ktp_gender',
-        'ktp_gol',
+        'ktp_gol_darah',
         'ktp_alamat',
         'ktp_rt',
         'ktp_rw',
