@@ -152,7 +152,7 @@
                   <select name="ktp_perkawinan" id="ktp_perkawinan" class="form-control">
                     <option value="">Pilih Status Perkawinan</option>
                     <option value="Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Kawin') ? 'selected' : '' }}>Kawin</option>
-                    <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'selected') ? 'Belum Kawin' : '' }}>Belum Kawin</option>
+                    <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Belum Kawin') ? 'selected' : '' }}>Belum Kawin</option>
                   </select>
                   {!! $errors->first('ktp_perkawinan', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>

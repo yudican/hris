@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             // }
             // // dd($men);
             // die;
-            $view->with(['menus' => Menu::orderBy('order', 'ASC')->get()->toTree()]);
+            $view->with(['menus' => Menu::orderBy('order', 'ASC')->where('show', 'Ya')->get()->toTree()]);
         });
     }
 }

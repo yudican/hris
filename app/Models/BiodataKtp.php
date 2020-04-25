@@ -12,7 +12,10 @@ class BiodataKtp extends Model
     // define the primary key
     protected $primaryKey = 'ktp_nomor';
 
+    public $incrementing = false;
+
     protected $fillable = [
+        'id',
         'ktp_nomor',
         'ktp_nama',
         'ktp_tmp_lahir',

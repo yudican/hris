@@ -70,7 +70,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
          * User Route
          * 
          */
-        Route::resource('biodata-ktp', 'Biodata\KtpController');
+        Route::resource('biodata-ktp', 'Biodata\KtpController'); // biodata ktp
+
+        // biodata kehamilan
+        Route::get('biodata-kehamilan/create/{biodata_kehamilan}', 'Biodata\KehamilanController@create')->name('biodata_kehamilan.create');
+        Route::post('biodata-kehamilan/store/{biodata_kehamilan}', 'Biodata\KehamilanController@store')->name('biodata_kehamilan.store');
     });
 });
 

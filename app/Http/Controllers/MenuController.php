@@ -16,7 +16,7 @@ class MenuController extends Controller
     {
         $data = [
             'title' => 'Menu',
-            'menus' => Menu::orderBy('order', 'ASC')->get()->toTree()
+            'menus' => Menu::orderBy('order', 'ASC')->where('show', 'Ya')->get()->toTree()
         ];
 
         return view('admin.menu.index', $data);
@@ -63,6 +63,7 @@ class MenuController extends Controller
             'controller' => $request->controller,
             'icon' => $request->icon,
             'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
+            'show' => $request->show,
             'order' => null
         ]);
         $menu->permissions()->create(['name' => $request->name.' Create']);
@@ -119,6 +120,7 @@ class MenuController extends Controller
             'controller' => $request->controller,
             'icon' => $request->icon,
             'parent_id' => $request->parent_id != '#' ? $request->parent_id : null,
+            'show' => $request->show,
             // 'order' => null
         ]);
 

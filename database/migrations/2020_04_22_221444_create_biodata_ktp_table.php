@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBiodataKtpsTable extends Migration
+class CreateBiodataKtpTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,13 @@ class CreateBiodataKtpsTable extends Migration
     public function up()
     {
         Schema::create('biodata_ktp', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->string('ktp_nomor', 16);
             $table->string('ktp_nama', 50);
             $table->string('ktp_tmp_lahir', 50);
             $table->date('ktp_tgl_lahir');
             $table->enum('ktp_gender', ['Laki-Laki', 'Perempuan'])->nullable();
-            $table->string('ktp_gol-darah', 5);
+            $table->string('ktp_gol_darah', 5);
             $table->string('ktp_alamat', 128);
             $table->integer('ktp_rt')->nullable();
             $table->integer('ktp_rw')->nullable();
@@ -32,8 +33,6 @@ class CreateBiodataKtpsTable extends Migration
             $table->enum('ktp_kewarganegaraan', ['WNI', 'WNA'])->nullable();
             $table->string('ktp_perkawinan', 20);
             $table->timestamps();
-
-            $table->primary(['ktp_nomor']);
         });
     }
 

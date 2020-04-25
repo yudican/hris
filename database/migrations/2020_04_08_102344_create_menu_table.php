@@ -20,6 +20,7 @@ class CreateMenuTable extends Migration
             $table->string('url', 30);
             $table->string('icon', 30)->nullable();
             $table->integer('order')->nullable();
+            $table->enum('show', ['Ya', 'Tidak']);
             NestedSet::columns($table);
             $table->timestamps();
         });

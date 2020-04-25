@@ -10,7 +10,7 @@ class Menu extends Model
 {
     use NodeTrait;
 
-    protected $fillable = ['name', 'url', 'parent_id', 'order', 'icon', 'controller'];
+    protected $fillable = ['name', 'url', 'parent_id', 'order', 'icon', 'controller', 'show'];
 
     public function menus()
     {

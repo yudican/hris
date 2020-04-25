@@ -82,6 +82,16 @@
                       {!! $errors->first('icon', '<label id="icon-error" class="error" for="icon">:message</label>') !!}
                     </div>
                   </div>
+                  <div class="form-group form-show-validation row {{ $errors->has('show') ? 'has-error' : '' }}">
+                    <label for="show" class="col-sm-3 col-form-label">Tampilkan</label>
+                    <div class="col-sm-9">
+                      <select id="show" class="form-control" name="show">
+                        <option value="Ya" {{ (old('show') == 'Ya') ? 'selected' : '' }}>Ya</option>
+                        <option value="Tidak" {{ (old('show') == 'Tidak') ? 'selected' : '' }}>Tidak</option>
+                      </select>
+                      {!! $errors->first('show', '<label id="show-error" class="error" for="show">:message</label>') !!}
+                    </div>
+                  </div>
                   
                   <div class="form-group row">
                     <label for="slug" class="col-sm-3 col-form-label"></label>
