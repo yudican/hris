@@ -54,14 +54,14 @@
                   <div class="form-group form-show-validation row {{ $errors->has('kehamilan_usia') ? 'has-error' : '' }}">
                     <label for="kehamilan_usia" class="col-sm-3 col-form-label">Usia Kehamilan</label>
                     <div class="col-sm-9">
-                      <input id="kehamilan_usia" class="form-control" type="text" onkeyup="handleChange(this.value)" name="kehamilan_usia" placeholder="Usia Kehamilan 0-9" value="{{ old('kehamilan_usia', optional($row)->kehamilan_usia) }}" {{ (old('kehamilan_usia', optional($row)->kehamilan_usia) == 'Ya') ? '' : 'readonly' }}>
+                      <input id="kehamilan_usia" class="form-control" type="text" onkeyup="handleChange(this.value)" name="kehamilan_usia" placeholder="Usia Kehamilan 0-9" value="{{ old('kehamilan_usia', optional($row)->kehamilan_usia) }}" {{ (old('kehamilan_status', optional($row)->kehamilan_status) == 'Ya') ? '' : 'readonly' }}>
                       {!! $errors->first('kehamilan_usia', '<label id="kehamilan_usia-error" class="error" for="kehamilan_usia">:message</label>') !!}
                     </div>
                   </div>
                   <div class="form-group form-show-validation row {{ $errors->has('kehamilan_akhir') ? 'has-error' : '' }}">
                     <label for="kehamilan_akhir" class="col-sm-3 col-form-label">Tanggal Kehamilan</label>
                     <div class="col-sm-9">
-                      <input id="kehamilan_akhir" class="form-control" type="text" onkeyup="handleChange(this.value)" name="kehamilan_akhir" placeholder="Tanggal kehamilan" value="{{ old('kehamilan_akhir', optional($row)->kehamilan_akhir) }}" {{ (old('kehamilan_usia', optional($row)->kehamilan_usia) == 'Ya') ? '' : 'readonly' }}>
+                      <input id="kehamilan_akhir" class="form-control" type="text" onkeyup="handleChange(this.value)" name="kehamilan_akhir" placeholder="Tanggal kehamilan" value="{{ old('kehamilan_akhir', optional($row)->kehamilan_akhir) }}" {{ (old('kehamilan_status', optional($row)->kehamilan_status) == 'Ya') ? '' : 'readonly' }}>
                       {!! $errors->first('kehamilan_akhir', '<label id="kehamilan_akhir-error" class="error" for="kehamilan_akhir">:message</label>') !!}
                     </div>
                   </div>

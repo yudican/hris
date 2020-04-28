@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Biodata;
 
 use App\Models\BiodataKtp;
 use Illuminate\Http\Request;
+use App\Models\BiodataKehamilan;
 use App\Http\Controllers\Controller;
 
 class KehamilanController extends Controller
@@ -15,11 +16,12 @@ class KehamilanController extends Controller
      */
     public function create($id)
     {
+        $nomorKtp = BiodataKtp::where('id', $id)->first()->ktp_nomor;
         return view('user.biodata-kehamilan', [
             'title' => 'Biodata Kehamilan',
-            'row' => [],
+            'row' => BiodataKehamilan::where('nomor_ktp', $nomorKtp)->first(),
             'action' => route('biodata_kehamilan.store', ['biodata_kehamilan' => $id]),
-            'ktpNomor' => BiodataKtp::where('id', $id)->first()->ktp_nomor // nomor ktp
+            'ktpNomor' =>  $nomorKtp// nomor ktp
         ]);
     }
 
@@ -33,15 +35,16 @@ class KehamilanController extends Controller
     {
         $rules = ['kehamilan_status' => 'required']; // rules kehamilan status
         $messages = ['required' => 'Field tidak boleh kosong']; // rules kehamilan status
+        $validator = $this->validate($request, $rules, $messages);
         if ($request->kehamilan_status == 'Ya') {
-            $rules = ['kehamilan_status' => 'required', 'kehamilan_usia' => 'required', 'kehamilan_akhir' => 'required'];
+            $rules = ['kehamilan_status' => 'required', 'kehamilan_status' => 'required', 'kehamilan_usia' => 'required', 'kehamilan_akhir' => 'required'];
             $validator = $this->validate($request, $rules, $messages);
 
             BiodataKehamilan::updateOrCreate(['nomor_ktp' => $id], $request->all());
-            return redirect()->back()->withInput($request->all());
+            return redirect()->route('biodata-keluarga')->withSuccess('Biodata kehamilan berhasil Di input');
         }
 
         BiodataKehamilan::updateOrCreate(['nomor_ktp' => $id], $request->all());
-        return redirect()->back()->withInput($request->all());
+        return redirect()->route('biodata-keluarga')->withSuccess('Biodata kehamilan berhasil Di input');
     }
 }

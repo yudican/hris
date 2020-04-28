@@ -75,6 +75,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         // biodata kehamilan
         Route::get('biodata-kehamilan/create/{biodata_kehamilan}', 'Biodata\KehamilanController@create')->name('biodata_kehamilan.create');
         Route::post('biodata-kehamilan/store/{biodata_kehamilan}', 'Biodata\KehamilanController@store')->name('biodata_kehamilan.store');
+
+        // biodata keluarga
+        Route::get('biodata-keluarga/create/{biodata_keluarga}', 'Biodata\KeluargaController@create')->name('biodata-keluarga.create');
+        Route::post('biodata-keluarga/store', 'Biodata\KeluargaController@store')->name('biodata-keluarga.store');
+        Route::put('biodata-keluarga/update', 'Biodata\KeluargaController@update')->name('biodata-keluarga.update');
     });
 });
 

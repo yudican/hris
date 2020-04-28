@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Biodata;
 
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 use App\Models\Province;
 use App\Models\BiodataKtp;
 use Illuminate\Http\Request;
+use App\Models\BiodataKeluarga;
 use App\Models\BiodataKehamilan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BiodataKtpFormmRequest;
@@ -13,27 +15,18 @@ use App\Http\Requests\BiodataKtpFormmRequest;
 class KtpController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
+        $userKtp = BiodataKtp::with('user')->first();
         return view('user.biodata-ktp', [
             'title' => 'Masukkan Biodata KTP',
             'provinces' => Province::all(),
             'action' => route('biodata-ktp.store'),
-            'row' => [],
+            'row' => $userKtp,
             'method' => 'POST'
         ]);
     }
@@ -54,19 +47,20 @@ class KtpController extends Controller
             return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $id])->withSuccess('Data Ktp Berhasil Di input');
         }
 
-        BiodataKehamilan::updateOrCreate(['nomor_ktp' => $request->ktp_nomor, 'kehamilan_status' => 'Tidak']);
-        return redirect()->route('biodata_keluarga.create', ['biodata_keluarga' => $id])->withSuccess('Data Ktp Berhasil Di input');
-    }
+        // attach ktp id to user
+        $idUser = auth()->user()->id;
+        User::where('id', $idUser)->update(['ktp_id' => $id]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        // jika status perkawinan Belum kawin
+        // redirect ke halaman keluarga
+        if ($request->ktp_perkawinan == 'Belum Kawin') {
+            BiodataKeluarga::create(['nomor_ktp' => $request->ktp_nomor]);
+            return redirect()->back()->withInput();
+            // return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $uuid])->withSuccess('Data Ktp Berhasil Di Update');
+        }
+
+        BiodataKehamilan::updateOrCreate(['nomor_ktp' => $request->ktp_nomor, 'kehamilan_status' => 'Tidak']);
+        return redirect()->route('biodata-keluarga.create', ['biodata_keluarga' => $id])->withSuccess('Data Ktp Berhasil Di input');
     }
 
     /**
@@ -99,21 +93,26 @@ class KtpController extends Controller
      */
     public function update(BiodataKtpFormmRequest $request, $id)
     {
-        $uuid = Uuid::uuid4()->toString(); // generate uuid
-        $data = array_merge($request->except(['_token', '_method']), ['id' => $uuid]);
-        BiodataKtp::where('id', $id)->update($data);
+        BiodataKtp::where('id', $id)->update($request->all());
 
-        return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $uuid])->withSuccess('Data Ktp Berhasil Di update');
+
+        // jika jenis kelamin perempuan dan status perkawinan menikah
+        // redirect ke form kehamilan
+        if ($request->ktp_gender == 'Perempuan' && $request->ktp_perkawinan == 'Kawin') {
+            return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $id])->withSuccess('Data Ktp Berhasil Di Update');
+        }
+        
+        // jika status perkawinan Belum kawin
+        // redirect ke halaman keluarga
+        if ($request->ktp_perkawinan == 'Belum Kawin') {
+            BiodataKeluarga::create(['nomor_ktp' => $request->ktp_nomor]);
+            return redirect()->back()->withInput();
+            // return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $uuid])->withSuccess('Data Ktp Berhasil Di Update');
+        }
+        
+
+        BiodataKehamilan::updateOrCreate(['nomor_ktp' => $request->ktp_nomor, 'kehamilan_status' => 'Tidak']);
+        return redirect()->route('biodata-keluarga.create', ['biodata_keluarga' => $id])->withSuccess('Data Ktp Berhasil Di Update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

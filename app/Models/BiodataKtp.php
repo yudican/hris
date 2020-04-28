@@ -10,7 +10,7 @@ class BiodataKtp extends Model
     protected $table = 'biodata_ktp';
 
     // define the primary key
-    protected $primaryKey = 'ktp_nomor';
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
 
@@ -34,4 +34,9 @@ class BiodataKtp extends Model
         'ktp_kewarganegaraan',
         'ktp_perkawinan',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'ktp_id', 'id');
+    }
 }
