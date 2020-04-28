@@ -76,6 +76,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('biodata-kehamilan/create/{biodata_kehamilan}', 'Biodata\KehamilanController@create')->name('biodata_kehamilan.create');
         Route::post('biodata-kehamilan/store/{biodata_kehamilan}', 'Biodata\KehamilanController@store')->name('biodata_kehamilan.store');
 
+        // biodata orang tus
+        Route::get('biodata-ortu/create/{biodata_ortu}', 'Biodata\OrtuController@create')->name('biodata-ortu.create');
+        Route::post('biodata-ortu/store/{biodata_ortu}', 'Biodata\OrtuController@store')->name('biodata-ortu.store');
+        Route::put('biodata-ortu/update/{biodata_ortu}', 'Biodata\OrtuController@update')->name('biodata-ortu.update');
+
         // biodata keluarga
         Route::get('biodata-keluarga/create/{biodata_keluarga}', 'Biodata\KeluargaController@create')->name('biodata-keluarga.create');
         Route::post('biodata-keluarga/store', 'Biodata\KeluargaController@store')->name('biodata-keluarga.store');
