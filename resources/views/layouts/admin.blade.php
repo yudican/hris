@@ -72,7 +72,11 @@
 											<div class="u-text">
 												<h4>{{ Auth::user()->name }}</h4>
 												<p class="text-muted">{{ Auth::user()->email }}</p>
-												<a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Log Out</a>
+												<form action="{{ route('logout') }}" method="post">
+													@csrf
+													{{ method_field('POST') }}
+													<button type="submit" class="btn btn-xs btn-secondary btn-sm">Log Out</button>
+												</form>
 											</div>
 										</div>
 									</li>
