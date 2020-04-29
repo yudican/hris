@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('iconpicker/dist/css/fontawesome-iconpicker.min.css') }}">
+    <script src="{{ asset('iconpicker/dist/js/fontawesome-iconpicker.min.js') }}"></script>
+@endpush
+
 @section('content')
   <div class="container">
     <div class="page-inner">
@@ -110,6 +115,9 @@
 @endsection
 
 @push('script')
+    <script>
+      $('#icon').iconpicker({animation: false});
+    </script>
     <script>
       function handleChange(values) {
         var url = document.getElementById('url')

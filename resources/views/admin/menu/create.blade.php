@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@push('style')
+    <link rel="stylesheet" href="{{ asset('iconpicker/dist/css/fontawesome-iconpicker.min.css') }}">
+    <script src="{{ asset('iconpicker/dist/js/fontawesome-iconpicker.min.js') }}"></script>
+@endpush
+
 @section('content')
   <div class="container">
     <div class="page-inner">
@@ -78,7 +83,7 @@
                   <div class="form-group form-show-validation row {{ $errors->has('icon') ? 'has-error' : '' }}">
                     <label for="icon" class="col-sm-3 col-form-label">Menu Icon</label>
                     <div class="col-sm-9">
-                      <input id="icon" class="form-control" type="text" name="icon" placeholder="fa fa-menu" value="{{ old('icon') }}">
+                      <input id="icon" class="form-control icp icp-auto" type="text" name="icon" placeholder="fa fa-menu" value="{{ old('icon') }}" autocomplete="off">
                       {!! $errors->first('icon', '<label id="icon-error" class="error" for="icon">:message</label>') !!}
                     </div>
                   </div>
@@ -110,7 +115,12 @@
 @endsection
 
 @push('script')
+    
     <script>
+      $('.icp-auto').iconpicker({animation: false});
+    </script>
+    <script>
+      
       function handleChange(values) {
         var url = document.getElementById('url')
         url.value = `${getUrl(values)}.index`
