@@ -42,6 +42,7 @@
             <form action="{{ route('sejarah-perusahaan.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               {{ method_field('POST') }}
+              <input type="hidden" name="id" value={{ optional($row)->id }}>
               <div class="form-group form-show-validation row {{ $errors->has('foto') ? 'has-error' : '' }}">
                 <label for="foto" class="col-sm-3 col-form-label">Banner</label>
                 <div class="col-sm-9">
@@ -105,6 +106,7 @@
 
 @push('script')
   <script src="{{ asset('assets/server/js/plugin/summernote/summernote-bs4.min.js') }}"></script>
+  <script src="{{ asset('assets/server/js/plugin/datepicker/bootstrap-datetimepicker.min.js') }}"></script>
   <script>
     $('#isi').summernote({
       placeholder: 'isi',
