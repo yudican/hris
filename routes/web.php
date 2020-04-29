@@ -65,7 +65,10 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('pelamar/Ditolak', 'PelamarController@index')->name('pelamar.ditolak');
         Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'destroy']);
 
-
+        // biodata kehamilan
+        Route::get('sejarah-perusahaan/index', 'SejarahController@index')->name('sejarah-perusahaan.index');
+        Route::post('sejarah-perusahaan/store', 'SejarahController@store')->name('sejarah-perusahaan.store');
+        
         /**
          * User Route
          * 
@@ -90,6 +93,8 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('biodata-pendidikan/create/{biodata_pendidikan}', 'Biodata\PendidikanController@create')->name('biodata-pendidikan.create');
         Route::post('biodata-pendidikan/store', 'Biodata\PendidikanController@store')->name('biodata-pendidikan.store');
         Route::put('biodata-pendidikan/update', 'Biodata\PendidikanController@update')->name('biodata-pendidikan.update');
+
+        
     });
 });
 

@@ -2,13 +2,12 @@
 
 @section('content')
 <div class="ftco-blocks-cover-1">
-  <div class="ftco-cover-1 overlay" style="background-image: url('assets/client/images/background.jpg')">
+  <div class="ftco-cover-1" style="background-image: url('{{ asset('storage/'.$banner->foto) }}')">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-12">
-          <h1>MSD HIRS</h1>
-          <p class="mb-5" align="justify">Msd Hris adalah suatu impian kecil yang berawal dari situasi pandemi wabah virus Corona atau biasa dikenal covid-19, yang mengakibatkan tidak sedikit orang menjadi kehilangan pekerjaannya, termasuk saya. Banyak sekali orang-orang berfikir akan seperti apa kelanjutan masadepan mereka, karena selain mereka yang kehilangan pekerjaan mereka, mereka juga harus berdiam diri di rumah masing-masing, dan itupun termasuk kami. Setelah kami berfikir cukup singkat dan bermodal keberanian untuk menciptakan sebuah impian kecil yang memanfaatkan keadaan "Di Rumah Aja", subuah ide pun muncul dibenak kami yang ingin mengasah keahlian kami. Sebuah nama kecil yang muncul dari benak kami adalah HRIS (Human Resources Information System‎), dimana dengan bermodal dengan pengalaman kerja di bidang HR, dan mempunyai keahlian di bidang Web Programming, kami pun ingin menciptakan sebuah aplikasi yang dapat bermanfaat untuk mereka yang masih mengalami kesulitan dalam mengolah sistem HR. Tentu bukan hal yang mudah bagi kami, tapi kami hanya mempunyai keyakinan bahwa kami bisa membangunnya dan saat ini kami sedang membangunnya.
-#kamipastibisa.</p>
+          <h1>{{ $data->perusahaan_nama }}</h1>
+          <p class="mb-5" align="justify">{!! $banner->isi !!}</p>
         </div>
       </div>
     </div>
