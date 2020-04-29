@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="ftco-blocks-cover-1">
-  <div class="ftco-cover-1" style="background-image: url('{{ asset('storage/'.$banner->foto) }}')">
+  <div class="ftco-cover-1" style="background-image: url('{{ asset('storage/'.optional($banner)->foto) }}')">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-12">
           <h1>{{ $data->perusahaan_nama }}</h1>
-          <p class="mb-5" align="justify">{!! $banner->isi !!}</p>
+          <p class="mb-5" align="justify">{!! optional($banner)->isi !!}</p>
         </div>
       </div>
     </div>
