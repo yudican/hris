@@ -134,6 +134,6 @@ class PendidikanController extends Controller
             BiodataPendidikan::where('id', $request->id[$key])->update($data);
         }
 
-        return redirect()->back()->withSuccess('Biodata keluarga berhasil di update');
+        return redirect()->back()->withSuccess('Biodata pendidikan berhasil di update');
     }
 }

@@ -94,6 +94,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::post('biodata-pendidikan/store', 'Biodata\PendidikanController@store')->name('biodata-pendidikan.store');
         Route::put('biodata-pendidikan/update', 'Biodata\PendidikanController@update')->name('biodata-pendidikan.update');
 
+        // biodata biodata-susunan-anak
+        Route::get('biodata-susunan-anak/create/{biodata_biodata_susunan_anak}', 'Biodata\SusunanAnakController@create')->name('biodata-susunan-anak.create');
+        Route::post('biodata-susunan-anak/store', 'Biodata\SusunanAnakController@store')->name('biodata-susunan-anak.store');
+        Route::put('biodata-susunan-anak/update', 'Biodata\SusunanAnakController@update')->name('biodata-susunan-anak.update');
+
         
     });
 });
