@@ -33,4 +33,9 @@ class Pelamar extends Model
     {
         return $this->belongsToMany(LowonganModel::class, 'lowongan_pelamar', 'pelamar_id', 'lowongan_id');
     }
+
+    public function process()
+    {
+        return $this->hasMany(ProsesSeleksi::class, 'proses_ktp', 'pelamar_nik');
+    }
 }
