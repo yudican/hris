@@ -61,7 +61,7 @@ class OrtuController extends Controller
             BiodataOrtu::create($data);
         }
 
-        return redirect()->route('biodata-pendidikan.create', ['biodata_penddikan' => $id])->withSuccess('Biodata keluarga berhasil di input');
+        return redirect()->route('biodata-susunan-anak.create', ['biodata_susunan_anak' => $id])->withSuccess('Biodata keluarga berhasil di input');
     }
     
 
@@ -94,7 +94,7 @@ class OrtuController extends Controller
             
         }
 
-        return redirect()->route('biodata-pendidikan.create', ['biodata_penddikan' => $id])->withSuccess('Biodata keluarga berhasil di update');
+        return redirect()->route('biodata-susunan-anak.create', ['biodata_susunan_anak' => $id])->withSuccess('Biodata keluarga berhasil di update');
     }
 
 }

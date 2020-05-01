@@ -95,9 +95,14 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::put('biodata-pendidikan/update', 'Biodata\PendidikanController@update')->name('biodata-pendidikan.update');
 
         // biodata biodata-susunan-anak
-        Route::get('biodata-susunan-anak/create/{biodata_biodata_susunan_anak}', 'Biodata\SusunanAnakController@create')->name('biodata-susunan-anak.create');
+        Route::get('biodata-susunan-anak/create/{biodata_susunan_anak}', 'Biodata\SusunanAnakController@create')->name('biodata-susunan-anak.create');
         Route::post('biodata-susunan-anak/store', 'Biodata\SusunanAnakController@store')->name('biodata-susunan-anak.store');
         Route::put('biodata-susunan-anak/update', 'Biodata\SusunanAnakController@update')->name('biodata-susunan-anak.update');
+
+        // biodata biodata-pengalaman-kerja
+        Route::get('biodata-pengalaman-kerja/create/{biodata_pengalaman_kerja}', 'Biodata\PengalamanKerjaController@create')->name('biodata-pengalaman-kerja.create');
+        Route::post('biodata-pengalaman-kerja/store', 'Biodata\PengalamanKerjaController@store')->name('biodata-pengalaman-kerja.store');
+        Route::put('biodata-pengalaman-kerja/update', 'Biodata\PengalamanKerjaController@update')->name('biodata-pengalaman-kerja.update');
 
         
     });

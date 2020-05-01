@@ -159,7 +159,7 @@
                     @endforeach
                     
                     <div class="col-md-12">
-                      <button type="submit" value="next" class="btn btn-primary">Simpan</button>
+                      <button type="submit" value="next" class="btn btn-primary">Simpan & Lanjutkan</button>
                     </div>
                   </form>
                 

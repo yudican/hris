@@ -19,7 +19,7 @@ class SusunanAnakController extends Controller
     {
         $dataKtp = BiodataKtp::where('id', $id)->first();
         $previews = '';
-        $previews = route('biodata-pendidikan.create', ['biodata_pendidikan' => $id]);
+        $previews = route('biodata-ortu.create', ['biodata_ortu' => $id]);
         return view('user.biodata-susunan-anak', [
             'title' => 'Biodata Susunan Anak',
             'rows' => BiodataSusunanAnak::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),

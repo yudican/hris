@@ -119,6 +119,8 @@ class PendidikanController extends Controller
                     $validation['pendidikan_ipk.*'] = 'required|numeric|between:0.0,4.0';
                 }
             }
+
+            $this->validate($request, $validation, $messages);
             $data = [
                 'pendidikan_nama' => $request->pendidikan_nama[$key],
                 'pendidikan_kota' => $request->pendidikan_kota[$key],
