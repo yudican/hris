@@ -109,6 +109,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::post('biodata-referensi/store', 'Biodata\ReferensiController@store')->name('biodata-referensi.store');
         Route::put('biodata-referensi/update', 'Biodata\ReferensiController@update')->name('biodata-referensi.update');
 
+        // biodata biodata-darurat
+        Route::get('biodata-darurat/create/{biodata_darurat}', 'Biodata\DaruratController@create')->name('biodata-darurat.create');
+        Route::post('biodata-darurat/store', 'Biodata\DaruratController@store')->name('biodata-darurat.store');
+        Route::put('biodata-darurat/update', 'Biodata\DaruratController@update')->name('biodata-darurat.update');
+
         
     });
 });
