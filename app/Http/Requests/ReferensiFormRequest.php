@@ -41,11 +41,11 @@ class ReferensiFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'br_nama.required' => 'field tidak kosong',
-            'br_hubungan.required' => 'field tidak kosong',
-            'br_jabatan.required' => 'field tidak kosong',
-            'br_cabang.required' => 'field tidak kosong',
-            'br_status.required' => 'field tidak kosong',
+            'br_nama.*.required' => 'field tidak kosong',
+            'br_hubungan.*.required' => 'field tidak kosong',
+            'br_jabatan.*.required' => 'field tidak kosong',
+            'br_cabang.*.required' => 'field tidak kosong',
+            'br_status.*.required' => 'field tidak kosong',
         ];
     }
 }
