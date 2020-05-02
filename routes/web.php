@@ -104,6 +104,11 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::post('biodata-pengalaman-kerja/store', 'Biodata\PengalamanKerjaController@store')->name('biodata-pengalaman-kerja.store');
         Route::put('biodata-pengalaman-kerja/update', 'Biodata\PengalamanKerjaController@update')->name('biodata-pengalaman-kerja.update');
 
+        // biodata biodata-referensi
+        Route::get('biodata-referensi/create/{biodata_referensi}', 'Biodata\ReferensiController@create')->name('biodata-referensi.create');
+        Route::post('biodata-referensi/store', 'Biodata\ReferensiController@store')->name('biodata-referensi.store');
+        Route::put('biodata-referensi/update', 'Biodata\ReferensiController@update')->name('biodata-referensi.update');
+
         
     });
 });
