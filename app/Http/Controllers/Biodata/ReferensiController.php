@@ -38,25 +38,25 @@ class ReferensiController extends Controller
     public function store(Request $request, $id)
     {
         $messages = ['required' => 'Field tidak boleh kosong']; // rules status
-        $validation['br_status1'] = 'required';
-        if ($request->br_status1 == 'Ya') {
-            $validation['br_nama1'] = 'required';
-            $validation['br_hubungan1'] = 'required';
-            $validation['br_jabatan1'] = 'required';
-            $validation['br_cabang1'] = 'required';
+        $validation['br_status'] = 'required';
+        if ($request->br_status == 'Ya') {
+            $validation['br_nama'] = 'required';
+            $validation['br_hubungan'] = 'required';
+            $validation['br_jabatan'] = 'required';
+            $validation['br_cabang'] = 'required';
         }
         $validate = $this->validate($request, $validation, $messages);
 
         $data = [
-            'br_nama' => $request->br_nama1,
-            'br_hubungan' => $request->br_hubungan1,
-            'br_jabatan' => $request->br_jabatan1,
-            'br_cabang' => $request->br_cabang1,
-            'br_status' => $request->br_status1,
-            'nomor_ktp' => $request->nomor_ktp1,
+            'br_nama' => $request->br_nama,
+            'br_hubungan' => $request->br_hubungan,
+            'br_jabatan' => $request->br_jabatan,
+            'br_cabang' => $request->br_cabang,
+            'br_status' => $request->br_status,
+            'nomor_ktp' => $request->nomor_ktp,
         ];
 
-        BiodataReferensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'br_nama' => $request->br_nama1, 'br_jabatan' => $request->br_jabatan1],$data);
+        BiodataReferensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp, 'br_nama' => $request->br_nama, 'br_jabatan' => $request->br_jabatan],$data);
         return redirect()->route('biodata-darurat', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
     }
 

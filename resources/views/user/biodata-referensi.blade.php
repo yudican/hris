@@ -54,7 +54,7 @@
                 <form action="{{ $action }}" method="POST">
                   @csrf
                   <input type="hidden" name="_method" value="POST">
-                  <input type="hidden" name="nomor_ktp1" value="{{ $dataKtp->ktp_nomor }}">
+                  <input type="hidden" name="nomor_ktp" value="{{ $dataKtp->ktp_nomor }}">
                   <div>
                     <div class="row">
                       <div class="col-md-6 pr-0">
