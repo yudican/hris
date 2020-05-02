@@ -22,7 +22,7 @@ class ReferensiController extends Controller
         $previews = route('biodata-pengalaman-kerja.create', ['biodata_pengalaman_kerja' => $id]);
         return view('user.biodata-referensi', [
             'title' => 'Biodata Susunan Anak',
-            'rows' => BiodataReferensi::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),
+            'row' => BiodataReferensi::where('nomor_ktp', $dataKtp->ktp_nomor)->first(),
             'action' => route('biodata-referensi.store', ['biodata_referensi' => $id]),
             'dataKtp' =>  $dataKtp, // nomor ktp
             'previews' => $previews
@@ -57,10 +57,7 @@ class ReferensiController extends Controller
         ];
 
         BiodataReferensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'br_nama' => $request->br_nama1, 'br_jabatan' => $request->br_jabatan1],$data);
-        if ($request->br_status1 == 'Tidak') {
-            return redirect()->route('biodata-darurat', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
-        }
-        return redirect()->back()->withSuccess('Biodata referensi berhasil di input');
+        return redirect()->route('biodata-darurat', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
     }
 
     /**
