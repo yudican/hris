@@ -28,7 +28,7 @@
               <div class="col-md-6 col-sm-12 col-12">
                 <div class="form-group form-show-validation {{ $errors->has('ktp_nomor') ? 'has-error' : '' }}">
                   <label for="ktp_nomor">Nomor KTP/NIK</label>
-                  <input id="ktp_nomor" class="form-control" type="text" value="{{ old('ktp_nomor', optional($row)->ktp_nomor) }}" name="ktp_nomor" placeholder="Masukkan Nomor Ktp">
+                  <input id="ktp_nomor" class="form-control" type="text" value="{{ old('ktp_nomor', optional($row)->ktp_nomor ?? $nik) }}" name="ktp_nomor" placeholder="Masukkan Nomor Ktp" readonly>
                   {!! $errors->first('ktp_nomor', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
                 <div class="form-group form-show-validation {{ $errors->has('ktp_nama') ? 'has-error' : '' }}">

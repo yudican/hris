@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Biodata;
 
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
+use App\Models\Pelamar;
 use App\Models\Province;
 use App\Models\BiodataKtp;
 use Illuminate\Http\Request;
@@ -21,11 +22,13 @@ class KtpController extends Controller
      */
     public function create()
     {
-        $userKtp = BiodataKtp::with('user')->first();
+        $nik = auth()->user()->pelamar->pelamar_nik;
+        $userKtp = BiodataKtp::where('ktp_nomor', $nik)->first();
         return view('user.biodata-ktp', [
             'title' => 'Masukkan Biodata KTP',
             'provinces' => Province::all(),
             'action' => route('biodata-ktp.store'),
+            'nik' => $nik,
             'row' => $userKtp,
             'method' => 'POST'
         ]);
@@ -46,10 +49,6 @@ class KtpController extends Controller
         if ($request->ktp_gender == 'Perempuan' && $request->ktp_perkawinan == 'Kawin') {
             return redirect()->route('biodata_kehamilan.create', ['biodata_kehamilan' => $id])->withSuccess('Data Ktp Berhasil Di input');
         }
-
-        // attach ktp id to user
-        $idUser = auth()->user()->id;
-        User::where('id', $idUser)->update(['ktp_id' => $id]);
 
         // jika status perkawinan Belum kawin
         // redirect ke halaman keluarga

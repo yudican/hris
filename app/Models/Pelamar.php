@@ -36,6 +36,11 @@ class Pelamar extends Model
 
     public function process()
     {
-        return $this->hasMany(ProsesSeleksi::class, 'proses_ktp', 'pelamar_nik');
+        return $this->hasMany(ProsesSeleksi::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

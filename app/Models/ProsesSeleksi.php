@@ -16,7 +16,7 @@ class ProsesSeleksi extends Model
 
     public function pelamar()
     {
-        return $this->belongsTo(Pelamar::class, 'pelamar_nik', 'proses_ktp');
+        return $this->belongsTo(Pelamar::class);
     }
 
 }

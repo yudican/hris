@@ -112,7 +112,13 @@ class PelamarController extends Controller
         try{
             $perusahaan = PerusahaanModel::first();
             $pelamar = Pelamar::findOrFail($id);
+
             $pelamar->update(['pelamar_status' => $request->status]);
+            $pelamar->process()->create([
+                'proses_ktp' => $pelamar->pelamar_nik,
+                'proses_status' => $request->status == 'Ditolak' ? 'Tidak Memenuhi Syarat' : 'Memenuhi Syarat',
+                'proses_tanggal' => date('Y-m-d')
+            ]);
 
             if ($request->status == 'Ditolak') {
                 $data = [
@@ -132,7 +138,7 @@ class PelamarController extends Controller
             $password = str_replace('.', '', explode('@', $pelamar->pelamar_email)[0].rand(1,999));
 
             // create new user
-            $user = User::updateOrCreate([
+            $user = $pelamar->user()->updateOrCreate([
                 'email' => $pelamar->pelamar_email
             ],[
                 'name' => $pelamar->pelamar_nama,

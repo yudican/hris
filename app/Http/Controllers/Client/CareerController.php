@@ -85,7 +85,11 @@ class CareerController extends Controller
 
             // gabungkan data yang akan disimpan ke database
             $finalData = array_merge($dataStore, $dataStore2);
-            $lowongan->pelamar()->create($finalData);
+            $lowongan->pelamar()->create($finalData)->process()->create([
+                'proses_ktp' => $request->pelamar_nik,
+                'proses_status' => 'Diproses',
+                'proses_tanggal' => date('Y-m-d')
+            ]);
 
             return redirect()->route('home')->withSuccess('Apply lowongan berhasil');
         }

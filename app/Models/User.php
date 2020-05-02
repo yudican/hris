@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(BiodataKtp::class, 'id', 'ktp_id');
     }
+
+    public function pelamar()
+    {
+        return $this->hasOne(Pelamar::class);
+    }
 }
