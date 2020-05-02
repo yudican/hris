@@ -106,7 +106,7 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
 
         // biodata biodata-referensi
         Route::get('biodata-referensi/create/{biodata_referensi}', 'Biodata\ReferensiController@create')->name('biodata-referensi.create');
-        Route::post('biodata-referensi/store', 'Biodata\ReferensiController@store')->name('biodata-referensi.store');
+        Route::post('biodata-referensi/store/{biodata_referensi}', 'Biodata\ReferensiController@store')->name('biodata-referensi.store');
         Route::put('biodata-referensi/update', 'Biodata\ReferensiController@update')->name('biodata-referensi.update');
 
         // biodata biodata-darurat

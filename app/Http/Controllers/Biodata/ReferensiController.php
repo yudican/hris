@@ -23,7 +23,7 @@ class ReferensiController extends Controller
         return view('user.biodata-referensi', [
             'title' => 'Biodata Susunan Anak',
             'rows' => BiodataReferensi::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),
-            'action' => route('biodata-referensi.store'),
+            'action' => route('biodata-referensi.store', ['biodata_referensi' => $id]),
             'dataKtp' =>  $dataKtp, // nomor ktp
             'previews' => $previews
         ]);
@@ -35,7 +35,7 @@ class ReferensiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $messages = ['required' => 'Field tidak boleh kosong']; // rules status
         $validation['br_status1'] = 'required';
@@ -58,7 +58,7 @@ class ReferensiController extends Controller
 
         BiodataReferensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'br_nama' => $request->br_nama1, 'br_jabatan' => $request->br_jabatan1],$data);
         if ($request->br_status1 == 'Tidak') {
-            return redirect()->back()->withSuccess('Biodata referensi berhasil di input');
+            return redirect()->route('biodata-darurat', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
         }
         return redirect()->back()->withSuccess('Biodata referensi berhasil di input');
     }

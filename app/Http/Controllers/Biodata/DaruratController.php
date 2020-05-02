@@ -41,6 +41,7 @@ class DaruratController extends Controller
         $validation['bd_jenis1'] = 'required';
         $validation['bd_nama1'] = 'required';
         $validation['bd_pekerjaan1'] = 'required';
+        $validation['bd_posisi1'] = 'required';
         $validation['bd_domisili1'] = 'required';
         $validation['bd_telepon1'] = 'required|numeric';
 
@@ -56,7 +57,7 @@ class DaruratController extends Controller
             'nomor_ktp' => $request->nomor_ktp1,
         ];
 
-        BiodataDarurat::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'bd_jenis' => $request->bd_jenis1, 'bd_nama' => $request->bd_nama1],$data);
+        BiodataDarurat::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'bd_telepon' => $request->bd_telepon1, 'bd_nama' => $request->bd_nama1],$data);
         return redirect()->back()->withSuccess('Biodata Darurat berhasil di input');
     }
 

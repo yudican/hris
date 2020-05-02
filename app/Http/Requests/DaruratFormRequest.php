@@ -27,6 +27,7 @@ class DaruratFormRequest extends FormRequest
             'bd_jenis.*' => 'required',
             'bd_nama.*' => 'required',
             'bd_pekerjaan.*' => 'required',
+            'bd_posisi.*' => 'required',
             'bd_domisili.*' => 'required',
             'bd_telepon.*' => 'required|numeric',
         ];
@@ -41,12 +42,13 @@ class DaruratFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'bd_jenis.required' => 'field tidak boleh kosong',
-            'bd_nama.required' => 'field tidak boleh kosong',
-            'bd_pekerjaan.required' => 'field tidak boleh kosong',
-            'bd_domisili.required' => 'field tidak boleh kosong',
-            'bd_telepon.required' => 'field tidak boleh kosong',
-            'bd_telepon.numeric' => 'field harus berupa angka',
+            'bd_jenis.*.required' => 'field tidak boleh kosong',
+            'bd_nama.*.required' => 'field tidak boleh kosong',
+            'bd_pekerjaan.*.required' => 'field tidak boleh kosong',
+            'bd_posisi.*.required' => 'field tidak boleh kosong',
+            'bd_domisili.*.required' => 'field tidak boleh kosong',
+            'bd_telepon.*.required' => 'field tidak boleh kosong',
+            'bd_telepon.*.numeric' => 'field harus berupa angka',
         ];
     }
 }

@@ -73,8 +73,8 @@
                             {!! $errors->first('bd_pekerjaan1', '<label id="bd_pekerjaan1-error" class="error" for="bd_pekerjaan1">:message</label>') !!}
                         </div>
                         <div class="form-group form-show-validation {{ $errors->has('bd_posisi1') ? 'has-error' : '' }}">
-                          <label for="bd_posisi1">Posisi/Jabatan Pekerjaan</label>
-                            <input id="bd_posisi1" class="form-control" type="text" name="bd_posisi1" placeholder="Posisi/Jabatan" value="{{ old('bd_posisi1') }}">
+                          <label for="bd_posisi1">Posisi</label>
+                            <input id="bd_posisi1" class="form-control" type="text" name="bd_posisi1" placeholder="Di kampung" value="{{ old('bd_posisi1') }}">
                             {!! $errors->first('bd_posisi1', '<label id="bd_posisi1-error" class="error" for="bd_posisi1">:message</label>') !!}
                         </div>
                       </div>
@@ -112,7 +112,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="col-md-12">
-                <form action="{{ route('biodata-referensi.update') }}" method="POST">
+                <form action="{{ route('biodata-darurat.update') }}" method="POST">
                   @csrf
                   <input type="hidden" name="_method" value="PUT">
                   <input type="hidden" name="nomor_ktp" value="{{ $dataKtp->ktp_nomor }}">
@@ -137,8 +137,8 @@
                             {!! $errors->first('bd_pekerjaan.'.$key, '<label id="bd_pekerjaan1-error" class="error" for="bd_pekerjaan1">:message</label>') !!}
                         </div>
                         <div class="form-group form-show-validation {{ $errors->has('bd_posisi.'.$key) ? 'has-error' : '' }}">
-                          <label for="bd_posisi">Posisi/Jabatan Pekerjaan</label>
-                            <input id="bd_posisi" class="form-control" type="text" name="bd_posisi[]" placeholder="Posisi/Jabatan" value="{{ old('bd_posisi.'.$key, optional($row)->bd_posisi) }}">
+                          <label for="bd_posisi">Posisi <span class="required-label">*</span></label>
+                            <input id="bd_posisi" class="form-control" type="text" name="bd_posisi[]" placeholder="Di kampung" value="{{ old('bd_posisi.'.$key, optional($row)->bd_posisi) }}">
                             {!! $errors->first('bd_posisi.'.$key, '<label id="bd_posisi-error" class="error" for="bd_posisi">:message</label>') !!}
                         </div>
                       </div>
@@ -160,6 +160,7 @@
                         </div>
                       </div>
                     </div>
+                    <hr>
                   </div>
                   @endforeach
                   <div class="col-md-12">
