@@ -57,7 +57,7 @@ class ReferensiController extends Controller
         ];
 
         BiodataReferensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp, 'br_nama' => $request->br_nama, 'br_jabatan' => $request->br_jabatan],$data);
-        return redirect()->route('biodata-darurat', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
+        return redirect()->route('biodata-darurat.create', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
     }
 
     /**
