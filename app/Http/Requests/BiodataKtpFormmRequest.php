@@ -44,6 +44,8 @@ class BiodataKtpFormmRequest extends FormRequest
             'ktp_pekerjaan' => 'required',
             'ktp_kewarganegaraan' => 'required',
             'ktp_perkawinan' => 'required',
+            'ktp_tinggi_badan' => 'required|numeric',
+            'ktp_berat_badan' => 'required|numeric',
         ];
     }
 
@@ -76,6 +78,10 @@ class BiodataKtpFormmRequest extends FormRequest
             'ktp_pekerjaan.required' => 'field tidak boleh kosong', 
             'ktp_kewarganegaraan.required' => 'field tidak boleh kosong', 
             'ktp_perkawinan.required' => 'field tidak boleh kosong', 
+            'ktp_tinggi_badan.required' => 'field tidak boleh kosong', 
+            'ktp_berat_badan.required' => 'field tidak boleh kosong', 
+            'ktp_tinggi_badan.numeric' => 'field harus berupa angka', 
+            'ktp_berat_badan.numeric' => 'field harus berupa angka', 
         ];
     }
 }

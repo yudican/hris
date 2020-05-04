@@ -33,6 +33,8 @@ class BiodataKtp extends Model
         'ktp_pekerjaan',
         'ktp_kewarganegaraan',
         'ktp_perkawinan',
+        'ktp_tinggi_badan',
+        'ktp_berat_badan',
     ];
 
     public function user()

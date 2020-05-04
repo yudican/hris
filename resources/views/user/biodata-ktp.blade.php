@@ -139,22 +139,44 @@
                   </select>
                   {!! $errors->first('ktp_kelurahan', '<label id="name-error" class="error" for="name">:message</label>') !!}
                 </div>
-                <div class="form-group form-show-validation {{ $errors->has('ktp_kewarganegaraan') ? 'has-error' : '' }}">
-                  <label for="ktp_kewarganegaraan">Kewarganegaraan</label>
-                  <select name="ktp_kewarganegaraan" id="ktp_kewarganegaraan" class="form-control">
-                    <option value="WNI" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNI') ? 'selected' : '' }}>WNI</option>
-                    <option value="WNA" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNA') ? 'selected' : '' }}>WNA</option>
-                  </select>
-                  {!! $errors->first('ktp_kewarganegaraan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group form-show-validation {{ $errors->has('ktp_kewarganegaraan') ? 'has-error' : '' }}">
+                      <label for="ktp_kewarganegaraan">Kewarganegaraan</label>
+                      <select name="ktp_kewarganegaraan" id="ktp_kewarganegaraan" class="form-control">
+                        <option value="WNI" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNI') ? 'selected' : '' }}>WNI</option>
+                        <option value="WNA" {{ (old('ktp_kewarganegaraan', optional($row)->ktp_kewarganegaraan) == 'WNA') ? 'selected' : '' }}>WNA</option>
+                      </select>
+                      {!! $errors->first('ktp_kewarganegaraan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group form-show-validation {{ $errors->has('ktp_perkawinan') ? 'has-error' : '' }}">
+                      <label for="ktp_perkawinan">Status Perkawinan</label>
+                      <select name="ktp_perkawinan" id="ktp_perkawinan" class="form-control">
+                        <option value="">Pilih Status Perkawinan</option>
+                        <option value="Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Kawin') ? 'selected' : '' }}>Kawin</option>
+                        <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Belum Kawin') ? 'selected' : '' }}>Belum Kawin</option>
+                      </select>
+                      {!! $errors->first('ktp_perkawinan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group form-show-validation {{ $errors->has('ktp_perkawinan') ? 'has-error' : '' }}">
-                  <label for="ktp_perkawinan">Status Perkawinan</label>
-                  <select name="ktp_perkawinan" id="ktp_perkawinan" class="form-control">
-                    <option value="">Pilih Status Perkawinan</option>
-                    <option value="Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Kawin') ? 'selected' : '' }}>Kawin</option>
-                    <option value="Belum Kawin" {{ (old('ktp_perkawinan', optional($row)->ktp_perkawinan) == 'Belum Kawin') ? 'selected' : '' }}>Belum Kawin</option>
-                  </select>
-                  {!! $errors->first('ktp_perkawinan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group form-show-validation {{ $errors->has('ktp_tinggi_badan') ? 'has-error' : '' }}">
+                      <label for="ktp_tinggi_badan">Tinggi Badan</label>
+                      <input id="ktp_tinggi_badan" class="form-control" type="number" name="ktp_tinggi_badan" placeholder="masukkan tinggi badan" value="{{ old('ktp_tinggi_badan', optional($row)->ktp_tinggi_badan) }}">
+                      {!! $errors->first('ktp_tinggi_badan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group form-show-validation {{ $errors->has('ktp_berat_badan') ? 'has-error' : '' }}">
+                      <label for="ktp_berat_badan">Berat Badan</label>
+                      <input id="ktp_berat_badan" class="form-control" type="number" name="ktp_berat_badan" placeholder="masukkan berat badan" value="{{ old('ktp_berat_badan', optional($row)->ktp_berat_badan) }}">
+                      {!! $errors->first('ktp_berat_badan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="ktp_perkawinan"></label>

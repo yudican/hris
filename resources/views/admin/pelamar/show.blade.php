@@ -52,7 +52,7 @@
                   </tr>
                   <tr>
                     <td width="3%">Alamat Lengkap Pelamar</td>
-                    <td width="15%" class="text-lowercase">{{ $data->pelamar_alamat.' rt/rw '.$data->pelamar_rt.'/'.$data->pelamar_rw.', '.$data->pelamar_provinsi.', '.$data->pelamar_kabupaten.', '.$data->pelamar_kecamatan.', '.$data->pelamar_kelurahan.' '.$data->pelamar_kodepos }}</td>
+                    <td width="15%" class="text-lowercase">{{ $data->pelamar_alamat.' rt/rw '.$data->pelamar_rt.'/'.$data->pelamar_rw.', '.$data->pelamar_provinsi.', '.$data->pelamar_kabupaten.', '.$data->pelamar_kecamatan.', '.$data->pelamar_kelurahan.'-'.$data->pelamar_kodepos }}</td>
                   </tr>
                   <tr>
                     <td width="3%">Telepeon/Hp Pelamar</td>
@@ -69,6 +69,14 @@
                   <tr>
                     <td width="3%">Jurusan</td>
                     <td width="15%">{{ $data->pelamar_jurusan }}</td>
+                  </tr>
+                  <tr>
+                    <td width="3%">Status Tinggal</td>
+                    <td width="15%">{{ $data->pelamar_tinggal_dengan }}</td>
+                  </tr>
+                  <tr>
+                    <td width="3%">Jenis Tinggal</td>
+                    <td width="15%">{{ $data->pelamar_jenis_tinggal }}</td>
                   </tr>
                   <tr>
                     <td width="3%">Foto Pelamar</td>

@@ -26,7 +26,9 @@ class Pelamar extends Model
         'pelamar_status',
         'pelamar_tanggal_lahir',
         'pelamar_foto',
-        'pelamar_tanggal'
+        'pelamar_tanggal',
+        'pelamar_tinggal_dengan',
+        'pelamar_jenis_tinggal',
     ];
 
     public function lowongan()

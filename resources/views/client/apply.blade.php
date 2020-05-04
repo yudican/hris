@@ -139,6 +139,35 @@
               <textarea id="pelamar_alamat" rows="3" class="form-control" placeholder="Jl. Mawar No. 10" name="pelamar_alamat">{{ old('pelamar_alamat') }}</textarea>
               {!! $errors->first('pelamar_alamat', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
+            {{-- status tempat tinggal --}}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group form-show-validation {{ $errors->has('pelamar_tinggal_dengan') ? 'has-error' : '' }}">
+                  <label for="pelamar_tinggal_dengan">Status Tinggal </label>
+                  <select name="pelamar_tinggal_dengan" id="pelamar_tinggal_dengan" class="form-control">
+                    <option value="">Pilih Status Tinggal</option>
+                    <option value="Sendiri" {{ (old('pelamar_tinggal_dengan') == 'Sendiri') ? 'selected' : '' }}>Sendiri</option>
+                    <option value="Teman" {{ (old('pelamar_tinggal_dengan') == 'Teman') ? 'selected' : '' }}>Teman</option>
+                    <option value="Saudara" {{ (old('pelamar_tinggal_dengan') == 'Saudara') ? 'selected' : '' }}>Saudara</option>
+                    <option value="Orang Tua" {{ (old('pelamar_tinggal_dengan') == 'Orang Tua') ? 'selected' : '' }}>Orang Tua</option>
+                  </select>
+                  {!! $errors->first('pelamar_tinggal_dengan', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-show-validation {{ $errors->has('pelamar_jenis_tinggal') ? 'has-error' : '' }}">
+                  <label for="pelamar_jenis_tinggal">Jenis Tinggal</label>
+                  <select name="pelamar_jenis_tinggal" id="pelamar_jenis_tinggal" class="form-control">
+                    <option value="">Pilih Jenis Tinggal</option>
+                    <option value="Kost" {{ (old('pelamar_jenis_tinggal') == 'Kost') ? 'selected' : '' }}>Kost</option>
+                    <option value="Kontrak" {{ (old('pelamar_jenis_tinggal') == 'Kontrak') ? 'selected' : '' }}>Kontrak</option>
+                    <option value="Rumah Pribadi" {{ (old('pelamar_jenis_tinggal') == 'Rumah Pribadi') ? 'selected' : '' }}>Rumah Pribadi</option>
+                    <option value="Apartement" {{ (old('pelamar_jenis_tinggal') == 'Apartement') ? 'selected' : '' }}>Apartement</option>
+                  </select>
+                  {!! $errors->first('pelamar_jenis_tinggal', '<label id="name-error" class="error" for="name">:message</label>') !!}
+                </div>
+              </div>
+            </div>
           </div>
         </div>   
       </div>
@@ -185,6 +214,7 @@
               <input id="pelamar_tanggal_lahir" class="form-control" type="date" placeholder="Tanggal Lahir" value="{{ old('pelamar_tanggal_lahir') }}" name="pelamar_tanggal_lahir">
               {!! $errors->first('pelamar_tanggal_lahir', '<label id="name-error" class="error" for="name">:message</label>') !!}
             </div>
+            
             {{-- informasi foto --}}
             <div class="form-group form-show-validation {{ $errors->has('pelamar_foto') ? 'has-error' : '' }}">
               <label for="pelamar_foto">Upload Foto</label>
@@ -220,7 +250,7 @@
       function getAlamat(params, type, column) {
         $('#pelamar_'+type).html(`<option value="">Pilih ${type.toLowerCase()}</option>`)
         resetForm(type)
-        fetch(` http://localhost:8000/${type}/${btoa(params)}`, {
+        fetch(`{{ url('${type}/${btoa(params)}') }}`, {
           method: "get"
         })
         .then(res => res.json())
