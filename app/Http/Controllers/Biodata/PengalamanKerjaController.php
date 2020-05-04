@@ -21,7 +21,7 @@ class PengalamanKerjaController extends Controller
         $previews = '';
         $previews = route('biodata-pendidikan.create', ['biodata_pendidikan' => $id]);
         return view('user.biodata-pengalaman-kerja', [
-            'title' => 'Biodata Susunan Anak',
+            'title' => 'Biodata Pengalaman Kerja',
             'rows' => BiodataPengalamanKerja::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),
             'action' => route('biodata-pengalaman-kerja.store'),
             'dataKtp' =>  $dataKtp, // nomor ktp

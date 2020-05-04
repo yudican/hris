@@ -21,7 +21,7 @@ class ReferensiController extends Controller
         $previews = '';
         $previews = route('biodata-pengalaman-kerja.create', ['biodata_pengalaman_kerja' => $id]);
         return view('user.biodata-referensi', [
-            'title' => 'Biodata Susunan Anak',
+            'title' => 'Biodata Referensi',
             'row' => BiodataReferensi::where('nomor_ktp', $dataKtp->ktp_nomor)->first(),
             'action' => route('biodata-referensi.store', ['biodata_referensi' => $id]),
             'dataKtp' =>  $dataKtp, // nomor ktp

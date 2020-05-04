@@ -18,7 +18,7 @@ class PendidikanController extends Controller
     {
         $dataKtp = BiodataKtp::where('id', $id)->first();
         $previews = '';
-        $previews = route('biodata-ortu.create', ['biodata_ortu' => $id]);
+        $previews = route('biodata-susunan-anak.create', ['biodata_susunan_anak' => $id]);
         return view('user.biodata-pendidikan', [
             'title' => 'Biodata Pendidikan',
             'rows' => BiodataPendidikan::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),
@@ -96,6 +96,7 @@ class PendidikanController extends Controller
             if (intval($request->pendidikan_mulai[$key]) > intval($request->pendidikan_lulus[$key])) {
                 return redirect()->back()->with('error', 'tanggal yang anda masukkan tidak valid');
             }
+            $messages = ['required' => 'Field tidak boleh kosong', 'numeric' => 'field harus berupa angka', 'between' => 'nilai IPK maksimum 4']; // rules kehamilan status
             $validation['pendidikan_jenjang.*'] = 'required';
             if ($request->pendidikan_jenjang) {
                 if ($request->pendidikan_jenjang[$key] == 'SD' || $request->pendidikan_jenjang[$key] == 'SMP/MTS') {

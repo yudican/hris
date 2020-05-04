@@ -57,7 +57,7 @@
                   <input type="hidden" name="nomor_ktp1" value="{{ $dataKtp->ktp_nomor }}">
                   <div>
                     <div class="form-group form-show-validation row {{ $errors->has('keahlian_nama1') ? 'has-error' : '' }}">
-                      <label for="keahlian_nama1" class="col-sm-3 col-form-label text-right">Skill</label>
+                      <label for="keahlian_nama1" class="col-sm-3 col-form-label text-right">Skill <span class="text-danger">*</span></label>
                       <div class="col-sm-9">
                         <input id="keahlian_nama1" value="{{ old('keahlian_nama1') }}" class="form-control" type="text" name="keahlian_nama1">
                         {!! $errors->first('keahlian_nama1', '<label id="name-error" class="error" for="name">:message</label>') !!}
@@ -98,7 +98,7 @@
                   <input type="hidden" name="id[]" value="{{ $row->id }}">
                   <div>
                     <div class="form-group form-show-validation row {{ $errors->has('keahlian_nama.'.$key) ? 'has-error' : '' }}">
-                      <label for="keahlian_nama" class="col-sm-3 col-form-label text-right">Skill</label>
+                      <label for="keahlian_nama" class="col-sm-3 col-form-label text-right">Skill <span class="text-danger">*</span></label>
                       <div class="col-sm-9">
                         <input id="keahlian_nama" value="{{ old('keahlian_nama.'.$key, optional($row)->keahlian_nama) }}" class="form-control" type="text" name="keahlian_nama[]">
                         {!! $errors->first('keahlian_nama.'.$key, '<label id="name-error" class="error" for="name">:message</label>') !!}

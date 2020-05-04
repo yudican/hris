@@ -25,7 +25,7 @@ class KtpController extends Controller
         $nik = auth()->user()->pelamar->pelamar_nik;
         $userKtp = BiodataKtp::where('ktp_nomor', $nik)->first();
         return view('user.biodata-ktp', [
-            'title' => 'Masukkan Biodata KTP',
+            'title' => 'Masukkan Biodata Pribadi',
             'provinces' => Province::all(),
             'action' => route('biodata-ktp.store'),
             'nik' => $nik,
