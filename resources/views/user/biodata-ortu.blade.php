@@ -177,7 +177,7 @@
   function getAlamat(params, type, column, tipes) {
       $(`#ortu_${type}_${tipes}`).html(`<option value="">Pilih ${type.toLowerCase()}</option>`)
       resetForm(type, tipes)
-      fetch(`http://localhost:8000/${type}/${btoa(params)}`, {
+      fetch(`{{ url('${type}/${btoa(params)}') }}`, {
         method: "get"
       })
       .then(res => res.json())

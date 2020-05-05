@@ -31,6 +31,16 @@
           </li>
         </ul>
       </div>
+
+      {{-- start alert --}}
+      <div class="alert alert-info" role="alert">
+        Silahkan masukkan pendidikan Anda mulai dari Sekolah Dasar (SD) hingga Pendidikan terakhir.
+      </div>
+      <div class="alert alert-danger" role="alert">
+        Kolom Bertanda <span class="text-danger">*</span> Wajib Diisi
+      </div>
+      {{-- end alert --}}
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">
@@ -49,7 +59,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group  form-show-validation {{ $errors->has('pendidikan_jenjang1') ? 'has-error' : '' }}">
-                          <label for="pendidikan_jenjang">Jenis Pendidikan</label>
+                          <label for="pendidikan_jenjang">Jenis Pendidikan<span class="text-danger">*</span></label>
                             <select id="pendidikan_jenjang" class="form-control" name="pendidikan_jenjang1">
                               <option value="">Pilih Jenis Pendidikan</option>
                               <option value="SD" {{ (old('pendidikan_jenjang1') == 'SD') ? 'selected' : '' }}>SD</option>
@@ -66,7 +76,7 @@
                             {!! $errors->first('pendidikan_jenjang1', '<label id="name-error" class="error" for="name">:message</label>') !!}
                         </div>
                         <div class="form-group form-show-validation {{ $errors->has('pendidikan_nama1') ? 'has-error' : '' }}">
-                          <label for="pendidikan_nama1">Nama Institusi</label>
+                          <label for="pendidikan_nama1">Nama Institusi<span class="text-danger">*</span></label>
                             <input id="pendidikan_nama1" class="form-control" type="text" name="pendidikan_nama1" placeholder="Nama Institusi" value="{{ old('pendidikan_nama1') }}">
                             {!! $errors->first('pendidikan_nama1', '<label id="pendidikan_nama1-error" class="error" for="pendidikan_nama1">:message</label>') !!}
                         </div>
@@ -78,21 +88,21 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group form-show-validation {{ $errors->has('pendidikan_kota1') ? 'has-error' : '' }}">
-                          <label for="pendidikan_kota1">Kota Tempat Pendidikan</label>
+                          <label for="pendidikan_kota1">Kota Tempat Pendidikan<span class="text-danger">*</span></label>
                             <input id="pendidikan_kota1" class="form-control" type="text" name="pendidikan_kota1" placeholder="Nama Kota Tempat Pendidikan" value="{{ old('pendidikan_kota1') }}">
                             {!! $errors->first('pendidikan_kota1', '<label id="pendidikan_kota1-error" class="error" for="pendidikan_kota1">:message</label>') !!}
                         </div>
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group form-show-validation {{ $errors->has('pendidikan_mulai1') ? 'has-error' : '' }}">
-                              <label for="pendidikan_mulai1">Tahun Mulai</label>
+                              <label for="pendidikan_mulai1">Tahun Mulai<span class="text-danger">*</span></label>
                                 <input id="pendidikan_mulai1" class="form-control" type="text" name="pendidikan_mulai1" placeholder="2010" maxlength="4" value="{{ old('pendidikan_mulai1') }}">
                                 {!! $errors->first('pendidikan_mulai1', '<label id="pendidikan_mulai1-error" class="error" for="pendidikan_mulai1">:message</label>') !!}
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group form-show-validation {{ $errors->has('pendidikan_lulus1') ? 'has-error' : '' }}">
-                              <label for="pendidikan_lulus1">Tahun Selesai</label>
+                              <label for="pendidikan_lulus1">Tahun Selesai<span class="text-danger">*</span></label>
                                 <input id="pendidikan_lulus1" class="form-control" type="text" name="pendidikan_lulus1" placeholder="2014" maxlength="4" value="{{ old('pendidikan_lulus1') }}">
                                 {!! $errors->first('pendidikan_lulus1', '<label id="pendidikan_lulus1-error" class="error" for="pendidikan_lulus1">:message</label>') !!}
                             </div>
@@ -141,7 +151,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group  form-show-validation {{ $errors->has('pendidikan_jenjang.'.$key) ? 'has-error' : '' }}">
-                          <label for="pendidikan_jenjang">Jenis Pendidikan</label>
+                          <label for="pendidikan_jenjang">Jenis Pendidikan<span class="text-danger">*</span></label>
                             <select id="pendidikan_jenjang" class="form-control" name="pendidikan_jenjang[]">
                               <option value="">Pilih Jenis Pendidikan</option>
                               <option value="SD" {{ (old('pendidikan_jenjang.'.$key, optional($row)->pendidikan_jenjang) == 'SD') ? 'selected' : '' }}>SD</option>
@@ -158,7 +168,7 @@
                             {!! $errors->first('pendidikan_jenjang.'.$key, '<label id="name-error" class="error" for="name">:message</label>') !!}
                         </div>
                         <div class="form-group form-show-validation {{ $errors->has('pendidikan_nama.'.$key) ? 'has-error' : '' }}">
-                          <label for="pendidikan_nama1">Nama Institusi</label>
+                          <label for="pendidikan_nama1">Nama Institusi<span class="text-danger">*</span></label>
                             <input id="pendidikan_nama1" class="form-control" type="text" name="pendidikan_nama[]" placeholder="Nama Institusi" value="{{ old('pendidikan_nama.'.$key, optional($row)->pendidikan_nama) }}">
                             {!! $errors->first('pendidikan_nama.'.$key, '<label id="pendidikan_nama1-error" class="error" for="pendidikan_nama1">:message</label>') !!}
                         </div>
@@ -170,21 +180,21 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group form-show-validation {{ $errors->has('pendidikan_kota.'.$key) ? 'has-error' : '' }}">
-                          <label for="pendidikan_kota1">Kota Tempat Pendidikan</label>
+                          <label for="pendidikan_kota1">Kota Tempat Pendidikan<span class="text-danger">*</span></label>
                             <input id="pendidikan_kota1" class="form-control" type="text" name="pendidikan_kota[]" placeholder="Nama Kota Tempat Pendidikan" value="{{ old('pendidikan_kota.'.$key, optional($row)->pendidikan_kota) }}">
                             {!! $errors->first('pendidikan_kota.'.$key, '<label id="pendidikan_kota1-error" class="error" for="pendidikan_kota1">:message</label>') !!}
                         </div>
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group form-show-validation {{ $errors->has('pendidikan_mulai.'.$key) ? 'has-error' : '' }}">
-                              <label for="pendidikan_mulai1">Tahun Mulai</label>
+                              <label for="pendidikan_mulai1">Tahun Mulai<span class="text-danger">*</span></label>
                                 <input id="pendidikan_mulai1" class="form-control" type="text" name="pendidikan_mulai[]" placeholder="2010" maxlength="4" value="{{ old('pendidikan_mulai.'.$key, optional($row)->pendidikan_mulai) }}">
                                 {!! $errors->first('pendidikan_mulai.'.$key, '<label id="pendidikan_mulai1-error" class="error" for="pendidikan_mulai1">:message</label>') !!}
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group form-show-validation {{ $errors->has('pendidikan_lulus.'.$key) ? 'has-error' : '' }}">
-                              <label for="pendidikan_lulus1">Tahun Selesai</label>
+                              <label for="pendidikan_lulus1">Tahun Selesai<span class="text-danger">*</span></label>
                                 <input id="pendidikan_lulus1" class="form-control" type="text" name="pendidikan_lulus[]" placeholder="2014" maxlength="4" value="{{ old('pendidikan_lulus.'.$key, optional($row)->pendidikan_lulus) }}">
                                 {!! $errors->first('pendidikan_lulus.'.$key, '<label id="pendidikan_lulus1-error" class="error" for="pendidikan_lulus1">:message</label>') !!}
                             </div>

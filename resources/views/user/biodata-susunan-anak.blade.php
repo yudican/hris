@@ -46,7 +46,10 @@
 
       {{-- start alert --}}
       <div class="alert alert-info" role="alert">
-        Silahkan masukkan biodata susunan anak mulai dari <b>anak pertama</b> hingga <b>anak terakhir</b>.
+        Silahkan masukkan biodata susunan anak mulai dari anak pertama hingga anak terakhir <b>termasuk Anda</b>.
+      </div>
+      <div class="alert alert-danger" role="alert">
+        Kolom Bertanda <span class="text-danger">*</span> Wajib Diisi
       </div>
       {{-- end alert --}}
 
@@ -68,14 +71,14 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group form-show-validation {{ $errors->has('bsa_nama1') ? 'has-error' : '' }}">
-                          <label for="bsa_nama1">Nama Lengkap</label>
+                          <label for="bsa_nama1">Nama Lengkap <span class="text-danger">*</span></label>
                             <input id="bsa_nama1" class="form-control" type="text" name="bsa_nama1" placeholder="Nama Lengkap" value="{{ old('bsa_nama1') }}">
                             {!! $errors->first('bsa_nama1', '<label id="bsa_nama1-error" class="error" for="bsa_nama1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group  form-show-validation {{ $errors->has('bsa_jenis_anak1') ? 'has-error' : '' }}">
-                          <label for="pendidikan_jenjang">Jenis Hubungan</label>
+                          <label for="pendidikan_jenjang">Jenis Hubungan <span class="text-danger">*</span></label>
                             <select id="pendidikan_jenjang" class="form-control" name="bsa_jenis_anak1">
                               <option value="">Pilih Jenis Hubungan</option>
                               <option value="Kakak" {{ (old('bsa_jenis_anak1') == 'Kakak') ? 'selected' : '' }}>Kakak</option>
@@ -89,21 +92,21 @@
                     <div class="row">
                       <div class="col-md-3">
                         <div class="form-group form-show-validation {{ $errors->has('bsa_tanggal_lahir1') ? 'has-error' : '' }}">
-                          <label for="bsa_tanggal_lahir1">Tanggal Lahir</label>
+                          <label for="bsa_tanggal_lahir1">Tanggal Lahir <span class="text-danger">*</span></label>
                             <input id="bsa_tanggal_lahir1" class="form-control" type="date" name="bsa_tanggal_lahir1" value="{{ old('bsa_tanggal_lahir1') }}">
                             {!! $errors->first('bsa_tanggal_lahir1', '<label id="bsa_tanggal_lahir1-error" class="error" for="bsa_tanggal_lahir1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group form-show-validation {{ $errors->has('bsa_pekerjaan1') ? 'has-error' : '' }}">
-                          <label for="bsa_pekerjaan1">Pekerjaan</label>
+                          <label for="bsa_pekerjaan1">Pekerjaan <span class="text-danger">*</span></label>
                             <input id="bsa_pekerjaan1" class="form-control" type="text" name="bsa_pekerjaan1" placeholder="Nama Pekerjaan" value="{{ old('bsa_pekerjaan1') }}">
                             {!! $errors->first('bsa_pekerjaan1', '<label id="bsa_pekerjaan1-error" class="error" for="bsa_pekerjaan1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group  form-show-validation {{ $errors->has('bsa_pendidikan1') ? 'has-error' : '' }}">
-                          <label for="pendidikan_jenjang">Pendidikan Terakhir</label>
+                          <label for="pendidikan_jenjang">Pendidikan Terakhir <span class="text-danger">*</span></label>
                             <select id="pendidikan_jenjang" class="form-control" name="bsa_pendidikan1">
                               <option value="">Pilih Pendidikan Terakhir</option>
                               <option value="Belum Sekolah" {{ (old('bsa_pendidikan1') == 'Belum Sekolah') ? 'selected' : '' }}>Belum Sekolah</option>
@@ -124,7 +127,7 @@
                       </div>
                       <div class="col-md-3">
                         <div class="form-group form-show-validation {{ $errors->has('bsa_nomor_hp1') ? 'has-error' : '' }}">
-                          <label for="bsa_nomor_hp1">Nomor Telepon/HP</label>
+                          <label for="bsa_nomor_hp1">Nomor Telepon/HP <span class="text-danger">*</span></label>
                             <input id="bsa_nomor_hp1" class="form-control" type="text" name="bsa_nomor_hp1" placeholder="Nomor Telepon/HP" value="{{ old('bsa_nomor_hp1') }}">
                             {!! $errors->first('bsa_nomor_hp1', '<label id="bsa_nomor_hp1-error" class="error" for="bsa_nomor_hp1">:message</label>') !!}
                         </div>
@@ -133,14 +136,14 @@
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group form-show-validation {{ $errors->has('bsa_alamat1') ? 'has-error' : '' }}">
-                          <label for="bsa_alamat1">Alamat</label>
+                          <label for="bsa_alamat1">Alamat <span class="text-danger">*</span></label>
                             <input id="bsa_alamat1" class="form-control" type="text" name="bsa_alamat1" placeholder="Alamat" value="{{ old('bsa_alamat1') }}">
                             {!! $errors->first('bsa_alamat1', '<label id="bsa_alamat1-error" class="error" for="bsa_alamat1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group  form-show-validation {{ $errors->has('bsa_perkawinan1') ? 'has-error' : '' }}">
-                          <label for="bsa_perkawinan1">Status Perkawinan</label>
+                          <label for="bsa_perkawinan1">Status Perkawinan <span class="text-danger">*</span></label>
                             <select id="bsa_perkawinan1" class="form-control" onchange="return statusPerkawinan(this.value, 'first')" name="bsa_perkawinan1">
                               <option value="">Pilih Status Perkawinan</option>
                               <option value="Kawin" {{ (old('bsa_perkawinan1') == 'Kawin') ? 'selected' : '' }}>Kawin</option>
@@ -210,14 +213,14 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group form-show-validation {{ $errors->has('bsa_nama.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_nama">Nama Lengkap</label>
+                            <label for="bsa_nama">Nama Lengkap <span class="text-danger">*</span></label>
                               <input id="bsa_nama" class="form-control" type="text" name="bsa_nama[]" placeholder="Nama Lengkap" value="{{ old('bsa_nama.'.$key, optional($row)->bsa_nama) }}">
                               {!! $errors->first('bsa_nama.'.$key, '<label id="bsa_nama-error" class="error" for="bsa_nama">:message</label>') !!}
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group  form-show-validation {{ $errors->has('bsa_jenis_anak.'.$key) ? 'has-error' : '' }}">
-                            <label for="pendidikan_jenjang">Jenis Hubungan</label>
+                            <label for="pendidikan_jenjang">Jenis Hubungan <span class="text-danger">*</span></label>
                               <select id="pendidikan_jenjang" class="form-control" name="bsa_jenis_anak[]">
                                 <option value="">Pilih Jenis Hubungan</option>
                                 <option value="Kakak" {{ (old('bsa_jenis_anak.'.$key, optional($row)->bsa_jenis_anak) == 'Kakak') ? 'selected' : '' }}>Kakak</option>
@@ -231,21 +234,21 @@
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group form-show-validation {{ $errors->has('bsa_tanggal_lahir.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_tanggal_lahir1">Tanggal Lahir</label>
+                            <label for="bsa_tanggal_lahir1">Tanggal Lahir <span class="text-danger">*</span></label>
                               <input id="bsa_tanggal_lahir1" class="form-control" type="date" name="bsa_tanggal_lahir[]" value="{{ old('bsa_tanggal_lahir.'.$key, optional($row)->bsa_tanggal_lahir) }}">
                               {!! $errors->first('bsa_tanggal_lahir.'.$key, '<label id="bsa_tanggal_lahir1-error" class="error" for="bsa_tanggal_lahir1">:message</label>') !!}
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group form-show-validation {{ $errors->has('bsa_pekerjaan.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_pekerjaan1">Pekerjaan</label>
+                            <label for="bsa_pekerjaan1">Pekerjaan <span class="text-danger">*</span></label>
                               <input id="bsa_pekerjaan1" class="form-control" type="text" name="bsa_pekerjaan[]" placeholder="Nama Pekerjaan" value="{{ old('bsa_pekerjaan.'.$key, optional($row)->bsa_pekerjaan) }}">
                               {!! $errors->first('bsa_pekerjaan.'.$key, '<label id="bsa_pekerjaan1-error" class="error" for="bsa_pekerjaan1">:message</label>') !!}
                           </div>
                         </div>
                         <div class="col-md-3">
                           <div class="form-group  form-show-validation {{ $errors->has('bsa_pendidikan.'.$key) ? 'has-error' : '' }}">
-                            <label for="pendidikan_jenjang">Pendidikan Terakhir</label>
+                            <label for="pendidikan_jenjang">Pendidikan Terakhir <span class="text-danger">*</span></label>
                               <select id="pendidikan_jenjang" class="form-control" name="bsa_pendidikan[]">
                                 <option value="">Pilih Pendidikan Terakhir</option>
                                 <option value="Belum Sekolah" {{ (old('bsa_pendidikan.'.$key, optional($row)->bsa_pendidikan) == 'Belum Sekolah') ? 'selected' : '' }}>Belum Sekolah</option>
@@ -266,7 +269,7 @@
                         </div>
                         <div class="col-md-3">
                           <div class="form-group form-show-validation {{ $errors->has('bsa_nomor_hp.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_nomor_hp1">Nomor Telepon/HP</label>
+                            <label for="bsa_nomor_hp1">Nomor Telepon/HP <span class="text-danger">*</span></label>
                               <input id="bsa_nomor_hp1" class="form-control" type="text" name="bsa_nomor_hp[]" placeholder="Nomor Telepon/HP" value="{{ old('bsa_nomor_hp.'.$key, optional($row)->bsa_nomor_hp) }}">
                               {!! $errors->first('bsa_nomor_hp.'.$key, '<label id="bsa_nomor_hp1-error" class="error" for="bsa_nomor_hp1">:message</label>') !!}
                           </div>
@@ -275,14 +278,14 @@
                       <div class="row">
                         <div class="col-md-8">
                           <div class="form-group form-show-validation {{ $errors->has('bsa_alamat.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_alamat1">Alamat</label>
+                            <label for="bsa_alamat1">Alamat <span class="text-danger">*</span></label>
                               <input id="bsa_alamat1" class="form-control" type="text" name="bsa_alamat[]" placeholder="Alamat" value="{{ old('bsa_alamat.'.$key, optional($row)->bsa_alamat) }}">
                               {!! $errors->first('bsa_alamat.'.$key, '<label id="bsa_alamat1-error" class="error" for="bsa_alamat1">:message</label>') !!}
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group  form-show-validation {{ $errors->has('bsa_perkawinan.'.$key) ? 'has-error' : '' }}">
-                            <label for="bsa_perkawinan1">Status Perkawinan</label>
+                            <label for="bsa_perkawinan1">Status Perkawinan <span class="text-danger">*</span></label>
                               <select id="bsa_perkawinan1" class="form-control" onchange="return statusPerkawinan(this.value, {{$row->id}})" name="bsa_perkawinan[]">
                                 <option value="">Pilih Status Perkawinan</option>
                                 <option value="Kawin" {{ (old('bsa_perkawinan.'.$key, optional($row)->bsa_perkawinan) == 'Kawin') ? 'selected' : '' }}>Kawin</option>

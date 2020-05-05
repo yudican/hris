@@ -31,6 +31,13 @@
           </li>
         </ul>
       </div>
+
+      {{-- start alert --}}
+      <div class="alert alert-info" role="alert">
+        Silahkan masukan nama pasangan Anda dan Anak-anak Anda.
+      </div>
+      {{-- end alert --}}
+
       <div class="row">
         <div class="col-md-12">
           <div class="card">

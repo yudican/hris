@@ -34,7 +34,10 @@
 
       {{-- start alert --}}
       <div class="alert alert-info" role="alert">
-        Silahkan masukkan data pengalaman kerja sebelumnya.
+        Silahkan masukkan data pengalaman kerja yang anda miliki.
+      </div>
+      <div class="alert alert-danger" role="alert">
+        Kolom Bertanda <span class="text-danger">*</span> Wajib Diisi
       </div>
       {{-- end alert --}}
 
@@ -56,14 +59,14 @@
                     <div class="row">
                       <div class="col-md-6 pr-0">
                         <div class="form-group form-show-validation {{ $errors->has('bp_perusahan1') ? 'has-error' : '' }}">
-                          <label for="bp_perusahan1">Perusahaan</label>
+                          <label for="bp_perusahan1">Perusahaan <span class="text-danger">*</span></label>
                             <input id="bp_perusahan1" class="form-control" type="text" name="bp_perusahan1" placeholder="Perusahaan" value="{{ old('bp_perusahan1') }}">
                             {!! $errors->first('bp_perusahan1', '<label id="bp_perusahan1-error" class="error" for="bp_perusahan1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-6 pl-0">
                         <div class="form-group form-show-validation {{ $errors->has('bp_jabatan1') ? 'has-error' : '' }}">
-                          <label for="bp_jabatan1">Posisi Jabatan</label>
+                          <label for="bp_jabatan1">Posisi Jabatan <span class="text-danger">*</span></label>
                             <input id="bp_jabatan1" class="form-control" type="text" name="bp_jabatan1" placeholder="ex: Costummer Service" value="{{ old('bp_jabatan1') }}">
                             {!! $errors->first('bp_jabatan1', '<label id="bp_jabatan1-error" class="error" for="bp_jabatan1">:message</label>') !!}
                         </div>
@@ -73,7 +76,7 @@
                     <div class="row">
                       <div class="col-md-6 pr-0">
                         <div class="form-group form-show-validation {{ $errors->has('bp_kota1') ? 'has-error' : '' }}">
-                          <label for="bp_kota1">Kota</label>
+                          <label for="bp_kota1">Kota <span class="text-danger">*</span></label>
                             <input id="bp_kota1" class="form-control" type="text" placeholder="kota tempat bekerja" name="bp_kota1" value="{{ old('bp_kota1') }}">
                             {!! $errors->first('bp_kota1', '<label id="bp_kota1-error" class="error" for="bp_kota1">:message</label>') !!}
                         </div>
@@ -82,14 +85,14 @@
                         <div class="row">
                           <div class="col-sm-6 col-6" style="padding-right: 0;">
                             <div class="form-group form-show-validation {{ $errors->has('bp_mulai1') ? 'has-error' : '' }}">
-                              <label for="bp_mulai1">Mulai</label>
+                              <label for="bp_mulai1">Mulai <span class="text-danger">*</span></label>
                               <input onclick="return showStartDate('first')" id="bp-mulai-first" class="form-control" type="text" name="bp_mulai1" placeholder="Mulai Bekerja" value="{{ old('bp_mulai1') }}">
                               {!! $errors->first('bp_mulai1', '<label id="bp_mulai1-error" class="error" for="bp_mulai1">:message</label>') !!}
                             </div>
                           </div>
                           <div class="col-sm-6 col-6" style="padding-left: 0;">
                             <div class="form-group form-show-validation {{ $errors->has('bp_akhir1') ? 'has-error' : '' }}">
-                              <label for="bp_akhir1">Akhir</label>
+                              <label for="bp_akhir1">Akhir <span class="text-danger">*</span></label>
                               <input onfocus="return showEndDate('first');" id="bp-akhir-first" class="form-control " type="text" name="bp_akhir1" placeholder="Akhir Bekerja" value="{{ old('bp_akhir1') }}" {{ old('bp_akhir1') == 'Masih Bekerja' ? 'readonly' : '' }}>
                               {!! $errors->first('bp_akhir1', '<label id="bp_akhir1-error" class="error" for="bp_akhir1">:message</label>') !!}
                             </div>
@@ -103,21 +106,21 @@
                     <div class="row">
                       <div class="col-md-4" style="padding-right: 0;">
                         <div class="form-group form-show-validation {{ $errors->has('bp_gaji_terakhir1') ? 'has-error' : '' }}">
-                          <label for="bp_gaji_terakhir1">Gaji Terakhir</label>
+                          <label for="bp_gaji_terakhir1">Gaji Terakhir <span class="text-danger">*</span></label>
                             <input id="bp_gaji_terakhir1" class="form-control" type="text" name="bp_gaji_terakhir1" placeholder="Gaji Terakhir" value="{{ old('bp_gaji_terakhir1') }}">
                             {!! $errors->first('bp_gaji_terakhir1', '<label id="bp_gaji_terakhir1-error" class="error" for="bp_gaji_terakhir1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-4" style="padding-left: 0;padding-right: 0;">
                         <div class="form-group form-show-validation {{ $errors->has('bp_nama_atasan1') ? 'has-error' : '' }}">
-                          <label for="bp_nama_atasan1">Nama Atasan</label>
+                          <label for="bp_nama_atasan1">Nama Atasan <span class="text-danger">*</span></label>
                             <input id="bp_nama_atasan1" class="form-control" type="text" name="bp_nama_atasan1" placeholder="Nama Atasan" value="{{ old('bp_nama_atasan1') }}">
                             {!! $errors->first('bp_nama_atasan1', '<label id="bp_nama_atasan1-error" class="error" for="bp_nama_atasan1">:message</label>') !!}
                         </div>
                       </div>
                       <div class="col-md-4" style="padding-left: 0;">
                         <div class="form-group form-show-validation {{ $errors->has('bp_nomor_tlp_atasan1') ? 'has-error' : '' }}">
-                          <label for="bp_nomor_tlp_atasan1">Kontak Atasan</label>
+                          <label for="bp_nomor_tlp_atasan1">Kontak Atasan <span class="text-danger">*</span></label>
                             <input id="bp_nomor_tlp_atasan1" class="form-control" type="text" name="bp_nomor_tlp_atasan1" placeholder="Kontak Atasan" value="{{ old('bp_nomor_tlp_atasan1') }}">
                             {!! $errors->first('bp_nomor_tlp_atasan1', '<label id="bp_nomor_tlp_atasan1-error" class="error" for="bp_nomor_tlp_atasan1">:message</label>') !!}
                         </div>
@@ -127,7 +130,7 @@
                     <div class="row">
                       <div class="col-md-12 col-sm-12 col-12">
                         <div class="form-group form-show-validation {{ $errors->has('bp_alasan_berhenti1') ? 'has-error' : '' }}">
-                          <label for="bp_alasan_berhenti1">Alasan berhenti</label>
+                          <label for="bp_alasan_berhenti1">Alasan berhenti <span class="text-danger">*</span></label>
                             <input id="bp_alasan_berhenti1" class="form-control" type="text" name="bp_alasan_berhenti1" placeholder="Alasan berhenti" value="{{ old('bp_alasan_berhenti1') }}">
                             {!! $errors->first('bp_alasan_berhenti1', '<label id="bp_alasan_berhenti1-error" class="error" for="bp_alasan_berhenti1">:message</label>') !!}
                         </div>
@@ -135,7 +138,7 @@
   
                       <div class="col-md-12 col-sm-12 col-12">
                         <div class="form-group form-show-validation {{ $errors->has('bp_jobdesc1') ? 'has-error' : '' }}">
-                          <label for="bp_jobdesc1">Deskripsi</label>
+                          <label for="bp_jobdesc1">Deskripsi <span class="text-danger">*</span></label>
                             <textarea id="bp-jobdesc-first" class="form-control" name="bp_jobdesc1">{{ old('bp_jobdesc1') }}</textarea>
                             {!! $errors->first('bp_jobdesc1', '<label id="bp_jobdesc1-error" class="error" for="bp_jobdesc1">:message</label>') !!}
                         </div>

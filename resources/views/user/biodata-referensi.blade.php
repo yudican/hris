@@ -34,7 +34,7 @@
 
       {{-- start alert --}}
       <div class="alert alert-info" role="alert">
-        Silahkan masukkan data referensi anda. jika tidak ada maka isi <b>Status Referensi Tidak</b>
+        Adakah saudara atau kenalan yang bekerja di Perusahaan Kami yang merekomendasikan Anda. Jika tidak ada maka isi Status Referensi Tidak.
       </div>
       <div class="alert alert-danger" role="alert">
         Kolom Bertanda <span class="text-danger">*</span> Wajib Diisi
