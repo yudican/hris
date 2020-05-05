@@ -98,15 +98,13 @@
                     </div>
                   </div>
                     
-                    <div class="col-md-12">
-                      <button type="submit" value="next" name="simpandanlanjutkan" class="btn btn-success">Simpan & Lanjutkan</button>
-                      {{-- @if (count($rows) > 0)
-                        <a href="{{ route('biodata-darurat.create', ['biodata_darurat' => request()->segment(3)]) }}" class="btn btn-primary">Selanjutnya</a>
-                      @endif --}}
-                    </div>
+                  <div class="col-md-12">
+                    <button type="submit" value="next" name="simpandanlanjutkan" class="btn btn-success">Simpan & Lanjutkan</button>
+                    {{-- @if (count($rows) > 0)
+                      <a href="{{ route('biodata-darurat.create', ['biodata_darurat' => request()->segment(3)]) }}" class="btn btn-primary">Selanjutnya</a>
+                    @endif --}}
                   </div>
                 </form>
-                </div>
               </div>
             </div>
           </div>

@@ -118,7 +118,10 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('biodata-keahlian/create/{biodata_keahlian}', 'Biodata\KeahlianController@create')->name('biodata-keahlian.create');
         Route::post('biodata-keahlian/store', 'Biodata\KeahlianController@store')->name('biodata-keahlian.store');
         Route::put('biodata-keahlian/update', 'Biodata\KeahlianController@update')->name('biodata-keahlian.update');
-
+        
+        // biodata biodata-domisili
+        Route::get('biodata-domisili/show/{biodata_domisili}', 'Biodata\DomisiliController@show')->name('biodata-domisili.show');
+        Route::put('biodata-domisili/store/{biodata_domisili}', 'Biodata\DomisiliController@store')->name('biodata-domisili.store');
         
     });
 });
