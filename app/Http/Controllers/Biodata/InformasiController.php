@@ -22,7 +22,7 @@ class InformasiController extends Controller
         return view('user.biodata-informasi', [
             'title' => 'Informasi Akun Sosial Media',
             'row' => $row,
-            'action' => route('biodata-informasi.store'),
+            'action' => route('biodata-informasi.store', $id),
             'dataKtp' =>  $dataKtp, // nomor ktp
             'previews' => $previews
         ]);
@@ -34,7 +34,7 @@ class InformasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $validation = ['bioin_email' => 'nullable|email:rfc,dns', 'bioin_whatsapp' => 'nullable|numeric'];
         $messages = ['email' => 'Silahkan masukkan email yang valid', 'numeric' => 'field harus berupa angka'];
@@ -50,7 +50,7 @@ class InformasiController extends Controller
         ];
 
         BiodataInformasi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp],$data);
-        // return redirect()->route('biodata-darurat.create', ['biodata_darurat' => $id])->withSuccess('Biodata informasi berhasil di input');
-        return redirect()->back()->withSuccess('Biodata informasi berhasil di input');
+        return redirect()->route('biodata-lisensi.create', ['biodata_lisensi' => $id])->withSuccess('Biodata informasi berhasil di input');
+        // return redirect()->back()->withSuccess('Biodata informasi berhasil di input');
     }
 }
