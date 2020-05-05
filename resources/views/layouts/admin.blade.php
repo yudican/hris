@@ -110,7 +110,13 @@
 						<ul class="nav nav-primary">
 							@foreach($menus as $menu)
 								@if (!$menu->parent_id && !$menu->children->isEmpty())
-									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+								{{-- 
+									$menu->permissions()->pluck('name')[0] -> Create	
+									$menu->permissions()->pluck('name')[1] -> Read	
+									$menu->permissions()->pluck('name')[2] -> Update	
+									$menu->permissions()->pluck('name')[3] -> Delete	
+								--}}
+									@if(in_array($menu->permissions()->pluck('name')[1], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
 										<li class="nav-item {{ (request()->segment(1) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
 											<a data-toggle="collapse" href="#{{ $menu->id }}" class="collapsed" aria-expanded="false">
 												<i class="{{ $menu->icon }}"></i>
@@ -120,7 +126,7 @@
 											<div class="collapse" id="{{ $menu->id }}">
 												<ul class="nav nav-collapse">
 													@foreach($menu->children as $child)
-														@if(in_array($child->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+														@if(in_array($child->permissions()->pluck('name')[1], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
 															<li>
 																<a href="{{ route($child->url)  }}">
 																	<i class="{{ $child->icon }}"></i>
@@ -134,7 +140,7 @@
 										</li>
 									@endif
 								@else
-									@if(in_array($menu->permissions()->pluck('name')[0], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
+									@if(in_array($menu->permissions()->pluck('name')[1], auth()->user()->getPermissionsViaRoles()->pluck('name')->toArray()))
 										<li class="nav-item {{ (request()->segment(1) == explode('.', $menu->url)[0]) ? 'active' : '' }}">
 											<a href="{{ $menu->url ? route($menu->url) : '#' }}" class="collapsed">
 												<i class="{{ $menu->icon }}"></i>

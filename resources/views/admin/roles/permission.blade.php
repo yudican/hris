@@ -60,10 +60,27 @@
                           </td>
                             <td>
                           @endif
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                            <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
-                          </div> 
+                          @if ($menu->parent_id)
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
+                              <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
+                            </div> 
+                            @else
+                              @if (in_array('Read', explode(' ', $permission->name)) && $menu->show == 'Ya')
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
+                                  <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
+                                </div> 
+                                
+                              @endif
+                              @if ($menu->show == 'Tidak')
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
+                                  <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
+                                </div> 
+                                
+                              @endif
+                          @endif
                           
                         @endforeach
                       

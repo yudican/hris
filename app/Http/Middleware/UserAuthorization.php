@@ -26,13 +26,41 @@ class UserAuthorization
         if (!count($checkController) > 0) {
             return abort(419);
         }
+        // $request->getMethod()
         $menuWithPermissions = Menu::with('permissions')->where($where)->first();
         $permissionsList = $menuWithPermissions->permissions()->pluck('name')->toArray();
         $permissions = auth()->user()->getPermissionsViaRoles()->pluck('name');
         foreach ($permissions as $permission) {
             if (in_array($permission, $permissionsList)) {
-                if(auth()->user()->can($permission)){
-                    return $next($request);
+                $data = explode(' ', $permission);
+                $type = $data[count($data) - 1];
+                if ($request->getMethod() == 'POST') {
+                    if ($type == 'Create') {
+                        if(auth()->user()->can($permission)){
+                            return $next($request);
+                        }
+                    }
+                }
+                if ($request->getMethod() == 'GET') {
+                    if ($type == 'Read') {
+                        if(auth()->user()->can($permission)){
+                            return $next($request);
+                        }
+                    }
+                }
+                if ($request->getMethod() == 'PUT') {
+                    if ($type == 'Update') {
+                        if(auth()->user()->can($permission)){
+                            return $next($request);
+                        }
+                    }
+                }
+                if ($request->getMethod() == 'DELETE') {
+                    if ($type == 'Delete') {
+                        if(auth()->user()->can($permission)){
+                            return $next($request);
+                        }
+                    }
                 }
             }
         }
