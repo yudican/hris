@@ -51,6 +51,7 @@
                 <form action="{{ $action }}" method="POST">
                   @csrf
                   <input type="hidden" name="_method" value="PUT">
+                  <input type="hidden" name="id" value="{{ $row->id }}">
                   <div>
                     <div class="row">
                         <div class="col-md-6">

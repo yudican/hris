@@ -122,6 +122,10 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         // biodata biodata-domisili
         Route::get('biodata-domisili/show/{biodata_domisili}', 'Biodata\DomisiliController@show')->name('biodata-domisili.show');
         Route::put('biodata-domisili/store/{biodata_domisili}', 'Biodata\DomisiliController@store')->name('biodata-domisili.store');
+
+        // biodata biodata-domisili
+        Route::get('biodata-informasi/create/{biodata_informasi}', 'Biodata\InformasiController@create')->name('biodata-informasi.create');
+        Route::post('biodata-informasi/store', 'Biodata\InformasiController@store')->name('biodata-informasi.store');
         
     });
 });

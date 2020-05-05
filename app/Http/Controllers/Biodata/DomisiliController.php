@@ -33,14 +33,14 @@ class DomisiliController extends Controller
         return view('user.biodata-domisili', [
             'title' => 'Biodata Domisili',
             'row' => $row,
-            'action' => route('biodata-domisili.store', ['biodata_domisili' => $row->id]),
+            'action' => route('biodata-domisili.store', ['biodata_domisili' => $id]),
             'dataKtp' =>  $dataKtp, // nomor ktp
             'previews' => $previews,
             'provinces' => Province::all(),
             'cities' => $this->cities[0],
             'districts' => $this->districts[0],
             'urbans' => $this->urbans[0],
-            'postalKode' => $this->postalKode[0]
+            'postalKode' => $this->postalKode[0],
         ]);
     }
 
@@ -67,9 +67,9 @@ class DomisiliController extends Controller
         $this->validate($request, $validation, $messages);
 
         
-        Pelamar::find($id)->update($request->all());
-        // return redirect()->route('biodata-darurat.create', ['biodata_darurat' => $id])->withSuccess('Biodata referensi berhasil di input');
-        return redirect()->back()->withSuccess('Biodata Domisili berhasil di update');
+        Pelamar::find($request->id)->update($request->all());
+        return redirect()->route('biodata-informasi.create', ['biodata_informasi' => $id])->withSuccess('Biodata referensi berhasil di input');
+        // return redirect()->back()->withSuccess('Biodata Domisili berhasil di update');
     }
 
     protected function unique_array($array, $key)
