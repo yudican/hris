@@ -135,5 +135,15 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('biodata-lisensi/create/{biodata_lisensi}', 'Biodata\LisensiController@create')->name('biodata-lisensi.create');
         Route::post('biodata-lisensi/store', 'Biodata\LisensiController@store')->name('biodata-lisensi.store');
         Route::put('biodata-lisensi/update', 'Biodata\LisensiController@update')->name('biodata-lisensi.update');
+
+        // biodata pertanyaan
+        Route::get('pertanyaan/create/{pertanyaan}', 'Biodata\PertanyaanController@create')->name('pertanyaan.create');
+        Route::post('pertanyaan/store', 'Biodata\PertanyaanController@store')->name('pertanyaan.store');
+        // Route::put('pertanyaan/update', 'Biodata\PertanyaanController@update')->name('pertanyaan.update');
+
+        // biodata pertanyaan
+        Route::get('biodata-konfirmasi/create/{biodata_konfirmasi}', 'Biodata\TtdController@create')->name('biodata-konfirmasi.create');
+        Route::post('biodata-konfirmasi/store/{biodata_konfirmasi}', 'Biodata\TtdController@store')->name('biodata-konfirmasi.store');
+        // Route::put('pertanyaan/update', 'Biodata\PertanyaanController@update')->name('pertanyaan.update');
     });
 });

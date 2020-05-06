@@ -109,7 +109,7 @@
                         <div class="col-sm-9">
                           <button type="submit" value="next" name="simpandanlanjutkan" class="btn btn-success">Simpan</button>
                           @if (count($rows) > 0)
-                            <a href="{{ route('biodata-lisensi.create', ['biodata_lisensi' => request()->segment(3)]) }}" class="btn btn-primary">Selanjutnya</a>
+                            <a href="{{ route('pertanyaan.create', ['pertanyaan' => request()->segment(3)]) }}" class="btn btn-primary">Selanjutnya</a>
                           @endif
                         </div>
                     </div>
