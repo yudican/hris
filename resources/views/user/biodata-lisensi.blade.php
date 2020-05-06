@@ -72,14 +72,14 @@
                     <div class="form-group form-show-validation row {{ $errors->has('bil_jenis1') ? 'has-error' : '' }}">
                       <label for="bil_jenis1" class="col-sm-3 col-form-label text-right">Jenis <span class="text-danger">*</span></label>
                       <div class="col-sm-9">
-                        <select id="bil_kategori" class="form-control" name="bil_jenis1">
+                        <select id="bil_kategori" class="form-control" name="bil_jenis1" onchange="return getValue(this.value, 'first')">
                             <option value="">Pilih Jenis</option>
                             <option value="SIM A" {{ (old('bil_jenis1') == 'SIM A') ? 'selected' : '' }}>SIM A</option>
                             <option value="SIM B I" {{ (old('bil_jenis1') == 'SIM B I') ? 'selected' : '' }}>SIM B I</option>
                             <option value="SIM B II" {{ (old('bil_jenis1') == 'SIM B II') ? 'selected' : '' }}>SIM B II</option>
                             <option value="SIM C" {{ (old('bil_jenis1') == 'SIM C') ? 'selected' : '' }}>SIM C</option>
-                            <option value="SIM D" {{ (old('bil_jenis1') == 'BPJS Kesehatan') ? 'selected' : '' }}>BPJS Kesehatan</option>
-                            <option value="BPJS Kesehatan" {{ (old('bil_jenis1') == 'SIM D') ? 'selected' : '' }}>SIM D</option>
+                            <option value="SIM D" {{ (old('bil_jenis1') == 'SIM D') ? 'selected' : '' }}>SIM D</option>
+                            <option value="BPJS Kesehatan" {{ (old('bil_jenis1') == 'BPJS Kesehatan') ? 'selected' : '' }}>BPJS Kesehatan</option>
                             <option value="BPJS" {{ (old('bil_jenis1') == 'BPJS') ? 'selected' : '' }}>BPJS</option>
                             <option value="Ketenagakerjaan" {{ (old('bil_jenis1') == 'Ketenagakerjaan') ? 'selected' : '' }}>Ketenagakerjaan</option>
                             <option value="Lainnya" {{ (old('bil_jenis1') == 'Lainnya') ? 'selected' : '' }}>Lainnya</option>
@@ -95,6 +95,15 @@
                           {!! $errors->first('bil_nomor1', '<label id="bil_nomor1-error" class="error" for="bil_nomor1">:message</label>') !!}
                         </div>
                     </div>
+                    {{-- @if () --}}
+                      <div id="field-first" class="form-group {{ in_array(old('bil_jenis1') , $jenisLisensi) ? '' : 'd-none' }} form-show-validation row {{ $errors->has('bil_tanggal_expired1') ? 'has-error' : '' }}">
+                          <label for="bil_tanggal_expired1" class="col-sm-3 col-form-label text-right">Tanggal Kedaluarsa <span class="text-danger">*</span></label>
+                          <div class="col-sm-9">
+                            <input id="expired-first" onfocus="return showDate('first')" class="form-control" type="text" name="bil_tanggal_expired1" placeholder="Tanggal Kedaluarsa" value="{{ old('bil_tanggal_expired1') }}">
+                            {!! $errors->first('bil_tanggal_expired1', '<label id="bil_tanggal_expired1-error" class="error" for="bil_tanggal_expired1">:message</label>') !!}
+                          </div>
+                      </div>
+                    {{-- @endif --}}
                     <div class="form-group form-show-validation row">
                         <label for="bil_nomor1" class="col-sm-3 col-form-label text-right"></label>
                         <div class="col-sm-9">
@@ -137,14 +146,14 @@
                     <div class="form-group form-show-validation row {{ $errors->has('bil_jenis.'.$key, $row->bil_jenis) ? 'has-error' : '' }}">
                       <label for="bil_jenis" class="col-sm-3 col-form-label text-right">Jenis <span class="text-danger">*</span></label>
                       <div class="col-sm-9">
-                        <select id="bil_kategori" class="form-control" name="bil_jenis[]">
+                        <select id="bil_kategori" class="form-control" name="bil_jenis[]" onchange="return getValue(this.value, '{{ $row->id }}')">
                             <option value="">Pilih Jenis</option>
                             <option value="SIM A" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM A') ? 'selected' : '' }}>SIM A</option>
                             <option value="SIM B I" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM B I') ? 'selected' : '' }}>SIM B I</option>
                             <option value="SIM B II" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM B II') ? 'selected' : '' }}>SIM B II</option>
                             <option value="SIM C" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM C') ? 'selected' : '' }}>SIM C</option>
-                            <option value="SIM D" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'BPJS Kesehatan') ? 'selected' : '' }}>BPJS Kesehatan</option>
-                            <option value="BPJS Kesehatan" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM D') ? 'selected' : '' }}>SIM D</option>
+                            <option value="SIM D" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'SIM D') ? 'selected' : '' }}>SIM D</option>
+                            <option value="BPJS Kesehatan" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'BPJS Kesehatan') ? 'selected' : '' }}>BPJS Kesehatan</option>
                             <option value="BPJS" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'BPJS') ? 'selected' : '' }}>BPJS</option>
                             <option value="Ketenagakerjaan" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'Ketenagakerjaan') ? 'selected' : '' }}>Ketenagakerjaan</option>
                             <option value="Lainnya" {{ (old('bil_jenis.'.$key, $row->bil_jenis) == 'Lainnya') ? 'selected' : '' }}>Lainnya</option>
@@ -158,6 +167,14 @@
                         <div class="col-sm-9">
                           <input id="bil_nomor" class="form-control" type="text" name="bil_nomor[]" placeholder="Nomor Lisensi" value="{{ old('bil_nomor.'.$key, optional($row)->bil_nomor) }}">
                           {!! $errors->first('bil_nomor.'.$key, '<label id="bil_nomor-error" class="error" for="bil_nomor">:message</label>') !!}
+                        </div>
+                    </div>
+
+                    <div id="field-{{ $row->id }}" class="form-group {{ in_array(old('bil_jenis.'.$key, $row->bil_jenis) , $jenisLisensi) ? '' : 'd-none' }} form-show-validation row {{ $errors->has('bil_tanggal_expired.'.$key) ? 'has-error' : '' }}">
+                        <label for="bil_tanggal_expired1" class="col-sm-3 col-form-label text-right">Tanggal Kedaluarsa <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                          <input id="expired-{{ $row->id }}" onfocus="return showDate('{{ $row->id }}')" class="form-control" type="text" name="bil_tanggal_expired[]" placeholder="Tanggal Kedaluarsa" value="{{ old('bil_tanggal_expired.'.$key, $row->bil_tanggal_expired) }}">
+                          {!! $errors->first('bil_tanggal_expired.'.$key, '<label id="bil_tanggal_expired1-error" class="error" for="bil_tanggal_expired1">:message</label>') !!}
                         </div>
                     </div>
                     
@@ -177,4 +194,43 @@
     </div>
   </div>
 @endsection
+
+@push('script')
+<script src="{{ asset('assets/server/js/plugin/datepicker/bootstrap-datetimepicker.min.js') }}"></script>
+  <script>
+    function showDate(type) {
+      $('#expired-'+type).datetimepicker({
+          format: 'YYYY-MM-DD'
+      }).datetimepicker('show');
+    }
+
+    function getValue(value, type) {
+      let field = document.getElementById('field-'+type)
+      let input = document.getElementById('expired-'+type)
+      // alert(value)
+      switch (value) {
+        case 'SIM A':
+          field.classList.remove('d-none')
+          break
+        case 'SIM B I':
+          field.classList.remove('d-none')
+          break
+        case 'SIM B II':
+          field.classList.remove('d-none')
+          break
+        case 'SIM C':
+          field.classList.remove('d-none')
+          break
+        case 'SIM D':
+          field.classList.remove('d-none')
+          break
+        default:
+          field.classList.add('d-none')
+          input.value = null
+          break
+        // input.classList.remove('d-block')
+      }
+    }
+  </script>
+@endpush
 

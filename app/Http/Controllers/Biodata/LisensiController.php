@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class LisensiController extends Controller
 {
+    protected $dataJenis = ['SIM A', 'SIM B I', 'SIM B II', 'SIM C', 'SIM D'];
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +26,8 @@ class LisensiController extends Controller
             'rows' => BiodataLisensi::where('nomor_ktp', $dataKtp->ktp_nomor)->get(),
             'action' => route('biodata-lisensi.store'),
             'dataKtp' =>  $dataKtp, // nomor ktp
-            'previews' => $previews
+            'previews' => $previews,
+            'jenisLisensi' => $this->dataJenis
         ]);
     }
 
@@ -40,17 +43,21 @@ class LisensiController extends Controller
         $validation['bil_kategori1'] = 'required';
         $validation['bil_jenis1'] = 'required';
         $validation['bil_nomor1'] = 'required|numeric';
+        if (in_array($request->bil_jenis1, $this->dataJenis)) {
+            $validation['bil_tanggal_expired1'] = 'required';
+        }
 
-        $validate = $this->validate($request, $validation, $messages);
+        $this->validate($request, $validation, $messages);
 
         $data = [
             'bil_kategori' => $request->bil_kategori1,
             'bil_jenis' => $request->bil_jenis1,
             'bil_nomor' => $request->bil_nomor1,
+            'bil_tanggal_expired' => $request->bil_tanggal_expired1,
             'nomor_ktp' => $request->nomor_ktp1,
         ];
 
-        BiodataLisensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'bil_nomor' => $request->bil_nomor1],$data);
+        BiodataLisensi::updateOrCreate(['nomor_ktp' => $request->nomor_ktp1, 'bil_nomor' => $request->bil_nomor1], $data);
         return redirect()->back()->withSuccess('Biodata Lisensi berhasil di input');
     }
 
@@ -67,6 +74,7 @@ class LisensiController extends Controller
                 'bil_kategori' => $request->bil_kategori[$key],
                 'bil_jenis' => $request->bil_jenis[$key],
                 'bil_nomor' => $request->bil_nomor[$key],
+                'bil_tanggal_expired' => $request->bil_tanggal_expired[$key],
                 'nomor_ktp' => $request->nomor_ktp
             ];
             BiodataLisensi::where('id', $request->id[$key])->update($data);

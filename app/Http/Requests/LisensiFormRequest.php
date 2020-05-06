@@ -23,11 +23,18 @@ class LisensiFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'bil_kategori.*' => 'required',
-            'bil_jenis.*' => 'required',
-            'bil_nomor.*' => 'required|numeric',
-        ];
+        $validation['bil_kategori.*'] = 'required';
+        $validation['bil_jenis.*'] = 'required';
+        $validation['bil_nomor.*'] = 'required|numeric';
+        if ($this->request->get('bil_tanggal_expired')) {
+            $jenis = ['SIM A', 'SIM B I', 'SIM B II', 'SIM C', 'SIM D'];
+            foreach ($this->request->get('bil_tanggal_expired') as $key => $value) {
+                if (in_array($this->request->get('bil_jenis')[$key], $jenis)) {
+                    $validation['bil_tanggal_expired.' . $key] = 'required';
+                }
+            }
+        }
+        return $validation;
     }
 
     /**
@@ -41,6 +48,7 @@ class LisensiFormRequest extends FormRequest
             'bil_kategori.*.required' => 'field tidak boleh kosong',
             'bil_jenis.*.required' => 'field tidak boleh kosong',
             'bil_nomor.*.required' => 'field tidak boleh kosong',
+            'bil_tanggal_expired.*.required' => 'field tidak boleh kosong',
             'bil_nomor.*.numeric' => 'field harus berupa angka',
         ];
     }

@@ -13,5 +13,6 @@ class BiodataLisensi extends Model
         'bil_jenis',
         'bil_nomor',
         'nomor_ktp',
+        'bil_tanggal_expired'
     ];
 }
