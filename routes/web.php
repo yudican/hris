@@ -33,7 +33,7 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
     Route::group(['prefix' => 'auth'], function () {
         Auth::routes();
     });
-    
+
 
     Route::group(['middleware' => ['auth', 'isAuthorization']], function () {
         Route::get('/perusahaan', 'PerusahaanController@index')->name('perusahaan.index');
@@ -65,14 +65,18 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('pelamar/Ditolak', 'PelamarController@index')->name('pelamar.ditolak');
         Route::resource('pelamar', 'PelamarController')->except(['create', 'store', 'edit', 'destroy']);
 
-        // biodata kehamilan
-        Route::get('sejarah-perusahaan/index', 'SejarahController@index')->name('sejarah-perusahaan.index');
-        Route::post('sejarah-perusahaan/store', 'SejarahController@store')->name('sejarah-perusahaan.store');
-        
+        // Pertanyaan Page
+        Route::get('pertanyaan', 'PertanyaanController@index')->name('pertanyaan.index');
+
         /**
          * User Route
          * 
          */
+
+        // biodata kehamilan
+        Route::get('sejarah-perusahaan/index', 'SejarahController@index')->name('sejarah-perusahaan.index');
+        Route::post('sejarah-perusahaan/store', 'SejarahController@store')->name('sejarah-perusahaan.store');
+
         Route::resource('biodata-ktp', 'Biodata\KtpController'); // biodata ktp
 
         // biodata kehamilan
@@ -113,12 +117,12 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         Route::get('biodata-darurat/create/{biodata_darurat}', 'Biodata\DaruratController@create')->name('biodata-darurat.create');
         Route::post('biodata-darurat/store', 'Biodata\DaruratController@store')->name('biodata-darurat.store');
         Route::put('biodata-darurat/update', 'Biodata\DaruratController@update')->name('biodata-darurat.update');
-        
+
         // biodata biodata-keahlian
         Route::get('biodata-keahlian/create/{biodata_keahlian}', 'Biodata\KeahlianController@create')->name('biodata-keahlian.create');
         Route::post('biodata-keahlian/store', 'Biodata\KeahlianController@store')->name('biodata-keahlian.store');
         Route::put('biodata-keahlian/update', 'Biodata\KeahlianController@update')->name('biodata-keahlian.update');
-        
+
         // biodata biodata-domisili
         Route::get('biodata-domisili/show/{biodata_domisili}', 'Biodata\DomisiliController@show')->name('biodata-domisili.show');
         Route::put('biodata-domisili/store/{biodata_domisili}', 'Biodata\DomisiliController@store')->name('biodata-domisili.store');
@@ -126,11 +130,10 @@ Route::group(['middleware' => ['web', 'statusLowongan']], function () {
         // biodata biodata-domisili
         Route::get('biodata-informasi/create/{biodata_informasi}', 'Biodata\InformasiController@create')->name('biodata-informasi.create');
         Route::post('biodata-informasi/store/{biodata_informasi}', 'Biodata\InformasiController@store')->name('biodata-informasi.store');
-        
+
         // biodata biodata-lisensi
         Route::get('biodata-lisensi/create/{biodata_lisensi}', 'Biodata\LisensiController@create')->name('biodata-lisensi.create');
         Route::post('biodata-lisensi/store', 'Biodata\LisensiController@store')->name('biodata-lisensi.store');
         Route::put('biodata-lisensi/update', 'Biodata\LisensiController@update')->name('biodata-lisensi.update');
     });
 });
-

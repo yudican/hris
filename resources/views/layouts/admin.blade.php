@@ -28,6 +28,7 @@
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('assets/server/css/demo.css') }}">
 	@stack('style')
+	<livewire:styles>
 </head>
 <body>
 	<div class="wrapper">
@@ -279,6 +280,6 @@
 	<script src="{{ asset('assets/server/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js') }}"></script> --}}
 
 	
-	
+	<livewire:scripts>
 </body>
 </html>
