@@ -56,30 +56,30 @@
                             $i = 0;
                         @endphp
                         @foreach ($menu->permissions()->get() as $permission)
-                          @if ($i++ %2 == 0)
+                          @if ($i++ %2 == 1)
                           </td>
                             <td>
                           @endif
                           @if ($menu->parent_id)
                             <div class="custom-control custom-checkbox">
                               <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                              <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
+                              <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[1] }}</label>
                             </div> 
+                            @if ($i++ %2 == 1)
+                          </td>
+                            <td>
+                          @endif
                             @else
-                              @if (in_array('Read', explode(' ', $permission->name)) && $menu->show == 'Ya')
-                                <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                                  <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
-                                </div> 
-                                
-                              @endif
-                              @if ($menu->show == 'Tidak')
-                                <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                                  <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ $permission->name }}</label>
-                                </div> 
-                                
-                              @endif
+                              {{-- @if ($menu->show == 'Tidak')
+                              @endif --}}
+                                  <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
+                                    <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[1] }}</label>
+                                  </div> 
+                                  @if ($i++ %2 == 1)
+                            </td>
+                              <td>
+                            @endif
                           @endif
                           
                         @endforeach
