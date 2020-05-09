@@ -63,7 +63,7 @@
                           @if ($menu->parent_id)
                             <div class="custom-control custom-checkbox">
                               <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                              <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[1] }}</label>
+                              <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[count(explode(' ', $permission->name))- 1] }}</label>
                             </div> 
                             @if ($i++ %2 == 1)
                           </td>
@@ -74,7 +74,7 @@
                               @endif --}}
                                   <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="permission[]" id="permission_{{ $permission->name }}" {{ in_array($role->name, $permission->roles()->pluck('name')->toArray()) ? 'checked' : '' }} value="{{ $permission->name }}">
-                                    <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[1] }}</label>
+                                    <label class="custom-control-label" for="permission_{{ $permission->name }}">{{ explode(' ', $permission->name)[count(explode(' ', $permission->name))- 1] }}</label>
                                   </div> 
                                   @if ($i++ %2 == 1)
                             </td>
